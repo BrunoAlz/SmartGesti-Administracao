@@ -1,0 +1,205 @@
+import { SidebarConfig } from "./types";
+
+// ================================
+// CONFIGURAÇÃO PRINCIPAL DO MENU ADMIN
+// ================================
+
+import {
+  Home,
+  Building2,
+  CreditCard,
+  Settings,
+  FileText,
+  Database,
+  Plus,
+  List,
+  CheckCircle,
+  XCircle,
+  RefreshCw,
+  DollarSign,
+  TrendingUp,
+  AlertCircle,
+  User,
+} from "lucide-react";
+
+// ================================
+// CONFIGURAÇÃO PRINCIPAL DO MENU ADMIN
+// ================================
+
+export const adminSidebarConfig: SidebarConfig = {
+  branding: {
+    title: "SmartGesTI",
+    version: "1.0.0",
+  },
+  footer: {
+    showVersion: true,
+  },
+  sections: [
+    // ================================
+    // ANALYTICS
+    // ================================
+    {
+      id: "analytics",
+      label: "Analytics",
+      items: [
+        {
+          type: "link",
+          id: "dashboard",
+          label: "Dashboard",
+          path: "/admin",
+          icon: Home,
+        },
+        {
+          type: "link",
+          id: "most-used",
+          label: "Mais Usados",
+          path: "/admin/analytics/most-used",
+          icon: TrendingUp,
+        },
+      ],
+    },
+
+    // ================================
+    // SEÇÃO GESTÃO
+    // ================================
+    {
+      id: "management",
+      label: "Gestão",
+      items: [
+        {
+          type: "submenu",
+          id: "clients",
+          label: "Clientes",
+          icon: Building2,
+          children: [
+            {
+              id: "clients-list",
+              label: "Ver Clientes",
+              path: "/admin/tenants",
+              icon: List,
+            },
+            {
+              id: "clients-new",
+              label: "Novo Cliente",
+              path: "/admin/tenants/new",
+              icon: Plus,
+            },
+          ],
+        },
+      ],
+    },
+
+    // ================================
+    // SEÇÃO FINANCEIRO
+    // ================================
+    {
+      id: "financial",
+      label: "Financeiro",
+      items: [
+        {
+          type: "submenu",
+          id: "payments",
+          label: "Pagamentos",
+          icon: CreditCard,
+          children: [
+            {
+              id: "payments-history",
+              label: "Histórico",
+              path: "/admin/payments",
+              icon: List,
+            },
+            {
+              id: "payments-pending",
+              label: "Pendentes",
+              path: "/admin/payments/pending",
+              icon: AlertCircle,
+              badge: 12, // Exemplo de badge dinâmico
+            },
+            {
+              id: "payments-approved",
+              label: "Aprovados",
+              path: "/admin/payments/approved",
+              icon: CheckCircle,
+            },
+            {
+              id: "payments-refunds",
+              label: "Reembolsos",
+              path: "/admin/payments/refunds",
+              icon: RefreshCw,
+            },
+            {
+              id: "payments-debtors",
+              label: "Devedores",
+              path: "/admin/payments/debtors",
+              icon: XCircle,
+            },
+            {
+              id: "payment-profile",
+              label: "Perfil Pagador",
+              path: "/admin/payments/profile",
+              icon: User,
+            },
+          ],
+        },
+        {
+          type: "link",
+          id: "plans",
+          label: "Planos",
+          path: "/admin/plans",
+          icon: DollarSign,
+        },
+        {
+          type: "link",
+          id: "reports",
+          label: "Relatórios",
+          path: "/admin/reports",
+          icon: FileText,
+        },
+      ],
+    },
+
+    // ================================
+    // SEPARADOR
+    // ================================
+    {
+      id: "separator-1",
+      items: [
+        {
+          type: "separator",
+          id: "sep-1",
+          label: "Sistema",
+        },
+      ],
+    },
+
+    // ================================
+    // SEÇÃO SISTEMA
+    // ================================
+    {
+      id: "system",
+      items: [
+        {
+          type: "submenu",
+          id: "settings",
+          label: "Configurações",
+          icon: Settings,
+          children: [
+            {
+              id: "settings-backup",
+              label: "Backup e Restore",
+              path: "/admin/settings/backup",
+              icon: Database,
+            },
+          ],
+        },
+        {
+          type: "link",
+          id: "logs",
+          label: "Logs do Sistema",
+          path: "/admin/logs",
+          icon: FileText,
+        },
+      ],
+    },
+  ],
+};

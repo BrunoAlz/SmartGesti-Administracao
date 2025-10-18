@@ -1,0 +1,110 @@
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { useTheme, getThemeClasses } from "../../../contexts/ThemeContext";
+import {
+  SidebarProps,
+  MenuItem as MenuItemType,
+  MenuItemWithSubMenu,
+} from "./types";
+import { useSidebarMenu } from "./useSidebarMenu";
+import { SidebarHeader } from "./SidebarHeader";
+import { SidebarFooter } from "./SidebarFooter";
+import { MenuItem } from "./MenuItem";
+import { SubMenu } from "./SubMenu";
+import "./sidebar-styles.css";
+
+// ================================
+// COMPONENTE ADMIN SIDEBAR PRINCIPAL
+// ================================
+
+export const AdminSidebar: React.FC<SidebarProps> = ({
+  isCollapsed,
+  onToggle,
+  config,
+  className = "",
+}) => {
+  const theme = useTheme();
+  const location = useLocation();
+  const { isExpanded, toggleExpanded } = useSidebarMenu(config);
+
+  const handleMenuItemClick = (item: MenuItemType) => {
+    // Lógica adicional se necessário
+    console.log("Menu item clicked:", item);
+  };
+
+  const handleSubMenuItemClick = (subItem: any) => {
+    // Lógica adicional se necessário
+    console.log("Submenu item clicked:", subItem);
+  };
+
+  const renderMenuItem = (item: MenuItemType) => {
+    if (item.type === "submenu") {
+      const submenuItem = item as MenuItemWithSubMenu;
+      return (
+        <SubMenu
+          key={item.id}
+          item={submenuItem}
+          isCollapsed={isCollapsed}
+          currentPath={location.pathname}
+          isExpanded={isExpanded(item.id)}
+          onToggleExpanded={() => toggleExpanded(item.id)}
+          onItemClick={handleSubMenuItemClick}
+        />
+      );
+    }
+
+    return (
+      <MenuItem
+        key={item.id}
+        item={item}
+        isCollapsed={isCollapsed}
+        currentPath={location.pathname}
+        onItemClick={handleMenuItemClick}
+      />
+    );
+  };
+
+  return (
+    <div
+      className={`h-full border-r transition-all duration-300 flex flex-col ${
+        isCollapsed ? "w-16 sidebar-collapsed" : "w-64"
+      } ${getThemeClasses(theme.theme, "sidebar")} ${className}`}
+    >
+      {/* Header */}
+      <SidebarHeader
+        isCollapsed={isCollapsed}
+        onToggle={onToggle}
+        branding={config.branding}
+      />
+
+      {/* Navigation */}
+      <nav className="p-4 space-y-2 flex-1 overflow-y-auto sidebar-scrollbar">
+        {config.sections.map((section) => (
+          <div key={section.id} className="space-y-2">
+            {/* Label da seção */}
+            {section.label && !isCollapsed && (
+              <div className="px-3 py-2">
+                <p
+                  className={`text-xs font-semibold uppercase tracking-wider ${getThemeClasses(
+                    theme.theme,
+                    "text.muted"
+                  )}`}
+                >
+                  {section.label}
+                </p>
+              </div>
+            )}
+
+            {/* Items da seção */}
+            <div className="space-y-1">{section.items.map(renderMenuItem)}</div>
+          </div>
+        ))}
+      </nav>
+
+      {/* Footer */}
+      <SidebarFooter isCollapsed={isCollapsed} footer={config.footer} />
+    </div>
+  );
+};
+
+export default AdminSidebar;

@@ -1,0 +1,72 @@
+/* ================================
+   ESTILOS CUSTOMIZADOS PARA SIDEBAR SCROLLBAR
+   ================================ */
+
+.sidebar-scrollbar {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+  background-clip: content-box;
+}
+
+/* Dark mode scrollbar */
+.dark .sidebar-scrollbar {
+  scrollbar-color: #4b5563 transparent;
+}
+
+.dark .sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  background-clip: content-box;
+}
+
+.dark .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+  background-clip: content-box;
+}
+
+/* Scrollbar mais fina quando sidebar está collapsed */
+.sidebar-collapsed .sidebar-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Animações suaves */
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  transition: background-color 0.2s ease;
+}
+
+/* Scrollbar apenas visível no hover quando collapsed */
+.sidebar-collapsed .sidebar-scrollbar {
+  scrollbar-width: none;
+}
+
+.sidebar-collapsed .sidebar-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.sidebar-collapsed .sidebar-scrollbar:hover {
+  scrollbar-width: thin;
+}
+
+.sidebar-collapsed .sidebar-scrollbar:hover::-webkit-scrollbar {
+  width: 4px;
+}

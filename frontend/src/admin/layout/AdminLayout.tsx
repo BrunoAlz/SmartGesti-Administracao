@@ -1,0 +1,187 @@
+import React, { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { useAdminAuth, useAdminLayout } from "../hooks/useAdminSimple";
+import { useTheme, getThemeClasses } from "../contexts/ThemeContext";
+import SimpleAdminSidebar from "./components/sidebar/SimpleAdminSidebar";
+import SimpleAdminNavbar from "./SimpleAdminNavbar";
+import SimpleAdminBreadcrumb from "./SimpleAdminBreadcrumb";
+import type { AdminLayoutProps } from "../types/admin";
+
+// ================================
+// MAPEAMENTO DE BREADCRUMBS
+// ================================
+
+const getBreadcrumbsForRoute = (pathname: string) => {
+  const breadcrumbMap: Record<
+    string,
+    Array<{ label: string; path?: string; isActive?: boolean }>
+  > = {
+    "/admin": [{ label: "Dashboard", isActive: true }],
+    "/admin/users": [{ label: "Usuários", isActive: true }],
+    "/admin/analytics": [{ label: "Analytics", isActive: true }],
+    "/admin/settings": [{ label: "Configurações", isActive: true }],
+  };
+
+  // Busca exata primeiro
+  if (breadcrumbMap[pathname]) {
+    return breadcrumbMap[pathname];
+  }
+
+  // Busca por prefixos para rotas aninhadas
+  for (const route in breadcrumbMap) {
+    if (pathname.startsWith(route) && route !== "/admin") {
+      const baseBreadcrumbs = breadcrumbMap[route];
+
+      // Adiciona breadcrumbs específicos baseado na rota
+      if (pathname.includes("/create")) {
+        return [
+          ...baseBreadcrumbs.slice(0, -1),
+          {
+            label: baseBreadcrumbs[baseBreadcrumbs.length - 1].label,
+            path: route,
+          },
+          { label: "Criar", isActive: true },
+        ];
+      }
+
+      if (pathname.includes("/edit/")) {
+        return [
+          ...baseBreadcrumbs.slice(0, -1),
+          {
+            label: baseBreadcrumbs[baseBreadcrumbs.length - 1].label,
+            path: route,
+          },
+          { label: "Editar", isActive: true },
+        ];
+      }
+
+      return baseBreadcrumbs;
+    }
+  }
+
+  return [{ label: "Página", isActive: true }];
+};
+
+// ================================
+// COMPONENTE LAYOUT ADMIN
+// ================================
+
+export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
+  const { user, isLoading, logout } = useAdminAuth();
+  const { sidebarCollapsed, breadcrumbs, toggleSidebar, updateBreadcrumbs } =
+    useAdminLayout();
+  const theme = useTheme(); // Usar diretamente aqui
+  const location = useLocation();
+
+  // Atualizar breadcrumbs baseado na rota atual
+  useEffect(() => {
+    const newBreadcrumbs = getBreadcrumbsForRoute(location.pathname);
+    updateBreadcrumbs(newBreadcrumbs);
+  }, [location.pathname, updateBreadcrumbs]);
+
+  // Determinar título da página atual
+  const getPageTitle = () => {
+    const pathname = location.pathname;
+    if (pathname.includes("/users")) return "Gerenciamento de Usuários";
+    if (pathname.includes("/analytics")) return "Analytics e Relatórios";
+    if (pathname.includes("/settings")) return "Configurações do Sistema";
+    return "Dashboard Administrativo";
+  };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div
+        className={`min-h-screen flex items-center justify-center ${getThemeClasses(theme.theme, "layout")}`}
+      >
+        <div className="text-center">
+          <div
+            className={`animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4 ${
+              theme.isDark ? "border-blue-400" : "border-blue-600"
+            }`}
+          ></div>
+          <p className={getThemeClasses(theme.theme, "text.secondary")}>
+            Carregando painel administrativo...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`h-screen flex ${getThemeClasses(theme.theme, "layout")}`}>
+      {/* Sidebar */}
+      <SimpleAdminSidebar
+        isCollapsed={sidebarCollapsed}
+        onToggle={toggleSidebar}
+      />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Navbar */}
+        <SimpleAdminNavbar user={user} onLogout={logout} />
+
+        {/* Content Area */}
+        <div className="flex-1 overflow-hidden">
+          <div className="h-full overflow-y-auto">
+            <div className="p-6">
+              {/* Breadcrumbs */}
+              <SimpleAdminBreadcrumb
+                items={breadcrumbs}
+                rightTitle={getPageTitle() || undefined}
+              />
+
+              {/* Page Content */}
+              <div
+                className={`rounded-lg shadow-sm border min-h-[calc(100vh-200px)] ${getThemeClasses(
+                  theme.theme,
+                  "content"
+                )}`}
+              >
+                {children || <Outlet />}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Toast Notifications */}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: theme.isDark
+            ? {
+                background: "rgba(0, 0, 0, 0.8)",
+                color: "#fff",
+                backdropFilter: "blur(16px)",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+              }
+            : {
+                background: "#fff",
+                color: "#374151",
+                boxShadow:
+                  "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+                border: "1px solid #e5e7eb",
+              },
+          success: {
+            iconTheme: {
+              primary: theme.isDark ? "#10b981" : "#10b981",
+              secondary: "#fff",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "#ef4444",
+              secondary: "#fff",
+            },
+          },
+        }}
+      />
+    </div>
+  );
+};
+
+export default AdminLayout;

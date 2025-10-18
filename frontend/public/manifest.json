@@ -1,0 +1,84 @@
+{
+    "short_name": "Odonto Premium",
+    "name": "Odonto Premium - Agendamento Odontológico",
+    "description": "Sistema completo de agendamento odontológico com gestão de pacientes, dentistas e consultas",
+    "icons": [
+        {
+            "src": "images/dentista16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "images/dentista24.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "images/dentista32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "images/dentista64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "images/dentista128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "images/dentista256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/dentista512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "theme_color": "#0ea5e9",
+    "background_color": "#ffffff",
+    "categories": [
+        "medical",
+        "health",
+        "business"
+    ],
+    "lang": "pt-BR",
+    "scope": "/",
+    "id": "odonto-premium-app",
+    "shortcuts": [
+        {
+            "name": "Agendar Consulta",
+            "short_name": "Agendar",
+            "description": "Agendar uma nova consulta",
+            "url": "/appointment",
+            "icons": [
+                {
+                    "src": "images/dentista256.png",
+                    "sizes": "256x256"
+                }
+            ]
+        },
+        {
+            "name": "Meus Agendamentos",
+            "short_name": "Agendamentos",
+            "description": "Ver meus agendamentos",
+            "url": "/dashboard",
+            "icons": [
+                {
+                    "src": "images/dentista256.png",
+                    "sizes": "256x256"
+                }
+            ]
+        }
+    ],
+    "prefer_related_applications": false
+}
