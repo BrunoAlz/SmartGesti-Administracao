@@ -365,7 +365,7 @@ export const ClientDetails: React.FC = () => {
                         <User className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">{clientDetails.name}</h3>
+                        <h3 className={cn("font-semibold text-lg", get("text.primary"))}>{clientDetails.name}</h3>
                         <p className="text-gray-600 dark:text-gray-400">{clientDetails.position}</p>
                       </div>
                     </div>
@@ -395,7 +395,7 @@ export const ClientDetails: React.FC = () => {
                         <Building2 className="w-6 h-6 text-green-600 dark:text-green-400" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">{clientDetails.company}</h3>
+                        <h3 className={cn("font-semibold text-lg", get("text.primary"))}>{clientDetails.company}</h3>
                         <p className="text-gray-600 dark:text-gray-400">CNPJ: {clientDetails.cnpj}</p>
                       </div>
                     </div>
@@ -422,7 +422,7 @@ export const ClientDetails: React.FC = () => {
                     <div className="w-16 h-16 mx-auto mb-3 bg-red-100 dark:bg-red-500/20 rounded-full flex items-center justify-center">
                       <Activity className="w-8 h-8 text-red-500" />
                     </div>
-                    <h3 className="font-semibold text-lg">{clientDetails.saasName}</h3>
+                    <h3 className={cn("font-semibold text-lg", get("text.primary"))}>{clientDetails.saasName}</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Sistema de Saúde</p>
                   </div>
                   <div className="text-center">
@@ -482,7 +482,7 @@ export const ClientDetails: React.FC = () => {
                             <Icon className="w-5 h-5" />
                           </div>
                           <div className="flex-1">
-                            <p className="font-medium">{activity.action}</p>
+                            <p className={cn("font-medium", get("text.primary"))}>{activity.action}</p>
                             <p className="text-sm text-gray-600 dark:text-gray-400">{activity.description}</p>
                           </div>
                           <div className="text-sm text-gray-500 dark:text-gray-400">
@@ -553,7 +553,7 @@ export const ClientDetails: React.FC = () => {
                             <CreditCard className="w-5 h-5 text-green-500" />
                           </div>
                           <div>
-                            <p className="font-medium">{formatCurrency(payment.amount)}</p>
+                            <p className={cn("font-medium", get("text.primary"))}>{formatCurrency(payment.amount)}</p>
                             <p className="text-sm text-gray-600 dark:text-gray-400">
                               {payment.method} • {payment.invoice}
                             </p>

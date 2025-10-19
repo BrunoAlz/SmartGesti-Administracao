@@ -437,7 +437,7 @@ export const SaasDashboard: React.FC = () => {
                      <Activity className="w-4 h-4 text-blue-500" />}
                   </div>
                   <div className="flex-1">
-                    <p className="font-medium">{activity.action}</p>
+                    <p className={cn("font-medium", get("text.primary"))}>{activity.action}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">{activity.saas}</p>
                   </div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">

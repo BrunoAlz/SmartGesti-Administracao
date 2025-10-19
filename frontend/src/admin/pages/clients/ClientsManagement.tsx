@@ -343,7 +343,7 @@ export const ClientsManagement: React.FC = () => {
             <Users className="w-5 h-5 text-blue-600 dark:text-blue-400" />
           </div>
           <div>
-            <p className="font-medium">{record.name}</p>
+            <p className={cn("font-medium", get("text.primary"))}>{record.name}</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">{record.company}</p>
           </div>
         </div>
@@ -398,7 +398,7 @@ export const ClientsManagement: React.FC = () => {
       title: "Receita",
       render: (record: Client) => (
         <div>
-          <p className="font-medium">{formatCurrency(record.monthlyRevenue)}</p>
+          <p className={cn("font-medium", get("text.primary"))}>{formatCurrency(record.monthlyRevenue)}</p>
           <p className="text-sm text-gray-600 dark:text-gray-400">{record.totalUsers} usuários</p>
         </div>
       ),

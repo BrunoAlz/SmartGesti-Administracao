@@ -285,7 +285,7 @@ export const CreateClient: React.FC = () => {
                     <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4", `bg-gradient-to-br ${saas.color}`)}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h4 className="font-semibold text-lg mb-2">{saas.name}</h4>
+                    <h4 className={cn("font-semibold text-lg mb-2", get("text.primary"))}>{saas.name}</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{saas.description}</p>
                     <ul className="text-sm space-y-1">
                       {saas.features.map((feature, index) => (
@@ -333,7 +333,7 @@ export const CreateClient: React.FC = () => {
                       </div>
                     )}
                     <div className="text-center mb-4">
-                      <h4 className="font-semibold text-lg">{plan.name}</h4>
+                      <h4 className={cn("font-semibold text-lg", get("text.primary"))}>{plan.name}</h4>
                       <p className="text-3xl font-bold text-blue-500">{formatCurrency(plan.price)}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">por mês</p>
                     </div>
@@ -583,7 +583,7 @@ export const CreateClient: React.FC = () => {
                           <selectedSaasData.icon className="w-5 h-5" />
                         </div>
                         <div>
-                          <p className="font-medium">{selectedSaasData.name}</p>
+                          <p className={cn("font-medium", get("text.primary"))}>{selectedSaasData.name}</p>
                           <p className="text-sm text-gray-600 dark:text-gray-400">{selectedSaasData.description}</p>
                         </div>
                       </div>
@@ -592,7 +592,7 @@ export const CreateClient: React.FC = () => {
                       <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                         <div className="flex justify-between items-center">
                           <div>
-                            <p className="font-medium">{selectedPlanData.name}</p>
+                            <p className={cn("font-medium", get("text.primary"))}>{selectedPlanData.name}</p>
                             <p className="text-sm text-gray-600 dark:text-gray-400">
                               Até {selectedPlanData.maxUsers} usuários
                             </p>
@@ -613,19 +613,19 @@ export const CreateClient: React.FC = () => {
                   <div className="space-y-3">
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Nome</p>
-                      <p className="font-medium">{form.values.name}</p>
+                      <p className={cn("font-medium", get("text.primary"))}>{form.values.name}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Email</p>
-                      <p className="font-medium">{form.values.email}</p>
+                      <p className={cn("font-medium", get("text.primary"))}>{form.values.email}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Telefone</p>
-                      <p className="font-medium">{form.values.phone}</p>
+                      <p className={cn("font-medium", get("text.primary"))}>{form.values.phone}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Cargo</p>
-                      <p className="font-medium">{form.values.position}</p>
+                      <p className={cn("font-medium", get("text.primary"))}>{form.values.position}</p>
                     </div>
                   </div>
                 </CardHeader>
@@ -637,19 +637,19 @@ export const CreateClient: React.FC = () => {
                   <div className="space-y-3">
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Empresa</p>
-                      <p className="font-medium">{form.values.company}</p>
+                      <p className={cn("font-medium", get("text.primary"))}>{form.values.company}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">CNPJ</p>
-                      <p className="font-medium">{form.values.cnpj}</p>
+                      <p className={cn("font-medium", get("text.primary"))}>{form.values.cnpj}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Endereço</p>
-                      <p className="font-medium">{form.values.address}</p>
+                      <p className={cn("font-medium", get("text.primary"))}>{form.values.address}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Usuários</p>
-                      <p className="font-medium">{form.values.totalUsers}</p>
+                      <p className={cn("font-medium", get("text.primary"))}>{form.values.totalUsers}</p>
                     </div>
                   </div>
                 </CardHeader>
