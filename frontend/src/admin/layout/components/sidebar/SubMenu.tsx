@@ -44,7 +44,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({
       <button
         onClick={handleParentClick}
         disabled={item.disabled}
-        className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative ${
+        className={`w-full flex items-center space-x-2 px-2 py-2 rounded-lg transition-all duration-200 group relative ${
           item.disabled
             ? "opacity-50 cursor-not-allowed"
             : isParentActive
@@ -61,7 +61,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({
         {/* Ícone */}
         <div className="relative flex-shrink-0">
           <Icon
-            className={`w-5 h-5 ${
+            className={`w-4 h-4 ${
               isParentActive
                 ? theme.isDark
                   ? "text-blue-300"
@@ -87,7 +87,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({
         {/* Label, Badge e Chevron quando não collapsed */}
         {!isCollapsed && (
           <>
-            <span className="font-medium flex-1 text-left">{item.label}</span>
+            <span className="text-sm font-medium flex-1 text-left">{item.label}</span>
 
             {/* Badge */}
             {item.badge && (
@@ -143,7 +143,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({
                 key={subItem.id}
                 to={subItem.path}
                 onClick={() => handleSubItemClick(subItem)}
-                className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 group relative ${
+                className={`flex items-center space-x-2 px-2 py-1.5 rounded-lg transition-all duration-200 group relative ${
                   subItem.disabled
                     ? "opacity-50 cursor-not-allowed"
                     : isSubItemActive
@@ -161,7 +161,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({
                 {SubIcon && (
                   <div className="relative flex-shrink-0">
                     <SubIcon
-                      className={`w-4 h-4 ${
+                      className={`w-3 h-3 ${
                         isSubItemActive
                           ? theme.isDark
                             ? "text-blue-300"
@@ -173,7 +173,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({
                 )}
 
                 {/* Label do subitem */}
-                <span className="text-sm font-medium flex-1">
+                <span className="text-xs font-medium flex-1">
                   {subItem.label}
                 </span>
 

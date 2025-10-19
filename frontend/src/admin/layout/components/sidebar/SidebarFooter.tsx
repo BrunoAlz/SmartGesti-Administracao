@@ -19,14 +19,14 @@ export const SidebarFooter: React.FC<SidebarFooterProps> = ({
   }
 
   return (
-    <div className="p-4 flex-shrink-0">
+    <div className="p-2 flex-shrink-0">
       {/* Conteúdo customizado */}
       {footer.customContent ? (
         <div>{footer.customContent}</div>
       ) : (
         /* Conteúdo padrão */
         <div
-          className={`p-3 rounded-lg text-center ${
+          className={`p-2 rounded-lg text-center ${
             theme.isDark
               ? "bg-white/5 border border-white/5"
               : "bg-gray-50 border border-gray-200"

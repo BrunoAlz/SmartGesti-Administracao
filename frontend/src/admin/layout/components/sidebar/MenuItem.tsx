@@ -20,7 +20,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   if (item.type === "separator") {
     const separator = item as MenuSeparator;
     return (
-      <div className="py-2">
+      <div className="py-1">
         <div
           className={`border-t ${theme.isDark ? "border-white/5" : "border-gray-200"}`}
         />
@@ -54,7 +54,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       <Link
         to={linkItem.path}
         onClick={handleClick}
-        className={`flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative ${
+        className={`flex items-center space-x-2 px-2 py-2 rounded-lg transition-all duration-200 group relative ${
           linkItem.disabled
             ? "opacity-50 cursor-not-allowed"
             : isActive
@@ -71,7 +71,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         {/* Ícone */}
         <div className="relative flex-shrink-0">
           <Icon
-            className={`w-5 h-5 ${
+            className={`w-4 h-4 ${
               isActive
                 ? theme.isDark
                   ? "text-blue-300"
@@ -97,7 +97,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         {/* Label e Badge quando não collapsed */}
         {!isCollapsed && (
           <>
-            <span className="font-medium flex-1">{linkItem.label}</span>
+            <span className="text-sm font-medium flex-1">{linkItem.label}</span>
 
             {/* Badge */}
             {linkItem.badge && (

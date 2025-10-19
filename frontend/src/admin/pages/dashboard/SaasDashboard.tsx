@@ -215,10 +215,10 @@ export const SaasDashboard: React.FC = () => {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="secondary" icon={<BarChart3 className="w-4 h-4" />}>
+            <Button variant="secondary" size="sm" icon={<BarChart3 className="w-4 h-4" />}>
               Relatórios
             </Button>
-            <Button variant="primary" icon={<Plus className="w-4 h-4" />}>
+            <Button variant="primary" size="sm" icon={<Plus className="w-4 h-4" />}>
               Novo SAAS
             </Button>
           </div>
@@ -391,16 +391,16 @@ export const SaasDashboard: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-              <Button variant="secondary" fullWidth icon={<Plus className="w-4 h-4" />} iconPosition="left">
+              <Button variant="secondary" size="sm" fullWidth icon={<Plus className="w-4 h-4" />} iconPosition="left">
                 Novo Cliente
               </Button>
-              <Button variant="secondary" fullWidth icon={<Building2 className="w-4 h-4" />} iconPosition="left">
+              <Button variant="secondary" size="sm" fullWidth icon={<Building2 className="w-4 h-4" />} iconPosition="left">
                 Novo SAAS
               </Button>
-              <Button variant="secondary" fullWidth icon={<BarChart3 className="w-4 h-4" />} iconPosition="left">
+              <Button variant="secondary" size="sm" fullWidth icon={<BarChart3 className="w-4 h-4" />} iconPosition="left">
                 Relatórios
               </Button>
-              <Button variant="secondary" fullWidth icon={<Settings className="w-4 h-4" />} iconPosition="left">
+              <Button variant="secondary" size="sm" fullWidth icon={<Settings className="w-4 h-4" />} iconPosition="left">
                 Configurações
               </Button>
             </div>
