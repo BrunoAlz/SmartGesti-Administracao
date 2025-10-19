@@ -17,6 +17,24 @@ export const themeClasses = {
     dark: "bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900",
   },
 
+  // Sidebar
+  sidebar: {
+    light: "bg-white border-gray-200",
+    dark: "bg-black/20 backdrop-blur-xl border-white/5",
+  },
+
+  // Navbar
+  navbar: {
+    light: "bg-white border-gray-200",
+    dark: "bg-black/20 backdrop-blur-xl border-white/5",
+  },
+
+  // Content Area
+  content: {
+    light: "bg-white border-gray-200",
+    dark: "bg-black/20 backdrop-blur-xl border-white/5",
+  },
+
   // Cards
   card: {
     light: "bg-white border-gray-200 shadow-sm",

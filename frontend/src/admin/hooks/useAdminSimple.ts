@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 // ================================
@@ -55,13 +55,13 @@ export const useAdminLayout = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [breadcrumbs, setBreadcrumbs] = useState<any[]>([]);
 
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
-  };
+  const toggleSidebar = useCallback(() => {
+    setSidebarCollapsed(prev => !prev);
+  }, []);
 
-  const updateBreadcrumbs = (items: any[]) => {
+  const updateBreadcrumbs = useCallback((items: any[]) => {
     setBreadcrumbs(items);
-  };
+  }, []);
 
   return {
     sidebarCollapsed,
