@@ -14,46 +14,46 @@ export const themeClasses = {
   // Layout
   layout: {
     light: "bg-slate-50",
-    dark: "bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900",
+    dark: "bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800",
   },
 
   // Sidebar
   sidebar: {
     light: "bg-white border-slate-200",
-    dark: "bg-black/20 backdrop-blur-xl border-white/5",
+    dark: "bg-slate-700/80 backdrop-blur-xl border-slate-600/30",
   },
 
   // Navbar
   navbar: {
     light: "bg-white border-slate-200",
-    dark: "bg-black/20 backdrop-blur-xl border-white/5",
+    dark: "bg-slate-700/80 backdrop-blur-xl border-slate-600/30",
   },
 
   // Content Area
   content: {
     light: "bg-white border-slate-200",
-    dark: "bg-black/20 backdrop-blur-xl border-white/5",
+    dark: "bg-slate-700/80 backdrop-blur-xl border-slate-600/30",
   },
 
   // Cards
   card: {
     light: "bg-white border-slate-200 shadow-sm",
-    dark: "bg-white/5 backdrop-blur-lg border-white/5 shadow-2xl",
+    dark: "bg-slate-600/40 backdrop-blur-lg border-slate-500/30 shadow-2xl",
   },
 
   // Text Colors
   text: {
     primary: {
       light: "text-slate-800",
-      dark: "text-slate-100",
+      dark: "text-white",
     },
     secondary: {
       light: "text-slate-600", 
-      dark: "text-slate-300",
+      dark: "text-slate-200",
     },
     muted: {
       light: "text-slate-500",
-      dark: "text-slate-400",
+      dark: "text-slate-300",
     },
     accent: {
       light: "text-blue-700",
@@ -77,11 +77,11 @@ export const themeClasses = {
   background: {
     primary: {
       light: "bg-white",
-      dark: "bg-black/20 backdrop-blur-xl",
+      dark: "bg-slate-700/80 backdrop-blur-xl",
     },
     secondary: {
       light: "bg-slate-50",
-      dark: "bg-white/5 backdrop-blur-sm",
+      dark: "bg-slate-600/30 backdrop-blur-sm",
     },
     accent: {
       light: "bg-blue-50",
@@ -93,11 +93,11 @@ export const themeClasses = {
   border: {
     primary: {
       light: "border-slate-200",
-      dark: "border-white/5",
+      dark: "border-slate-500/30",
     },
     secondary: {
       light: "border-slate-300",
-      dark: "border-white/10",
+      dark: "border-slate-400/40",
     },
     accent: {
       light: "border-blue-300",
@@ -105,7 +105,7 @@ export const themeClasses = {
     },
     subtle: {
       light: "border-slate-100",
-      dark: "border-white/3",
+      dark: "border-slate-600/20",
     },
   },
 
@@ -117,11 +117,11 @@ export const themeClasses = {
     },
     secondary: {
       light: "bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300",
-      dark: "bg-white/10 hover:bg-white/20 text-slate-100 backdrop-blur-sm border border-white/20",
+      dark: "bg-slate-600/50 hover:bg-slate-500/60 text-white backdrop-blur-sm border border-slate-400/40",
     },
     ghost: {
       light: "text-slate-600 hover:bg-slate-100 hover:text-slate-800",
-      dark: "text-slate-300 hover:bg-white/10 hover:text-slate-100",
+      dark: "text-slate-200 hover:bg-slate-600/30 hover:text-white",
     },
     danger: {
       light: "bg-red-600 hover:bg-red-700 text-white",
@@ -132,18 +132,18 @@ export const themeClasses = {
   // Inputs
   input: {
     light: "bg-white border-slate-300 text-slate-800 placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500",
-    dark: "bg-white/10 border-white/20 text-slate-100 placeholder-slate-400/50 backdrop-blur-sm focus:border-blue-400 focus:ring-blue-400",
+    dark: "bg-slate-600/40 border-slate-500/40 text-white placeholder-slate-300/70 backdrop-blur-sm focus:border-blue-400 focus:ring-blue-400",
   },
 
   // Icons
   icon: {
     primary: {
       light: "text-slate-600",
-      dark: "text-slate-300",
+      dark: "text-slate-200",
     },
     secondary: {
       light: "text-slate-500",
-      dark: "text-slate-400",
+      dark: "text-slate-300",
     },
     accent: {
       light: "text-blue-600",
