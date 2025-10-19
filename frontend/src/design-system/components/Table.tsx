@@ -194,7 +194,7 @@ const useTable = <T = any>(
 // COMPONENTE TABLE PRINCIPAL
 // ================================
 
-export const Table = <T = any>({
+const Table = <T = any>({
   data,
   columns,
   loading = false,
@@ -632,6 +632,7 @@ const RowActions: React.FC<RowActionsProps> = ({
 
 export default Table;
 export {
+  Table,
   Pagination,
   TableFilters,
   RowActions,

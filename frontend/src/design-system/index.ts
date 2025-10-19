@@ -85,9 +85,67 @@ export {
 } from "./components/Modal";
 
 export {
+  Animation,
+  Transition,
+  Stagger,
+  FadeIn,
+  SlideIn,
+  ScaleIn,
+  BounceIn,
+  HoverLift,
+  HoverGlow,
+  TypingAnimation,
+  CounterAnimation,
+  useAnimation,
+  animationUtils,
+} from "./components/Animations";
+
+// ================================
+// EXPORTS ADICIONAIS
+// ================================
+
+// Loading Components
+export {
+  LoadingSpinner,
+  LoadingDots,
+  LoadingSkeleton,
+  LoadingOverlay,
+  LoadingButton,
+  LoadingCard,
+  LoadingState,
+  LoadingProgress,
+  LoadingPulse,
+  LoadingWave,
+  useLoading,
+} from "./components/Loading";
+
+// Notification Components
+export {
+  NotificationProvider,
+  NotificationContainer,
+  NotificationBell,
+  NotificationPanel,
+  useNotifications,
+  useNotificationActions,
+} from "./components/Notifications";
+
+// Form Validation Components
+export {
+  useForm,
+  validators,
+  FormField,
+  FormError,
+  FormSummary,
+  useFieldValidation,
+  validationUtils,
+} from "./components/FormValidation";
+
+// Table Components
+export {
   Table,
   Pagination,
   TableFilters,
   RowActions,
   useTable,
 } from "./components/Table";
+

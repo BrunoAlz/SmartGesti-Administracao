@@ -318,13 +318,13 @@ export const TableExamples: React.FC = () => {
             rowSelection={{
               selectedRowKeys: selectedUsers,
               selectedRows: users.filter(user => selectedUsers.includes(user.id)),
-              onChange: (keys, rows) => {
+              onChange: (keys: any, rows: any) => {
                 setSelectedUsers(keys);
                 console.log("Usuários selecionados:", rows);
               },
               type: "checkbox",
             }}
-            onRow={(record) => ({
+            onRow={(record: any) => ({
               onClick: () => console.log("Clicou na linha:", record.name),
               onDoubleClick: () => console.log("Duplo clique na linha:", record.name),
             })}
