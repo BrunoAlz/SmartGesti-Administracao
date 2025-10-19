@@ -171,7 +171,7 @@ const StatCard: React.FC<StatCardProps> = ({
     <Card 
       hover={!!onClick}
       onClick={onClick}
-      className={cn("transition-all duration-200", className)}
+      className={cn("transition-all duration-200 border", className)}
     >
       <div className="flex items-center justify-between">
         <div className="flex-1">

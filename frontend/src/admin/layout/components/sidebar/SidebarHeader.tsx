@@ -16,13 +16,13 @@ export const SidebarHeader: React.FC<SidebarHeaderProps> = ({
   const theme = useTheme();
 
   return (
-    <div className="h-12 flex items-center justify-between px-3 border-b border-inherit flex-shrink-0">
+    <div className="h-16 flex items-center justify-between px-4 border-b border-inherit flex-shrink-0">
       {/* Logo e Título */}
       {!isCollapsed && (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           {/* Logo (se fornecido) */}
           {branding?.logo && (
-            <div className="w-6 h-6 flex-shrink-0">
+            <div className="w-8 h-8 flex-shrink-0">
               <img
                 src={branding.logo}
                 alt={branding.title || "Logo"}
@@ -34,7 +34,7 @@ export const SidebarHeader: React.FC<SidebarHeaderProps> = ({
           {/* Título */}
           <div>
             <h2
-              className={`font-bold text-base leading-tight ${getThemeClasses(
+              className={`font-bold text-lg leading-tight ${getThemeClasses(
                 theme.theme,
                 "text.primary"
               )}`}
@@ -59,7 +59,7 @@ export const SidebarHeader: React.FC<SidebarHeaderProps> = ({
 
       {/* Logo centrado quando collapsed */}
       {isCollapsed && branding?.logo && (
-        <div className="w-6 h-6 mx-auto">
+        <div className="w-8 h-8 mx-auto">
           <img
             src={branding.logo}
             alt={branding.title || "Logo"}
@@ -72,7 +72,7 @@ export const SidebarHeader: React.FC<SidebarHeaderProps> = ({
       {/* Botão Toggle */}
       <button
         onClick={onToggle}
-        className={`p-1 rounded-lg transition-all duration-200 hover:scale-105 ${getThemeClasses(
+        className={`p-1.5 rounded-lg transition-all duration-200 hover:scale-105 ${getThemeClasses(
           theme.theme,
           "button.secondary"
         )} ${isCollapsed ? "mx-auto" : ""}`}

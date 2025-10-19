@@ -53,7 +53,11 @@ export const Button: React.FC<ButtonProps> = ({
   };
   
   const iconSize = size === "sm" ? "sm" : size === "lg" ? "lg" : "md";
-  const iconClasses = useIconClasses("primary", iconSize);
+  const defaultIconClasses = useIconClasses("primary", iconSize);
+  // Para botões primários, usar ícones brancos no modo claro
+  const iconClasses = variant === "primary" 
+    ? cn("text-white", size === "sm" ? "w-4 h-4" : size === "lg" ? "w-6 h-6" : "w-5 h-5")
+    : defaultIconClasses;
   
   const isDisabled = disabled || loading;
   
@@ -128,7 +132,11 @@ const IconButton: React.FC<IconButtonProps> = ({
   };
   
   const iconSize = size === "sm" ? "sm" : size === "lg" ? "lg" : "md";
-  const iconClasses = useIconClasses("primary", iconSize);
+  const defaultIconClasses = useIconClasses("primary", iconSize);
+  // Para botões primários, usar ícones brancos no modo claro
+  const iconClasses = variant === "primary" 
+    ? cn("text-white", size === "sm" ? "w-4 h-4" : size === "lg" ? "w-6 h-6" : "w-5 h-5")
+    : defaultIconClasses;
   
   return (
     <button

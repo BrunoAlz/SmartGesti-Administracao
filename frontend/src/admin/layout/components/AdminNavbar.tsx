@@ -127,7 +127,7 @@ export const AdminNavbar: React.FC<AdminNavbarProps> = ({ user, onLogout }) => {
             onClick={toggleUserMenu}
             className="flex items-center space-x-2 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           >
-            <div className="w-6 h-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
+            <div className="w-4 h-4 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
               <User className="w-3 h-3 text-white" />
             </div>
             {user && (
@@ -140,7 +140,7 @@ export const AdminNavbar: React.FC<AdminNavbarProps> = ({ user, onLogout }) => {
                 </p>
               </div>
             )}
-            <ChevronDown className="w-3 h-3 text-gray-800 dark:text-gray-400" />
+            <ChevronDown className="w-4 h-4 text-gray-800 dark:text-gray-400" />
           </button>
 
           {/* Dropdown do Usuário */}
@@ -166,11 +166,11 @@ export const AdminNavbar: React.FC<AdminNavbarProps> = ({ user, onLogout }) => {
 
                 <div className="py-1">
                   <button className="w-full px-2 py-1.5 text-left text-xs text-black dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2">
-                    <User className="w-3 h-3" />
+                    <User className="w-4 h-4" />
                     <span>Meu Perfil</span>
                   </button>
                   <button className="w-full px-2 py-1.5 text-left text-xs text-black dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2">
-                    <Settings className="w-3 h-3" />
+                    <Settings className="w-4 h-4" />
                     <span>Configurações</span>
                   </button>
                 </div>
@@ -180,7 +180,7 @@ export const AdminNavbar: React.FC<AdminNavbarProps> = ({ user, onLogout }) => {
                     onClick={onLogout}
                     className="w-full px-2 py-1.5 text-left text-xs text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center space-x-2"
                   >
-                    <LogOut className="w-3 h-3" />
+                    <LogOut className="w-4 h-4" />
                     <span>Sair</span>
                   </button>
                 </div>
