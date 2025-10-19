@@ -462,7 +462,7 @@ export const ClientsManagement: React.FC = () => {
                         <div className="flex items-center justify-between">
                           <div>
                             <p className="text-sm text-gray-600 dark:text-gray-400">Total de Clientes</p>
-                            <p className="text-2xl font-bold">{clients.length}</p>
+                            <p className={cn("text-2xl font-bold", get("text.primary"))}>{clients.length}</p>
                           </div>
                           <Users className="w-8 h-8 text-blue-500" />
                         </div>

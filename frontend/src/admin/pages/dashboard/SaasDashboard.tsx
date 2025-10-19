@@ -283,7 +283,7 @@ export const SaasDashboard: React.FC = () => {
                 <div className="w-16 h-16 mx-auto mb-3 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center">
                   <CheckCircle className="w-8 h-8 text-green-500" />
                 </div>
-                <h3 className="font-semibold text-lg">Sistema</h3>
+                <h3 className={cn("font-semibold text-lg", get("text.primary"))}>Sistema</h3>
                 <p className="text-2xl font-bold text-green-500">{systemStats.systemHealth}%</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Saúde Geral</p>
               </div>
@@ -291,7 +291,7 @@ export const SaasDashboard: React.FC = () => {
                 <div className="w-16 h-16 mx-auto mb-3 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center">
                   <Clock className="w-8 h-8 text-blue-500" />
                 </div>
-                <h3 className="font-semibold text-lg">Uptime</h3>
+                <h3 className={cn("font-semibold text-lg", get("text.primary"))}>Uptime</h3>
                 <p className="text-2xl font-bold text-blue-500">{systemStats.uptime}%</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Disponibilidade</p>
               </div>
@@ -299,7 +299,7 @@ export const SaasDashboard: React.FC = () => {
                 <div className="w-16 h-16 mx-auto mb-3 bg-purple-100 dark:bg-purple-500/20 rounded-full flex items-center justify-center">
                   <TrendingUp className="w-8 h-8 text-purple-500" />
                 </div>
-                <h3 className="font-semibold text-lg">Performance</h3>
+                <h3 className={cn("font-semibold text-lg", get("text.primary"))}>Performance</h3>
                 <p className="text-2xl font-bold text-purple-500">98.2%</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Velocidade</p>
               </div>
@@ -336,7 +336,7 @@ export const SaasDashboard: React.FC = () => {
                           <Icon className="w-6 h-6" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-lg">{saas.name}</h3>
+                          <h3 className={cn("font-semibold text-lg", get("text.primary"))}>{saas.name}</h3>
                           <p className="text-sm text-gray-600 dark:text-gray-400">
                             Última atividade: {saas.lastActivity}
                           </p>
@@ -347,11 +347,11 @@ export const SaasDashboard: React.FC = () => {
                       <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
                           <p className="text-sm text-gray-600 dark:text-gray-400">Clientes</p>
-                          <p className="text-lg font-semibold">{saas.activeClients}/{saas.totalClients}</p>
+                          <p className={cn("text-lg font-semibold", get("text.primary"))}>{saas.activeClients}/{saas.totalClients}</p>
                         </div>
                         <div>
                           <p className="text-sm text-gray-600 dark:text-gray-400">Receita</p>
-                          <p className="text-lg font-semibold">{formatCurrency(saas.monthlyRevenue)}</p>
+                          <p className={cn("text-lg font-semibold", get("text.primary"))}>{formatCurrency(saas.monthlyRevenue)}</p>
                         </div>
                       </div>
 
