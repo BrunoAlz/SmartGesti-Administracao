@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Admin theme styles */
+@import './admin/styles/admin-theme.css';
+
 /* Custom CSS */
 @layer base {
   html {

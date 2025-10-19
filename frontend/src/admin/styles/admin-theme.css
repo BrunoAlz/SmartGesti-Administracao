@@ -1,0 +1,253 @@
+/* ================================
+   ESTILOS TEMÁTICOS PARA ÁREA ADMIN
+   ================================ */
+
+/* Escopo apenas para área admin */
+.admin-area {
+  /* Variáveis CSS para temas admin */
+  --admin-text-primary: theme('colors.slate.800');
+  --admin-text-secondary: theme('colors.slate.600');
+  --admin-text-muted: theme('colors.slate.500');
+  --admin-bg-primary: theme('colors.white');
+  --admin-bg-secondary: theme('colors.slate.50');
+  --admin-border-primary: theme('colors.slate.200');
+  --admin-border-secondary: theme('colors.slate.300');
+}
+
+/* Tema escuro para área admin */
+.dark .admin-area {
+  --admin-text-primary: theme('colors.white');
+  --admin-text-secondary: theme('colors.slate.200');
+  --admin-text-muted: theme('colors.slate.300');
+  --admin-bg-primary: rgba(0, 0, 0, 0.2);
+  --admin-bg-secondary: rgba(255, 255, 255, 0.05);
+  --admin-border-primary: rgba(255, 255, 255, 0.05);
+  --admin-border-secondary: rgba(255, 255, 255, 0.1);
+}
+
+/* Classes utilitárias específicas para admin */
+.admin-area .admin-text {
+  color: var(--admin-text-primary);
+}
+
+.admin-area .admin-text-secondary {
+  color: var(--admin-text-secondary);
+}
+
+.admin-area .admin-text-muted {
+  color: var(--admin-text-muted);
+}
+
+/* Padronização de selects e inputs */
+.admin-area select,
+.admin-area input[type="text"],
+.admin-area input[type="email"],
+.admin-area input[type="search"],
+.admin-area textarea {
+  background-color: var(--admin-bg-primary);
+  color: var(--admin-text-primary);
+  border-color: var(--admin-border-primary);
+  min-height: 40px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border-width: 1px;
+  transition: all 0.2s ease-in-out;
+}
+
+.admin-area select:focus,
+.admin-area input[type="text"]:focus,
+.admin-area input[type="email"]:focus,
+.admin-area input[type="search"]:focus,
+.admin-area textarea:focus {
+  border-color: theme('colors.blue.500');
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Padronização de texto em tabelas */
+.admin-area table td,
+.admin-area table th {
+  color: var(--admin-text-primary);
+  padding: 12px 16px;
+}
+
+.admin-area table td.text-secondary,
+.admin-area table .text-secondary {
+  color: var(--admin-text-secondary);
+}
+
+/* Padronização de cards */
+.admin-area .card-text {
+  color: var(--admin-text-primary);
+}
+
+.admin-area .card-text-secondary {
+  color: var(--admin-text-secondary);
+}
+
+/* Padronização de botões */
+.admin-area button {
+  color: var(--admin-text-primary);
+  min-height: 36px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Tamanhos de botões */
+.admin-area .btn-sm,
+.admin-area button[class*="size-sm"] {
+  min-height: 32px;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.admin-area .btn-lg,
+.admin-area button[class*="size-lg"] {
+  min-height: 44px;
+  padding: 10px 24px;
+  font-size: 16px;
+}
+
+/* Botões primários */
+.admin-area .btn-primary,
+.admin-area button[class*="variant-primary"] {
+  background: linear-gradient(135deg, theme('colors.blue.600'), theme('colors.blue.700'));
+  color: white;
+  border: none;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.admin-area .btn-primary:hover,
+.admin-area button[class*="variant-primary"]:hover {
+  background: linear-gradient(135deg, theme('colors.blue.700'), theme('colors.blue.800'));
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Botões secundários */
+.admin-area .btn-secondary,
+.admin-area button[class*="variant-secondary"] {
+  background-color: var(--admin-bg-secondary);
+  color: var(--admin-text-primary);
+  border: 1px solid var(--admin-border-primary);
+}
+
+.admin-area .btn-secondary:hover,
+.admin-area button[class*="variant-secondary"]:hover {
+  background-color: var(--admin-border-primary);
+  border-color: var(--admin-border-secondary);
+}
+
+/* Botões ghost */
+.admin-area .btn-ghost,
+.admin-area button[class*="variant-ghost"] {
+  background-color: transparent;
+  color: var(--admin-text-secondary);
+  border: none;
+}
+
+.admin-area .btn-ghost:hover,
+.admin-area button[class*="variant-ghost"]:hover {
+  background-color: var(--admin-bg-secondary);
+  color: var(--admin-text-primary);
+}
+
+/* Garantir que texto não fique invisível */
+.admin-area .text-black {
+  color: var(--admin-text-primary) !important;
+}
+
+.admin-area .text-gray-900 {
+  color: var(--admin-text-primary) !important;
+}
+
+/* Dropdown menus */
+.admin-area [role="menu"],
+.admin-area .dropdown-menu {
+  background-color: var(--admin-bg-primary);
+  border-color: var(--admin-border-primary);
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.admin-area [role="menu"] button,
+.admin-area .dropdown-menu button {
+  color: var(--admin-text-primary);
+  padding: 8px 12px;
+  min-height: 36px;
+}
+
+.admin-area [role="menu"] button:hover,
+.admin-area .dropdown-menu button:hover {
+  background-color: var(--admin-bg-secondary);
+}
+
+/* Notificações e modais */
+.admin-area .modal,
+.admin-area .notification {
+  background-color: var(--admin-bg-primary);
+  color: var(--admin-text-primary);
+  border-color: var(--admin-border-primary);
+  border-radius: 8px;
+}
+
+/* Estados específicos mantendo cores funcionais */
+.admin-area .text-green-500,
+.admin-area .text-green-600,
+.admin-area .text-green-800 {
+  /* Mantém as cores de sucesso */
+}
+
+.admin-area .text-red-500,
+.admin-area .text-red-600,
+.admin-area .text-red-800 {
+  /* Mantém as cores de erro */
+}
+
+.admin-area .text-blue-500,
+.admin-area .text-blue-600,
+.admin-area .text-blue-800 {
+  /* Mantém as cores de informação */
+}
+
+.admin-area .text-yellow-500,
+.admin-area .text-yellow-600,
+.admin-area .text-yellow-800 {
+  /* Mantém as cores de aviso */
+}
+
+/* Melhorias para tabelas */
+.admin-area table {
+  border-spacing: 0;
+}
+
+.admin-area table th {
+  font-weight: 600;
+  background-color: var(--admin-bg-secondary);
+  border-bottom: 2px solid var(--admin-border-primary);
+}
+
+.admin-area table td {
+  border-bottom: 1px solid var(--admin-border-primary);
+}
+
+.admin-area table tr:hover {
+  background-color: var(--admin-bg-secondary);
+}
+
+/* Espaçamento melhorado */
+.admin-area .space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.admin-area .space-y-6 > * + * {
+  margin-top: 1.5rem;
+}

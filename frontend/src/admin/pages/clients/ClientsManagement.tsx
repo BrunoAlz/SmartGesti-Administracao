@@ -1,49 +1,26 @@
 import React, { useState } from "react";
 import {
   Card,
-  CardHeader,
   CardContent,
   Button,
-  IconButton,
-  Input,
   SearchInput,
   Table,
   Pagination,
-  TableFilters,
   RowActions,
   useTable,
-  Modal,
-  ModalHeader,
-  ModalContent,
-  ModalFooter,
   ConfirmModal,
   useModal,
-  LoadingState,
   useThemeClasses,
   cn
 } from "../../../design-system";
 import {
   Plus,
-  Search,
-  Filter,
-  MoreHorizontal,
-  Eye,
-  Edit,
-  Trash2,
-  Mail,
-  Phone,
-  Calendar,
-  Building2,
   Users,
   DollarSign,
-  Activity,
   CheckCircle,
-  AlertTriangle,
   Clock,
   Download,
-  Upload,
-  RefreshCw,
-  Settings
+  RefreshCw
 } from "lucide-react";
 
 // ================================
@@ -222,7 +199,7 @@ const clients: Client[] = [
 // ================================
 
 export const ClientsManagement: React.FC = () => {
-  const { get, combine } = useThemeClasses();
+  const { get } = useThemeClasses();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSaas, setSelectedSaas] = useState<string>("all");
   const [selectedStatus, setSelectedStatus] = useState<string>("all");

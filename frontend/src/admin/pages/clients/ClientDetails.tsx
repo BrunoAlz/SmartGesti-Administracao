@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -7,15 +7,8 @@ import {
   Button,
   IconButton,
   StatCard,
-  LoadingState,
   useThemeClasses,
   cn,
-  Modal,
-  ModalHeader,
-  ModalContent,
-  ModalFooter,
-  useModal,
-  Input,
   Textarea
 } from "../../../design-system";
 import {
@@ -33,20 +26,14 @@ import {
   Users,
   Activity,
   TrendingUp,
-  TrendingDown,
   CheckCircle,
-  AlertTriangle,
-  Clock,
   Settings,
   Download,
   RefreshCw,
-  Eye,
-  EyeOff,
   CreditCard,
   BarChart3,
   FileText,
   MessageSquare,
-  Bell,
   Shield,
   Zap
 } from "lucide-react";
@@ -55,7 +42,7 @@ import {
 // TIPOS
 // ================================
 
-interface ClientDetails {
+interface ClientDetailsData {
   id: string;
   name: string;
   email: string;
@@ -106,7 +93,7 @@ interface PaymentHistory {
 // DADOS MOCK
 // ================================
 
-const clientDetails: ClientDetails = {
+const clientDetails: ClientDetailsData = {
   id: "1",
   name: "Dr. João Silva",
   email: "joao@clinicasilva.com.br",
@@ -222,16 +209,10 @@ const paymentHistory: PaymentHistory[] = [
 // ================================
 
 export const ClientDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { get, combine } = useThemeClasses();
+  const { get } = useThemeClasses();
   
   const [activeTab, setActiveTab] = useState<"overview" | "activity" | "billing" | "settings">("overview");
-  const [isEditing, setIsEditing] = useState(false);
-  const [showSensitiveData, setShowSensitiveData] = useState(false);
-  
-  const editModal = useModal();
-  const deleteModal = useModal();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("pt-BR", {

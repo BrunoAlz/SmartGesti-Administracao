@@ -237,9 +237,12 @@ const Table = <T = any>({
   // Renderizar célula
   const renderCell = (column: Column<T>, record: T, index: number) => {
     if (column.render) {
-      return column.render((record as any)[column.dataIndex!], record, index);
+      // Se há função render, passa o valor da propriedade ou o record completo
+      const value = column.dataIndex ? (record as any)[column.dataIndex] : record;
+      return column.render(value, record, index);
     }
-    return (record as any)[column.dataIndex!];
+    // Se não há função render, retorna o valor da propriedade diretamente
+    return column.dataIndex ? (record as any)[column.dataIndex] : null;
   };
 
   // Renderizar cabeçalho da coluna

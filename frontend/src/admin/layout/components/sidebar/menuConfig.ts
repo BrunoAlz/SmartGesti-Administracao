@@ -11,7 +11,6 @@ import {
   Settings,
   FileText,
   Database,
-  Plus,
   List,
   CheckCircle,
   XCircle,
@@ -73,16 +72,10 @@ export const adminSidebarConfig: SidebarConfig = {
           icon: Building2,
           children: [
             {
-              id: "clients-list",
-              label: "Ver Clientes",
-              path: "/admin/clients",
+              id: "saas-list",
+              label: "Ver SAAS",
+              path: "/admin/saas",
               icon: List,
-            },
-            {
-              id: "clients-new",
-              label: "Novo Cliente",
-              path: "/admin/clients/new",
-              icon: Plus,
             },
           ],
         },

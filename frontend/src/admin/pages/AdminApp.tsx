@@ -8,6 +8,9 @@ import { SaasDashboard } from "./dashboard/SaasDashboard";
 import { ClientsManagement } from "./clients/ClientsManagement";
 import { CreateClient } from "./clients/CreateClient";
 import { ClientDetails } from "./clients/ClientDetails";
+import { SaasList } from "./saas/SaasList";
+import { ClientsList } from "./saas/ClientsList";
+import { ClientProfile } from "./saas/ClientProfile";
 
 // ================================
 // COMPONENT ROTA PROTEGIDA
@@ -41,7 +44,12 @@ export const AdminApp: React.FC = () => {
             <Route index element={<SaasDashboard />} />
             <Route path="dashboard" element={<SimpleDashboard />} />
 
-            {/* Gerenciamento de Clientes */}
+            {/* Gerenciamento de SAAS */}
+            <Route path="saas" element={<SaasList />} />
+            <Route path="saas/:saasId/clients" element={<ClientsList />} />
+            <Route path="saas/:saasId/clients/:clientId" element={<ClientProfile />} />
+
+            {/* Gerenciamento de Clientes (Legado) */}
             <Route path="clients" element={<ClientsManagement />} />
             <Route path="clients/new" element={<CreateClient />} />
             <Route path="clients/:id" element={<ClientDetails />} />

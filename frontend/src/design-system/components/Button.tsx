@@ -35,7 +35,7 @@ interface ButtonGroupProps {
 export const Button: React.FC<ButtonProps> = ({
   children,
   variant = "primary",
-  size = "md",
+  size = "sm",
   icon,
   iconPosition = "left",
   loading = false,
@@ -118,7 +118,7 @@ export const Button: React.FC<ButtonProps> = ({
 
 const IconButton: React.FC<IconButtonProps> = ({
   icon,
-  size = "md",
+  size = "sm",
   variant = "ghost",
   className,
   ...props
