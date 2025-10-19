@@ -235,7 +235,7 @@ export const SaasDashboard: React.FC = () => {
               value={systemStats.totalSaas}
               change="+1 este mês"
               changeType="positive"
-              icon={<Building2 className="w-6 h-6" />}
+              icon={<Building2 className="w-6 h-6 text-blue-500" />}
             />
           </SlideIn>
           <SlideIn direction="up" delay={100}>
@@ -244,7 +244,7 @@ export const SaasDashboard: React.FC = () => {
               value={systemStats.totalClients}
               change="+12 esta semana"
               changeType="positive"
-              icon={<Users className="w-6 h-6" />}
+              icon={<Users className="w-6 h-6 text-emerald-500" />}
             />
           </SlideIn>
           <SlideIn direction="up" delay={200}>
@@ -253,7 +253,7 @@ export const SaasDashboard: React.FC = () => {
               value={formatCurrency(systemStats.totalRevenue)}
               change="+8.5% vs. mês anterior"
               changeType="positive"
-              icon={<DollarSign className="w-6 h-6" />}
+              icon={<DollarSign className="w-6 h-6 text-green-500" />}
             />
           </SlideIn>
           <SlideIn direction="up" delay={300}>
@@ -262,7 +262,7 @@ export const SaasDashboard: React.FC = () => {
               value={systemStats.activeUsers}
               change="+5 hoje"
               changeType="positive"
-              icon={<Activity className="w-6 h-6" />}
+              icon={<Activity className="w-6 h-6 text-purple-500" />}
             />
           </SlideIn>
         </div>
