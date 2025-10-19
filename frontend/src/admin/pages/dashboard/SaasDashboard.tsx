@@ -202,15 +202,15 @@ export const SaasDashboard: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-8">
+    <div className="p-4 space-y-6">
       {/* Header */}
       <FadeIn>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className={cn("text-3xl font-bold mb-2", get("text.primary"))}>
+            <h1 className={cn("text-2xl font-bold mb-1", get("text.primary"))}>
               Dashboard Administrativo
             </h1>
-            <p className={cn("text-lg", get("text.secondary"))}>
+            <p className={cn("text-base", get("text.secondary"))}>
               Visão geral dos seus SAAS e clientes
             </p>
           </div>
@@ -235,7 +235,7 @@ export const SaasDashboard: React.FC = () => {
               value={systemStats.totalSaas}
               change="+1 este mês"
               changeType="positive"
-              icon={<Building2 className="w-6 h-6 text-blue-500" />}
+              icon={<Building2 className="w-5 h-5 text-blue-500" />}
             />
           </SlideIn>
           <SlideIn direction="up" delay={100}>
@@ -244,7 +244,7 @@ export const SaasDashboard: React.FC = () => {
               value={systemStats.totalClients}
               change="+12 esta semana"
               changeType="positive"
-              icon={<Users className="w-6 h-6 text-emerald-500" />}
+              icon={<Users className="w-5 h-5 text-emerald-500" />}
             />
           </SlideIn>
           <SlideIn direction="up" delay={200}>
@@ -253,7 +253,7 @@ export const SaasDashboard: React.FC = () => {
               value={formatCurrency(systemStats.totalRevenue)}
               change="+8.5% vs. mês anterior"
               changeType="positive"
-              icon={<DollarSign className="w-6 h-6 text-green-500" />}
+              icon={<DollarSign className="w-5 h-5 text-green-500" />}
             />
           </SlideIn>
           <SlideIn direction="up" delay={300}>
@@ -262,7 +262,7 @@ export const SaasDashboard: React.FC = () => {
               value={systemStats.activeUsers}
               change="+5 hoje"
               changeType="positive"
-              icon={<Activity className="w-6 h-6 text-purple-500" />}
+              icon={<Activity className="w-5 h-5 text-purple-500" />}
             />
           </SlideIn>
         </div>
@@ -278,29 +278,29 @@ export const SaasDashboard: React.FC = () => {
             </p>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-3 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-8 h-8 text-green-500" />
+                <div className="w-12 h-12 mx-auto mb-2 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-green-500" />
                 </div>
-                <h3 className={cn("font-semibold text-lg", get("text.primary"))}>Sistema</h3>
-                <p className="text-2xl font-bold text-green-500">{systemStats.systemHealth}%</p>
+                <h3 className={cn("font-semibold text-base", get("text.primary"))}>Sistema</h3>
+                <p className="text-xl font-bold text-green-500">{systemStats.systemHealth}%</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Saúde Geral</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-3 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center">
-                  <Clock className="w-8 h-8 text-blue-500" />
+                <div className="w-12 h-12 mx-auto mb-2 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-blue-500" />
                 </div>
-                <h3 className={cn("font-semibold text-lg", get("text.primary"))}>Uptime</h3>
-                <p className="text-2xl font-bold text-blue-500">{systemStats.uptime}%</p>
+                <h3 className={cn("font-semibold text-base", get("text.primary"))}>Uptime</h3>
+                <p className="text-xl font-bold text-blue-500">{systemStats.uptime}%</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Disponibilidade</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-3 bg-purple-100 dark:bg-purple-500/20 rounded-full flex items-center justify-center">
-                  <TrendingUp className="w-8 h-8 text-purple-500" />
+                <div className="w-12 h-12 mx-auto mb-2 bg-purple-100 dark:bg-purple-500/20 rounded-full flex items-center justify-center">
+                  <TrendingUp className="w-6 h-6 text-purple-500" />
                 </div>
-                <h3 className={cn("font-semibold text-lg", get("text.primary"))}>Performance</h3>
-                <p className="text-2xl font-bold text-purple-500">98.2%</p>
+                <h3 className={cn("font-semibold text-base", get("text.primary"))}>Performance</h3>
+                <p className="text-xl font-bold text-purple-500">98.2%</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Velocidade</p>
               </div>
             </div>
@@ -317,12 +317,12 @@ export const SaasDashboard: React.FC = () => {
             </p>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {saasList.map((saas, index) => {
                 const Icon = saas.icon;
                 return (
                   <SlideIn key={saas.id} direction="up" delay={index * 100}>
-                    <div className={cn("relative p-6 rounded-lg border transition-all duration-200 hover:scale-105", get("card"))}>
+                    <div className={cn("relative p-4 rounded-lg border transition-all duration-200 hover:scale-105", get("card"))}>
                       {/* Status Badge */}
                       <div className="absolute top-4 right-4">
                         <span className={cn("px-2 py-1 text-xs font-medium rounded-full", getStatusColor(saas.status))}>
@@ -331,33 +331,33 @@ export const SaasDashboard: React.FC = () => {
                       </div>
 
                       {/* Header */}
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center text-white", saas.gradient)}>
-                          <Icon className="w-6 h-6" />
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center text-white", saas.gradient)}>
+                          <Icon className="w-5 h-5" />
                         </div>
                         <div>
-                          <h3 className={cn("font-semibold text-lg", get("text.primary"))}>{saas.name}</h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <h3 className={cn("font-semibold text-base", get("text.primary"))}>{saas.name}</h3>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
                             Última atividade: {saas.lastActivity}
                           </p>
                         </div>
                       </div>
 
                       {/* Stats */}
-                      <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div className="grid grid-cols-2 gap-3 mb-3">
                         <div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Clientes</p>
-                          <p className={cn("text-lg font-semibold", get("text.primary"))}>{saas.activeClients}/{saas.totalClients}</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Clientes</p>
+                          <p className={cn("text-base font-semibold", get("text.primary"))}>{saas.activeClients}/{saas.totalClients}</p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Receita</p>
-                          <p className={cn("text-lg font-semibold", get("text.primary"))}>{formatCurrency(saas.monthlyRevenue)}</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Receita</p>
+                          <p className={cn("text-base font-semibold", get("text.primary"))}>{formatCurrency(saas.monthlyRevenue)}</p>
                         </div>
                       </div>
 
                       {/* Growth Rate */}
-                      <div className="mb-4">
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Crescimento</p>
+                      <div className="mb-3">
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Crescimento</p>
                         {formatGrowthRate(saas.growthRate)}
                       </div>
 
@@ -390,7 +390,7 @@ export const SaasDashboard: React.FC = () => {
             </p>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
               <Button variant="secondary" fullWidth icon={<Plus className="w-4 h-4" />} iconPosition="left">
                 Novo Cliente
               </Button>
@@ -417,7 +417,7 @@ export const SaasDashboard: React.FC = () => {
             </p>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {[
                 { action: "Novo cliente criado", saas: "SmartSaúde", time: "2 min atrás", type: "success" },
                 { action: "Pagamento recebido", saas: "SmartEduca", time: "15 min atrás", type: "success" },
@@ -425,22 +425,22 @@ export const SaasDashboard: React.FC = () => {
                 { action: "Sistema atualizado", saas: "SmartBusiness", time: "2 horas atrás", type: "info" },
                 { action: "Backup realizado", saas: "Todos", time: "3 horas atrás", type: "info" }
               ].map((activity, index) => (
-                <div key={index} className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                   <div className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center",
+                    "w-6 h-6 rounded-full flex items-center justify-center",
                     activity.type === "success" ? "bg-green-100 dark:bg-green-500/20" :
                     activity.type === "warning" ? "bg-yellow-100 dark:bg-yellow-500/20" :
                     "bg-blue-100 dark:bg-blue-500/20"
                   )}>
-                    {activity.type === "success" ? <CheckCircle className="w-4 h-4 text-green-500" /> :
-                     activity.type === "warning" ? <AlertTriangle className="w-4 h-4 text-yellow-500" /> :
-                     <Activity className="w-4 h-4 text-blue-500" />}
+                    {activity.type === "success" ? <CheckCircle className="w-3 h-3 text-green-500" /> :
+                     activity.type === "warning" ? <AlertTriangle className="w-3 h-3 text-yellow-500" /> :
+                     <Activity className="w-3 h-3 text-blue-500" />}
                   </div>
                   <div className="flex-1">
-                    <p className={cn("font-medium", get("text.primary"))}>{activity.action}</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{activity.saas}</p>
+                    <p className={cn("text-sm font-medium", get("text.primary"))}>{activity.action}</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">{activity.saas}</p>
                   </div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
                     {activity.time}
                   </div>
                 </div>

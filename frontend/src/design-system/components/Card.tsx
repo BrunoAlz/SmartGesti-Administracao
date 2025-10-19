@@ -159,7 +159,7 @@ const StatCard: React.FC<StatCardProps> = ({
   onClick,
 }) => {
   const titleClasses = useTextClasses("secondary", "text-sm font-medium mb-1");
-  const valueClasses = useTextClasses("primary", "text-3xl font-bold mb-2");
+  const valueClasses = useTextClasses("primary", "text-2xl font-bold mb-1");
   
   const changeClasses = {
     positive: "text-green-400",
@@ -184,7 +184,7 @@ const StatCard: React.FC<StatCardProps> = ({
           )}
         </div>
         {icon && (
-          <div className="w-12 h-12 rounded-lg bg-blue-500/20 backdrop-blur-sm flex items-center justify-center">
+          <div className="w-10 h-10 rounded-lg bg-blue-500/20 backdrop-blur-sm flex items-center justify-center">
             {icon}
           </div>
         )}
