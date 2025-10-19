@@ -145,7 +145,7 @@ const planOptions: PlanOption[] = [
 // COMPONENTE PRINCIPAL
 // ================================
 
-export const CreateClient: React.FC = () => {
+export const CreateClient = () => {
   const navigate = useNavigate();
   const { get, combine } = useThemeClasses();
   
@@ -261,7 +261,7 @@ export const CreateClient: React.FC = () => {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <h3 className="text-lg font-semibold mb-1">Escolha o SAAS</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className={cn("text-sm", get("text.secondary"))}>
                 Selecione qual sistema o cliente utilizará
               </p>
             </div>
@@ -284,7 +284,7 @@ export const CreateClient: React.FC = () => {
                       <Icon className="w-5 h-5" />
                     </div>
                     <h4 className={cn("font-semibold text-base mb-2", get("text.primary"))}>{saas.name}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{saas.description}</p>
+                    <p className={cn("text-sm mb-3", get("text.secondary"))}>{saas.description}</p>
                     <ul className="text-xs space-y-1">
                       {saas.features.map((feature, index) => (
                         <li key={index} className="flex items-center">
@@ -305,7 +305,7 @@ export const CreateClient: React.FC = () => {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <h3 className="text-lg font-semibold mb-1">Escolha o Plano</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className={cn("text-sm", get("text.secondary"))}>
                 Selecione o plano ideal para o cliente
               </p>
             </div>
@@ -333,7 +333,7 @@ export const CreateClient: React.FC = () => {
                     <div className="text-center mb-4">
                       <h4 className={cn("font-semibold text-base", get("text.primary"))}>{plan.name}</h4>
                       <p className="text-2xl font-bold text-blue-500">{formatCurrency(plan.price)}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">por mês</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>por mês</p>
                     </div>
                     <ul className="space-y-1">
                       {plan.features.map((feature, index) => (
@@ -355,7 +355,7 @@ export const CreateClient: React.FC = () => {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <h3 className="text-lg font-semibold mb-1">Informações do Cliente</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className={cn("text-sm", get("text.secondary"))}>
                 Dados pessoais do responsável pela conta
               </p>
             </div>
@@ -440,7 +440,7 @@ export const CreateClient: React.FC = () => {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <h3 className="text-lg font-semibold mb-1">Informações da Empresa</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className={cn("text-sm", get("text.secondary"))}>
                 Dados da empresa do cliente
               </p>
             </div>
@@ -565,7 +565,7 @@ export const CreateClient: React.FC = () => {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <h3 className="text-lg font-semibold mb-1">Revisão dos Dados</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className={cn("text-sm", get("text.secondary"))}>
                 Confirme todas as informações antes de criar o cliente
               </p>
             </div>
@@ -582,7 +582,7 @@ export const CreateClient: React.FC = () => {
                         </div>
                         <div>
                           <p className={cn("font-medium", get("text.primary"))}>{selectedSaasData.name}</p>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">{selectedSaasData.description}</p>
+                          <p className={cn("text-sm", get("text.secondary"))}>{selectedSaasData.description}</p>
                         </div>
                       </div>
                     )}
@@ -591,7 +591,7 @@ export const CreateClient: React.FC = () => {
                         <div className="flex justify-between items-center">
                           <div>
                             <p className={cn("font-medium", get("text.primary"))}>{selectedPlanData.name}</p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                            <p className={cn("text-sm", get("text.secondary"))}>
                               Até {selectedPlanData.maxUsers} usuários
                             </p>
                           </div>
@@ -610,19 +610,19 @@ export const CreateClient: React.FC = () => {
                 <CardHeader title="Informações do Cliente">
                   <div className="space-y-3">
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Nome</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>Nome</p>
                       <p className={cn("font-medium", get("text.primary"))}>{form.values.name}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Email</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>Email</p>
                       <p className={cn("font-medium", get("text.primary"))}>{form.values.email}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Telefone</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>Telefone</p>
                       <p className={cn("font-medium", get("text.primary"))}>{form.values.phone}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Cargo</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>Cargo</p>
                       <p className={cn("font-medium", get("text.primary"))}>{form.values.position}</p>
                     </div>
                   </div>
@@ -634,19 +634,19 @@ export const CreateClient: React.FC = () => {
                 <CardHeader title="Informações da Empresa">
                   <div className="space-y-3">
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Empresa</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>Empresa</p>
                       <p className={cn("font-medium", get("text.primary"))}>{form.values.company}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">CNPJ</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>CNPJ</p>
                       <p className={cn("font-medium", get("text.primary"))}>{form.values.cnpj}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Endereço</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>Endereço</p>
                       <p className={cn("font-medium", get("text.primary"))}>{form.values.address}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Usuários</p>
+                      <p className={cn("text-sm", get("text.secondary"))}>Usuários</p>
                       <p className={cn("font-medium", get("text.primary"))}>{form.values.totalUsers}</p>
                     </div>
                   </div>
@@ -700,21 +700,21 @@ export const CreateClient: React.FC = () => {
                     "w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold",
                     currentStep >= step.id
                       ? "bg-blue-500 text-white"
-                      : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
+                      : cn("bg-gray-200 dark:bg-gray-700", get("text.muted"))
                   )}>
                     {step.id}
                   </div>
                   <div className="ml-2">
                     <p className={cn(
                       "text-sm font-medium",
-                      currentStep >= step.id ? "text-blue-500" : "text-gray-600 dark:text-gray-400"
+                      currentStep >= step.id ? "text-blue-500" : get("text.secondary")
                     )}>
                       {step.title}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{step.description}</p>
+                    <p className={cn("text-xs", get("text.muted"))}>{step.description}</p>
                   </div>
                   {index < steps.length - 1 && (
-                    <div className="w-8 h-0.5 bg-gray-200 dark:bg-gray-700 mx-3" />
+                    <div className={cn("w-8 h-0.5 mx-3", get("border.primary"))} />
                   )}
                 </div>
               ))}
