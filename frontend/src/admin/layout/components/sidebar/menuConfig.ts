@@ -75,13 +75,13 @@ export const adminSidebarConfig: SidebarConfig = {
             {
               id: "clients-list",
               label: "Ver Clientes",
-              path: "/admin/tenants",
+              path: "/admin/clients",
               icon: List,
             },
             {
               id: "clients-new",
               label: "Novo Cliente",
-              path: "/admin/tenants/new",
+              path: "/admin/clients/new",
               icon: Plus,
             },
           ],

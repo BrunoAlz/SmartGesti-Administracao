@@ -19,6 +19,8 @@ const getBreadcrumbsForRoute = (pathname: string) => {
     Array<{ label: string; path?: string; isActive?: boolean }>
   > = {
     "/admin": [{ label: "Dashboard", isActive: true }],
+    "/admin/dashboard": [{ label: "Dashboard", isActive: true }],
+    "/admin/clients": [{ label: "Clientes", isActive: true }],
     "/admin/users": [{ label: "Usuários", isActive: true }],
     "/admin/analytics": [{ label: "Analytics", isActive: true }],
     "/admin/settings": [{ label: "Configurações", isActive: true }],
@@ -35,14 +37,14 @@ const getBreadcrumbsForRoute = (pathname: string) => {
       const baseBreadcrumbs = breadcrumbMap[route];
 
       // Adiciona breadcrumbs específicos baseado na rota
-      if (pathname.includes("/create")) {
+      if (pathname.includes("/new")) {
         return [
           ...baseBreadcrumbs.slice(0, -1),
           {
             label: baseBreadcrumbs[baseBreadcrumbs.length - 1].label,
             path: route,
           },
-          { label: "Criar", isActive: true },
+          { label: "Novo", isActive: true },
         ];
       }
 
@@ -54,6 +56,18 @@ const getBreadcrumbsForRoute = (pathname: string) => {
             path: route,
           },
           { label: "Editar", isActive: true },
+        ];
+      }
+
+      // Para rotas com ID (detalhes)
+      if (pathname.match(/\/\d+$/)) {
+        return [
+          ...baseBreadcrumbs.slice(0, -1),
+          {
+            label: baseBreadcrumbs[baseBreadcrumbs.length - 1].label,
+            path: route,
+          },
+          { label: "Detalhes", isActive: true },
         ];
       }
 
@@ -84,6 +98,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   // Determinar título da página atual
   const getPageTitle = () => {
     const pathname = location.pathname;
+    if (pathname.includes("/clients")) return "Gerenciamento de Clientes";
     if (pathname.includes("/users")) return "Gerenciamento de Usuários";
     if (pathname.includes("/analytics")) return "Analytics e Relatórios";
     if (pathname.includes("/settings")) return "Configurações do Sistema";

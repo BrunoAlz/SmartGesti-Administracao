@@ -4,6 +4,10 @@ import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { AdminLayout } from "../layout/AdminLayout";
 import { SimpleDashboard } from "./dashboard/SimpleDashboard";
+import { SaasDashboard } from "./dashboard/SaasDashboard";
+import { ClientsManagement } from "./clients/ClientsManagement";
+import { CreateClient } from "./clients/CreateClient";
+import { ClientDetails } from "./clients/ClientDetails";
 
 // ================================
 // COMPONENT ROTA PROTEGIDA
@@ -34,7 +38,13 @@ export const AdminApp: React.FC = () => {
         <AdminLayout>
           <Routes>
             {/* Dashboard Principal */}
-            <Route index element={<SimpleDashboard />} />
+            <Route index element={<SaasDashboard />} />
+            <Route path="dashboard" element={<SimpleDashboard />} />
+
+            {/* Gerenciamento de Clientes */}
+            <Route path="clients" element={<ClientsManagement />} />
+            <Route path="clients/new" element={<CreateClient />} />
+            <Route path="clients/:id" element={<ClientDetails />} />
 
             {/* Gerenciamento de Usuários */}
             <Route
