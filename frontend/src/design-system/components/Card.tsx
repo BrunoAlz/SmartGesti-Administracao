@@ -129,7 +129,7 @@ const CardFooter: React.FC<CardFooterProps> = ({
   className,
 }) => {
   return (
-    <div className={cn("mt-4 pt-4 border-t border-gray-200 dark:border-white/10", className)}>
+    <div className={cn("mt-4 pt-4 border-t border-gray-200 dark:border-white/5", className)}>
       {children}
     </div>
   );

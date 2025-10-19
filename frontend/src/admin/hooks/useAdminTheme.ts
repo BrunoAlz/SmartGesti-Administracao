@@ -84,25 +84,25 @@ export const themeStyles = {
   // Sidebar
   sidebar: {
     light: "bg-white border-gray-200",
-    dark: "bg-black/20 backdrop-blur-xl border-white/10",
+    dark: "bg-black/20 backdrop-blur-xl border-white/5", // Borda mais sutil
   },
 
   // Navbar
   navbar: {
     light: "bg-white border-gray-200",
-    dark: "bg-black/20 backdrop-blur-xl border-white/10",
+    dark: "bg-black/20 backdrop-blur-xl border-white/5", // Borda mais sutil
   },
 
   // Content Area
   content: {
     light: "bg-white border-gray-200",
-    dark: "bg-black/20 backdrop-blur-xl border-white/10",
+    dark: "bg-black/20 backdrop-blur-xl border-white/5", // Borda mais sutil
   },
 
   // Cards
   card: {
     light: "bg-white border-gray-200 shadow-sm",
-    dark: "bg-white/5 backdrop-blur-lg border-white/10 shadow-2xl",
+    dark: "bg-white/5 backdrop-blur-lg border-white/5 shadow-2xl", // Borda mais sutil
   },
 
   // Text Colors

@@ -20,7 +20,7 @@ export const themeClasses = {
   // Cards
   card: {
     light: "bg-white border-gray-200 shadow-sm",
-    dark: "bg-white/5 backdrop-blur-lg border-white/10 shadow-2xl",
+    dark: "bg-white/5 backdrop-blur-lg border-white/5 shadow-2xl", // Borda mais sutil
   },
 
   // Text Colors
@@ -63,15 +63,19 @@ export const themeClasses = {
   border: {
     primary: {
       light: "border-gray-200",
-      dark: "border-white/10",
+      dark: "border-white/5", // Mais sutil para layout principal
     },
     secondary: {
       light: "border-gray-300",
-      dark: "border-white/20",
+      dark: "border-white/10", // Mantém para elementos secundários
     },
     accent: {
       light: "border-blue-300",
-      dark: "border-blue-400/50",
+      dark: "border-blue-400/30", // Mais sutil também
+    },
+    subtle: {
+      light: "border-gray-100",
+      dark: "border-white/3", // Ultra sutil para divisões de layout
     },
   },
 

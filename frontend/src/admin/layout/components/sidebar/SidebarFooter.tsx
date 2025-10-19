@@ -28,7 +28,7 @@ export const SidebarFooter: React.FC<SidebarFooterProps> = ({
         <div
           className={`p-3 rounded-lg text-center ${
             theme.isDark
-              ? "bg-white/5 border border-white/10"
+              ? "bg-white/5 border border-white/5"
               : "bg-gray-50 border border-gray-200"
           }`}
         >

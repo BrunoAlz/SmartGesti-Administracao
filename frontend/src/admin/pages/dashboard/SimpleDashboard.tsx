@@ -191,7 +191,7 @@ export const SimpleDashboard: React.FC = () => {
           <button
             className={`p-4 border rounded-lg transition-all duration-200 text-left hover:scale-105 ${
               theme.isDark
-                ? "border-white/10 hover:bg-white/5"
+                ? "border-white/5 hover:bg-white/5"
                 : "border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -215,7 +215,7 @@ export const SimpleDashboard: React.FC = () => {
           <button
             className={`p-4 border rounded-lg transition-all duration-200 text-left hover:scale-105 ${
               theme.isDark
-                ? "border-white/10 hover:bg-white/5"
+                ? "border-white/5 hover:bg-white/5"
                 : "border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -239,7 +239,7 @@ export const SimpleDashboard: React.FC = () => {
           <button
             className={`p-4 border rounded-lg transition-all duration-200 text-left hover:scale-105 ${
               theme.isDark
-                ? "border-white/10 hover:bg-white/5"
+                ? "border-white/5 hover:bg-white/5"
                 : "border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -263,7 +263,7 @@ export const SimpleDashboard: React.FC = () => {
           <button
             className={`p-4 border rounded-lg transition-all duration-200 text-left hover:scale-105 ${
               theme.isDark
-                ? "border-white/10 hover:bg-white/5"
+                ? "border-white/5 hover:bg-white/5"
                 : "border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -290,7 +290,7 @@ export const SimpleDashboard: React.FC = () => {
       <div
         className={`rounded-lg p-6 ${
           theme.isDark
-            ? "bg-white/5 border border-white/10"
+            ? "bg-white/5 border border-white/5"
             : "bg-gray-50 border border-gray-200"
         }`}
       >

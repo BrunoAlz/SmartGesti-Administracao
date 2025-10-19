@@ -22,7 +22,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     return (
       <div className="py-2">
         <div
-          className={`border-t ${theme.isDark ? "border-white/10" : "border-gray-200"}`}
+          className={`border-t ${theme.isDark ? "border-white/5" : "border-gray-200"}`}
         />
         {separator.label && !isCollapsed && (
           <p
