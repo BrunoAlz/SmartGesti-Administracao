@@ -1,7 +1,8 @@
 import React from "react";
 import { ChevronRight, Home } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useTheme, getThemeClasses } from "../contexts/ThemeContext";
+import { useTheme } from "../contexts/ThemeContext";
+import { getThemeClasses } from "../../design-system";
 
 // ================================
 // TIPOS

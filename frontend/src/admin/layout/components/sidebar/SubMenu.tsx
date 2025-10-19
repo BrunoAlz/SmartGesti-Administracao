@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { useTheme, getThemeClasses } from "../../../contexts/ThemeContext";
+import { useTheme } from "../../../contexts/ThemeContext";
+import { getThemeClasses } from "../../../../design-system";
 import { SubMenuProps, SubMenuItem } from "./types";
 
 // ================================

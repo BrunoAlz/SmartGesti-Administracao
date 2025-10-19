@@ -9,7 +9,8 @@ import {
   Database,
   Clock,
 } from "lucide-react";
-import { useTheme, getThemeClasses } from "../../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
+import { getThemeClasses } from "../../../design-system";
 
 // ================================
 // COMPONENTE DASHBOARD ADMINISTRATIVO

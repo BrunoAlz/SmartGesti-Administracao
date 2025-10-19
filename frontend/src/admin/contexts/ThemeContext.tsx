@@ -184,14 +184,11 @@ export const themeStyles = {
 // HELPER PARA OBTER CLASSES DO TEMA
 // ================================
 
-export const getThemeClasses = (theme: Theme, styleKey: string): string => {
-  const keys = styleKey.split(".");
-  let styles: any = themeStyles;
+// ================================
+// COMPATIBILIDADE COM NOVO DESIGN SYSTEM
+// ================================
 
-  for (const key of keys) {
-    styles = styles[key];
-    if (!styles) return "";
-  }
-
-  return styles[theme] || "";
-};
+// Re-export do novo sistema para compatibilidade
+export { getThemeClasses as getNewThemeClasses } from "../../design-system/theme-classes";
+export { themeClasses as newThemeStyles } from "../../design-system/theme-classes";
+export { useThemeClasses } from "../../design-system/hooks";

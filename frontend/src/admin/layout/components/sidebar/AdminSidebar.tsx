@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useTheme, getThemeClasses } from "../../../contexts/ThemeContext";
+import { useTheme } from "../../../contexts/ThemeContext";
+import { getThemeClasses } from "../../../../design-system";
 import {
   SidebarProps,
   MenuItem as MenuItemType,
