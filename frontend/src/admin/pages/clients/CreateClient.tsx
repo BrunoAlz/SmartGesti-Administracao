@@ -12,8 +12,6 @@ import {
   PasswordInput,
   LoadingButton,
   LoadingState,
-  FadeIn,
-  SlideIn,
   useThemeClasses,
   cn,
   useForm,
@@ -675,7 +673,6 @@ export const CreateClient: React.FC = () => {
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <FadeIn>
         <div className="flex items-center gap-4 mb-6">
           <IconButton
             icon={<ArrowLeft className="w-4 h-4" />}
@@ -692,10 +689,8 @@ export const CreateClient: React.FC = () => {
             </p>
           </div>
         </div>
-      </FadeIn>
 
       {/* Steps */}
-      <FadeIn delay={100}>
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -726,10 +721,8 @@ export const CreateClient: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
 
       {/* Form Content */}
-      <FadeIn delay={200}>
         <Card>
           <CardContent className="p-8">
             {renderStepContent()}
@@ -769,7 +762,6 @@ export const CreateClient: React.FC = () => {
             </div>
           </CardFooter>
         </Card>
-      </FadeIn>
     </div>
   );
 };

@@ -8,9 +8,6 @@ import {
   IconButton,
   StatCard,
   LoadingState,
-  FadeIn,
-  SlideIn,
-  Stagger,
   useThemeClasses,
   cn,
   Modal,
@@ -312,10 +309,8 @@ export const ClientDetails: React.FC = () => {
         return (
           <div className="space-y-6">
             {/* Stats Cards */}
-            <Stagger stagger={100}>
               {[
                 <div key="stats" className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                  <SlideIn direction="up" delay={0}>
                     <StatCard
                       title="Receita Mensal"
                       value={formatCurrency(clientDetails.monthlyRevenue)}
@@ -323,8 +318,6 @@ export const ClientDetails: React.FC = () => {
                       changeType="positive"
                       icon={<DollarSign className="w-6 h-6" />}
                     />
-                  </SlideIn>
-                  <SlideIn direction="up" delay={100}>
                     <StatCard
                       title="Usuários Ativos"
                       value={`${clientDetails.activeUsers}/${clientDetails.totalUsers}`}
@@ -332,8 +325,6 @@ export const ClientDetails: React.FC = () => {
                       changeType="positive"
                       icon={<Users className="w-6 h-6" />}
                     />
-                  </SlideIn>
-                  <SlideIn direction="up" delay={200}>
                     <StatCard
                       title="Último Acesso"
                       value={clientDetails.lastLogin}
@@ -341,8 +332,6 @@ export const ClientDetails: React.FC = () => {
                       changeType="positive"
                       icon={<Activity className="w-6 h-6" />}
                     />
-                  </SlideIn>
-                  <SlideIn direction="up" delay={300}>
                     <StatCard
                       title="Próximo Pagamento"
                       value={clientDetails.nextBillingDate}
@@ -350,10 +339,8 @@ export const ClientDetails: React.FC = () => {
                       changeType="neutral"
                       icon={<Calendar className="w-6 h-6" />}
                     />
-                  </SlideIn>
                 </div>
               ]}
-            </Stagger>
 
             {/* Client Information */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -476,7 +463,6 @@ export const ClientDetails: React.FC = () => {
                   {activityLog.map((activity, index) => {
                     const Icon = activity.icon;
                     return (
-                      <SlideIn key={activity.id} direction="left" delay={index * 100}>
                         <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                           <div className={cn("w-10 h-10 rounded-full flex items-center justify-center", activity.color)}>
                             <Icon className="w-5 h-5" />
@@ -489,7 +475,6 @@ export const ClientDetails: React.FC = () => {
                             {activity.timestamp}
                           </div>
                         </div>
-                      </SlideIn>
                     );
                   })}
                 </div>
@@ -502,10 +487,8 @@ export const ClientDetails: React.FC = () => {
         return (
           <div className="space-y-6">
             {/* Billing Summary */}
-            <Stagger stagger={100}>
               {[
                 <div key="billing-stats" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <SlideIn direction="up" delay={0}>
                     <StatCard
                       title="Receita Total"
                       value={formatCurrency(clientDetails.totalRevenue)}
@@ -513,8 +496,6 @@ export const ClientDetails: React.FC = () => {
                       changeType="positive"
                       icon={<TrendingUp className="w-6 h-6" />}
                     />
-                  </SlideIn>
-                  <SlideIn direction="up" delay={100}>
                     <StatCard
                       title="Próximo Pagamento"
                       value={formatCurrency(clientDetails.monthlyRevenue)}
@@ -522,8 +503,6 @@ export const ClientDetails: React.FC = () => {
                       changeType="neutral"
                       icon={<Calendar className="w-6 h-6" />}
                     />
-                  </SlideIn>
-                  <SlideIn direction="up" delay={200}>
                     <StatCard
                       title="Contrato até"
                       value={clientDetails.contractEndDate}
@@ -531,10 +510,8 @@ export const ClientDetails: React.FC = () => {
                       changeType="positive"
                       icon={<FileText className="w-6 h-6" />}
                     />
-                  </SlideIn>
                 </div>
               ]}
-            </Stagger>
 
             {/* Payment History */}
             <Card>
@@ -546,7 +523,6 @@ export const ClientDetails: React.FC = () => {
               <CardContent>
                 <div className="space-y-4">
                   {paymentHistory.map((payment, index) => (
-                    <SlideIn key={payment.id} direction="left" delay={index * 100}>
                       <div className="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-white/10">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center">
@@ -566,7 +542,6 @@ export const ClientDetails: React.FC = () => {
                           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{payment.date}</p>
                         </div>
                       </div>
-                    </SlideIn>
                   ))}
                 </div>
               </CardContent>
@@ -655,7 +630,6 @@ export const ClientDetails: React.FC = () => {
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <FadeIn>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <IconButton
@@ -683,10 +657,8 @@ export const ClientDetails: React.FC = () => {
             <IconButton icon={<MoreHorizontal className="w-4 h-4" />} variant="ghost" aria-label="Mais opções" />
           </div>
         </div>
-      </FadeIn>
 
       {/* Tabs */}
-      <FadeIn delay={100}>
         <Card>
           <CardContent className="p-0">
             <div className="flex border-b border-gray-200 dark:border-white/10">
@@ -711,12 +683,9 @@ export const ClientDetails: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
 
       {/* Tab Content */}
-      <FadeIn delay={200}>
         {renderTabContent()}
-      </FadeIn>
     </div>
   );
 };

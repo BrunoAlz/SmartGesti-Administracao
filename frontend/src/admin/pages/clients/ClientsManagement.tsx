@@ -19,9 +19,6 @@ import {
   ConfirmModal,
   useModal,
   LoadingState,
-  FadeIn,
-  SlideIn,
-  Stagger,
   useThemeClasses,
   cn
 } from "../../../design-system";
@@ -431,7 +428,6 @@ export const ClientsManagement: React.FC = () => {
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <FadeIn>
         <div className="flex items-center justify-between">
           <div>
             <h1 className={cn("text-3xl font-bold mb-2", get("text.primary"))}>
@@ -450,13 +446,10 @@ export const ClientsManagement: React.FC = () => {
             </Button>
           </div>
         </div>
-      </FadeIn>
 
       {/* Stats Cards */}
-            <Stagger stagger={100}>
               {[
                 <div key="stats" className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                  <SlideIn direction="up" delay={0}>
                     <Card>
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
@@ -468,8 +461,6 @@ export const ClientsManagement: React.FC = () => {
                         </div>
                       </CardContent>
                     </Card>
-                  </SlideIn>
-                  <SlideIn direction="up" delay={100}>
                     <Card>
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
@@ -483,8 +474,6 @@ export const ClientsManagement: React.FC = () => {
                         </div>
                       </CardContent>
                     </Card>
-                  </SlideIn>
-                  <SlideIn direction="up" delay={200}>
                     <Card>
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
@@ -498,8 +487,6 @@ export const ClientsManagement: React.FC = () => {
                         </div>
                       </CardContent>
                     </Card>
-                  </SlideIn>
-                  <SlideIn direction="up" delay={300}>
                     <Card>
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
@@ -513,13 +500,10 @@ export const ClientsManagement: React.FC = () => {
                         </div>
                       </CardContent>
                     </Card>
-                  </SlideIn>
                 </div>
               ]}
-            </Stagger>
 
       {/* Filters */}
-      <FadeIn delay={400}>
         <Card>
           <CardContent className="p-6">
             <div className="flex flex-col lg:flex-row gap-4">
@@ -560,11 +544,9 @@ export const ClientsManagement: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
 
       {/* Bulk Actions */}
       {selectedClients.length > 0 && (
-        <FadeIn>
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
@@ -585,11 +567,9 @@ export const ClientsManagement: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </FadeIn>
       )}
 
       {/* Table */}
-      <FadeIn delay={500}>
         <Card>
           <CardContent className="p-0">
             <Table
@@ -622,7 +602,6 @@ export const ClientsManagement: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
 
       {/* Delete Confirmation Modal */}
       <ConfirmModal

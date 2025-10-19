@@ -4,13 +4,8 @@ import {
   CardHeader,
   CardContent,
   StatCard,
-  FeatureCard,
   Button,
   IconButton,
-  LoadingSpinner,
-  FadeIn,
-  SlideIn,
-  Stagger,
   useThemeClasses,
   cn
 } from "../../../design-system";
@@ -204,7 +199,6 @@ export const SaasDashboard: React.FC = () => {
   return (
     <div className="p-4 space-y-6">
       {/* Header */}
-      <FadeIn>
         <div className="flex items-center justify-between">
           <div>
             <h1 className={cn("text-2xl font-bold mb-1", get("text.primary"))}>
@@ -223,94 +217,42 @@ export const SaasDashboard: React.FC = () => {
             </Button>
           </div>
         </div>
-      </FadeIn>
+
 
       {/* Stats Cards */}
-      <Stagger stagger={100}>
-        {[
-          <div key="stats" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <SlideIn direction="up" delay={0}>
-            <StatCard
-              title="Total de SAAS"
-              value={systemStats.totalSaas}
-              change="+1 este mês"
-              changeType="positive"
-              icon={<Building2 className="w-5 h-5 text-blue-500" />}
-            />
-          </SlideIn>
-          <SlideIn direction="up" delay={100}>
-            <StatCard
-              title="Total de Clientes"
-              value={systemStats.totalClients}
-              change="+12 esta semana"
-              changeType="positive"
-              icon={<Users className="w-5 h-5 text-emerald-500" />}
-            />
-          </SlideIn>
-          <SlideIn direction="up" delay={200}>
-            <StatCard
-              title="Receita Mensal"
-              value={formatCurrency(systemStats.totalRevenue)}
-              change="+8.5% vs. mês anterior"
-              changeType="positive"
-              icon={<DollarSign className="w-5 h-5 text-green-500" />}
-            />
-          </SlideIn>
-          <SlideIn direction="up" delay={300}>
-            <StatCard
-              title="Usuários Ativos"
-              value={systemStats.activeUsers}
-              change="+5 hoje"
-              changeType="positive"
-              icon={<Activity className="w-5 h-5 text-purple-500" />}
-            />
-          </SlideIn>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StatCard
+            title="Total de SAAS"
+            value={systemStats.totalSaas}
+            change="+1 este mês"
+            changeType="positive"
+            icon={<Building2 className="w-5 h-5 text-blue-500" />}
+          />
+          <StatCard
+            title="Total de Clientes"
+            value={systemStats.totalClients}
+            change="+12 esta semana"
+            changeType="positive"
+            icon={<Users className="w-5 h-5 text-emerald-500" />}
+          />
+          <StatCard
+            title="Receita Mensal"
+            value={formatCurrency(systemStats.totalRevenue)}
+            change="+8.5% vs. mês anterior"
+            changeType="positive"
+            icon={<DollarSign className="w-5 h-5 text-green-500" />}
+          />
+          <StatCard
+            title="Usuários Ativos"
+            value={systemStats.activeUsers}
+            change="+5 hoje"
+            changeType="positive"
+            icon={<Activity className="w-5 h-5 text-purple-500" />}
+          />
         </div>
-        ]}
-      </Stagger>
-
-      {/* System Health */}
-      <FadeIn delay={400}>
-        <Card>
-          <CardHeader title="Saúde do Sistema">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Monitoramento em tempo real
-            </p>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto mb-2 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-500" />
-                </div>
-                <h3 className={cn("font-semibold text-base", get("text.primary"))}>Sistema</h3>
-                <p className="text-xl font-bold text-green-500">{systemStats.systemHealth}%</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Saúde Geral</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto mb-2 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center">
-                  <Clock className="w-6 h-6 text-blue-500" />
-                </div>
-                <h3 className={cn("font-semibold text-base", get("text.primary"))}>Uptime</h3>
-                <p className="text-xl font-bold text-blue-500">{systemStats.uptime}%</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Disponibilidade</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto mb-2 bg-purple-100 dark:bg-purple-500/20 rounded-full flex items-center justify-center">
-                  <TrendingUp className="w-6 h-6 text-purple-500" />
-                </div>
-                <h3 className={cn("font-semibold text-base", get("text.primary"))}>Performance</h3>
-                <p className="text-xl font-bold text-purple-500">98.2%</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Velocidade</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </FadeIn>
 
       {/* SAAS Overview */}
-      <FadeIn delay={500}>
-        <Card>
+      <Card>
           <CardHeader title="Visão Geral dos SAAS">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Todos os seus sistemas em um só lugar
@@ -321,8 +263,7 @@ export const SaasDashboard: React.FC = () => {
               {saasList.map((saas, index) => {
                 const Icon = saas.icon;
                 return (
-                  <SlideIn key={saas.id} direction="up" delay={index * 100}>
-                    <div className={cn("relative p-4 rounded-lg border transition-all duration-200 hover:scale-105", get("card"))}>
+                  <div key={saas.id} className={cn("relative p-4 rounded-lg border transition-all duration-200 hover:scale-105", get("card"))}>
                       {/* Status Badge */}
                       <div className="absolute top-4 right-4">
                         <span className={cn("px-2 py-1 text-xs font-medium rounded-full", getStatusColor(saas.status))}>
@@ -373,17 +314,14 @@ export const SaasDashboard: React.FC = () => {
                         <IconButton icon={<ArrowUpRight className="w-4 h-4" />} variant="ghost" size="sm" aria-label="Ver detalhes" />
                       </div>
                     </div>
-                  </SlideIn>
                 );
               })}
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
 
       {/* Quick Actions */}
-      <FadeIn delay={600}>
-        <Card>
+      <Card>
           <CardHeader title="Ações Rápidas">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Operações mais utilizadas
@@ -406,11 +344,9 @@ export const SaasDashboard: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
 
       {/* Recent Activity */}
-      <FadeIn delay={700}>
-        <Card>
+      <Card>
           <CardHeader title="Atividade Recente">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Últimas ações realizadas
@@ -448,7 +384,6 @@ export const SaasDashboard: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
     </div>
   );
 };

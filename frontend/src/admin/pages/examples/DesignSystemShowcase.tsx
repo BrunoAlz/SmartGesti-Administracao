@@ -74,9 +74,6 @@ import {
   // Animation Components
   Animation,
   Transition,
-  Stagger,
-  FadeIn,
-  SlideIn,
   ScaleIn,
   BounceIn,
   HoverLift,
@@ -228,20 +225,15 @@ export const DesignSystemShowcase: React.FC = () => {
     <div className="p-6 space-y-8">
       {/* Header */}
       <div className="text-center">
-        <FadeIn>
           <h1 className={cn("text-4xl font-bold mb-4", get("text.primary"))}>
             <TypingAnimation text="Design System Showcase" speed={100} />
           </h1>
-        </FadeIn>
-        <SlideIn direction="up" delay={500}>
           <p className={cn("text-lg", get("text.secondary"))}>
             Demonstração completa de todos os componentes do Design System
           </p>
-        </SlideIn>
       </div>
 
       {/* Stats Cards */}
-      <Stagger stagger={200}>
         {[
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <ScaleIn delay={0}>
@@ -282,10 +274,8 @@ export const DesignSystemShowcase: React.FC = () => {
           </ScaleIn>
         </div>
         ]}
-      </Stagger>
 
       {/* Input Components */}
-      <FadeIn delay={800}>
         <Card>
           <CardHeader title="Input Components">
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -351,10 +341,8 @@ export const DesignSystemShowcase: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
 
       {/* Button Components */}
-      <SlideIn direction="left" delay={1000}>
         <Card>
           <CardHeader title="Button Components">
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -419,7 +407,6 @@ export const DesignSystemShowcase: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </SlideIn>
 
       {/* Loading Components */}
       <BounceIn delay={1200}>
@@ -469,7 +456,6 @@ export const DesignSystemShowcase: React.FC = () => {
       </BounceIn>
 
       {/* Table Components */}
-      <FadeIn delay={1400}>
         <Card>
           <CardHeader title="Table Components">
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -532,10 +518,8 @@ export const DesignSystemShowcase: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </FadeIn>
 
       {/* Modal Components */}
-      <SlideIn direction="right" delay={1600}>
         <Card>
           <CardHeader title="Modal Components">
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -559,7 +543,6 @@ export const DesignSystemShowcase: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </SlideIn>
 
       {/* Notification Actions */}
       <ScaleIn delay={1800}>
