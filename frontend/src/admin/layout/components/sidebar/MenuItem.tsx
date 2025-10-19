@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../../contexts/ThemeContext";
-import { getThemeClasses } from "../../../../design-system";
 import { MenuItemProps, SimpleMenuItem, MenuSeparator } from "./types";
 
 // ================================
@@ -26,10 +25,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         />
         {separator.label && !isCollapsed && (
           <p
-            className={`text-xs font-medium mt-2 px-3 ${getThemeClasses(
-              theme.theme,
-              "text.muted"
-            )}`}
+            className={`text-xs font-medium mt-2 px-3 ${
+              theme.isDark ? "text-gray-300" : "text-gray-500"
+            }`}
           >
             {separator.label}
           </p>
@@ -61,10 +59,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
               ? theme.isDark
                 ? "bg-blue-500/20 text-blue-300 border border-blue-400/30"
                 : "bg-blue-50 text-blue-600 border border-blue-200"
-              : `hover:${theme.isDark ? "bg-white/5" : "bg-gray-50"} ${getThemeClasses(
-                  theme.theme,
-                  "text.secondary"
-                )} hover:${getThemeClasses(theme.theme, "text.primary")}`
+              : `hover:${theme.isDark ? "bg-white/5" : "bg-gray-100"} ${
+                  theme.isDark ? "text-white" : "text-gray-600"
+                } hover:${theme.isDark ? "text-white" : "text-gray-600"}`
         }`}
         title={isCollapsed ? linkItem.label : linkItem.tooltip}
       >

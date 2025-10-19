@@ -11,18 +11,26 @@
   body {
     @apply font-sans antialiased;
   }
+}
 
-  /* Padrões globais para modo escuro */
-  * {
-    @apply border-gray-200 dark:border-gray-600;
+  /* CARDS - Bordas específicas */
+  .card,
+  .border-card {
+    @apply border-gray-300 dark:border-gray-500;
   }
 
-  /* Todos os textos são brancos por padrão no modo escuro */
-  * {
-    @apply text-gray-900 dark:text-white;
+  /* BORDAS DE FORMULÁRIOS */
+  .form-border,
+  input, textarea, select {
+    @apply border-gray-300 dark:border-gray-600;
   }
 
-  /* Exceções para textos específicos que devem manter suas cores */
+  /* BORDAS DE BOTÕES */
+  .btn-border {
+    @apply border-gray-300 dark:border-gray-500;
+  }
+
+  /* Exceções para cores específicas que devem ser mantidas */
   .text-blue-500,
   .text-green-500,
   .text-red-500,
@@ -53,20 +61,6 @@
   .text-black {
     /* Mantém as cores específicas definidas */
   }
-
-  /* Bordas específicas para elementos de interface */
-  .border-gray-200 {
-    @apply dark:border-gray-600;
-  }
-  
-  .border-gray-300 {
-    @apply dark:border-gray-500;
-  }
-  
-  .border-gray-400 {
-    @apply dark:border-gray-400;
-  }
-}
 
 /* Animações customizadas */
 @keyframes blob {
@@ -147,11 +141,11 @@
   }
 
   .btn-secondary {
-    @apply btn bg-secondary-100 dark:bg-secondary-800 hover:bg-secondary-200 dark:hover:bg-secondary-700 text-secondary-900 dark:text-secondary-100 focus:ring-secondary-500;
+    @apply btn bg-secondary-100 dark:bg-secondary-800 hover:bg-secondary-200 dark:hover:bg-secondary-700 text-black dark:text-white focus:ring-secondary-500 border-gray-500 dark:border-gray-500;
   }
 
   .btn-outline {
-    @apply btn border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 focus:ring-primary-500;
+    @apply btn border-gray-500 dark:border-gray-500 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-black dark:text-white focus:ring-primary-500;
   }
 
   .btn-success {
@@ -175,11 +169,11 @@
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-lg shadow-card border border-gray-200 dark:border-gray-600;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-card border-gray-400 dark:border-gray-500;
   }
 
   .card-header {
-    @apply px-6 py-4 border-b border-gray-200 dark:border-gray-600;
+    @apply px-6 py-4 border-b border-gray-400 dark:border-gray-500;
   }
 
   .card-body {
@@ -187,24 +181,24 @@
   }
 
   .card-footer {
-    @apply px-6 py-4 border-t border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 rounded-b-lg;
+    @apply px-6 py-4 border-t border-gray-400 dark:border-gray-500 bg-gray-50 dark:bg-gray-700 rounded-b-lg;
   }
 
   .form-input {
-    @apply block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
+    @apply block w-full px-3 py-2 border-gray-500 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-700 dark:placeholder-gray-500 text-black dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
   }
 
   .form-textarea {
-    @apply block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
+    @apply block w-full px-3 py-2 border-gray-500 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-700 dark:placeholder-gray-500 text-black dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
     resize: vertical;
   }
 
   .form-select {
-    @apply block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
+    @apply block w-full px-3 py-2 border-gray-500 dark:border-gray-600 rounded-md shadow-sm text-black dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
   }
 
   .form-label {
-    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+    @apply block text-sm font-medium text-black dark:text-white mb-1;
   }
 
   .form-error {
