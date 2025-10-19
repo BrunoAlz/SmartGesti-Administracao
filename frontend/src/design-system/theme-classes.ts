@@ -13,51 +13,63 @@ export type Theme = "light" | "dark";
 export const themeClasses = {
   // Layout
   layout: {
-    light: "bg-gray-50",
+    light: "bg-slate-50",
     dark: "bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900",
   },
 
   // Sidebar
   sidebar: {
-    light: "bg-white border-gray-200",
+    light: "bg-white border-slate-200",
     dark: "bg-black/20 backdrop-blur-xl border-white/5",
   },
 
   // Navbar
   navbar: {
-    light: "bg-white border-gray-200",
+    light: "bg-white border-slate-200",
     dark: "bg-black/20 backdrop-blur-xl border-white/5",
   },
 
   // Content Area
   content: {
-    light: "bg-white border-gray-200",
+    light: "bg-white border-slate-200",
     dark: "bg-black/20 backdrop-blur-xl border-white/5",
   },
 
   // Cards
   card: {
-    light: "bg-white border-gray-200 shadow-sm",
-    dark: "bg-white/5 backdrop-blur-lg border-white/5 shadow-2xl", // Borda mais sutil
+    light: "bg-white border-slate-200 shadow-sm",
+    dark: "bg-white/5 backdrop-blur-lg border-white/5 shadow-2xl",
   },
 
   // Text Colors
   text: {
     primary: {
-      light: "text-gray-900",
-      dark: "text-white",
+      light: "text-slate-800",
+      dark: "text-slate-100",
     },
     secondary: {
-      light: "text-gray-600", 
-      dark: "text-blue-100",
+      light: "text-slate-600", 
+      dark: "text-slate-300",
     },
     muted: {
-      light: "text-gray-500",
-      dark: "text-blue-200/70",
+      light: "text-slate-500",
+      dark: "text-slate-400",
     },
     accent: {
-      light: "text-blue-600",
-      dark: "text-blue-400",
+      light: "text-blue-700",
+      dark: "text-blue-300",
+    },
+    success: {
+      light: "text-emerald-700",
+      dark: "text-emerald-300",
+    },
+    warning: {
+      light: "text-amber-700",
+      dark: "text-amber-300",
+    },
+    error: {
+      light: "text-rose-700",
+      dark: "text-rose-300",
     },
   },
 
@@ -68,7 +80,7 @@ export const themeClasses = {
       dark: "bg-black/20 backdrop-blur-xl",
     },
     secondary: {
-      light: "bg-gray-50",
+      light: "bg-slate-50",
       dark: "bg-white/5 backdrop-blur-sm",
     },
     accent: {
@@ -80,20 +92,20 @@ export const themeClasses = {
   // Borders
   border: {
     primary: {
-      light: "border-gray-200",
-      dark: "border-white/5", // Mais sutil para layout principal
+      light: "border-slate-200",
+      dark: "border-white/5",
     },
     secondary: {
-      light: "border-gray-300",
-      dark: "border-white/10", // Mantém para elementos secundários
+      light: "border-slate-300",
+      dark: "border-white/10",
     },
     accent: {
       light: "border-blue-300",
-      dark: "border-blue-400/30", // Mais sutil também
+      dark: "border-blue-400/30",
     },
     subtle: {
-      light: "border-gray-100",
-      dark: "border-white/3", // Ultra sutil para divisões de layout
+      light: "border-slate-100",
+      dark: "border-white/3",
     },
   },
 
@@ -104,12 +116,12 @@ export const themeClasses = {
       dark: "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl",
     },
     secondary: {
-      light: "bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-300",
-      dark: "bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/20",
+      light: "bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300",
+      dark: "bg-white/10 hover:bg-white/20 text-slate-100 backdrop-blur-sm border border-white/20",
     },
     ghost: {
-      light: "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
-      dark: "text-blue-200 hover:bg-white/10 hover:text-white",
+      light: "text-slate-600 hover:bg-slate-100 hover:text-slate-800",
+      dark: "text-slate-300 hover:bg-white/10 hover:text-slate-100",
     },
     danger: {
       light: "bg-red-600 hover:bg-red-700 text-white",
@@ -119,19 +131,19 @@ export const themeClasses = {
 
   // Inputs
   input: {
-    light: "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-blue-500",
-    dark: "bg-white/10 border-white/20 text-white placeholder-blue-200/50 backdrop-blur-sm focus:border-blue-400 focus:ring-blue-400",
+    light: "bg-white border-slate-300 text-slate-800 placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500",
+    dark: "bg-white/10 border-white/20 text-slate-100 placeholder-slate-400/50 backdrop-blur-sm focus:border-blue-400 focus:ring-blue-400",
   },
 
   // Icons
   icon: {
     primary: {
-      light: "text-gray-600",
-      dark: "text-blue-300",
+      light: "text-slate-600",
+      dark: "text-slate-300",
     },
     secondary: {
-      light: "text-gray-500",
-      dark: "text-blue-200/70",
+      light: "text-slate-500",
+      dark: "text-slate-400",
     },
     accent: {
       light: "text-blue-600",
