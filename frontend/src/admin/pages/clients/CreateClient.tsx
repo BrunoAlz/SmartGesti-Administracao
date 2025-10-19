@@ -258,14 +258,14 @@ export const CreateClient: React.FC = () => {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-semibold mb-2">Escolha o SAAS</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+          <div className="space-y-4">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-semibold mb-1">Escolha o SAAS</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Selecione qual sistema o cliente utilizará
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {saasOptions.map((saas) => {
                 const Icon = saas.icon;
                 const isSelected = selectedSaas === saas.id;
@@ -274,21 +274,21 @@ export const CreateClient: React.FC = () => {
                     key={saas.id}
                     onClick={() => setSelectedSaas(saas.id)}
                     className={cn(
-                      "p-6 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:scale-105",
+                      "p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:scale-105",
                       isSelected
                         ? "border-blue-500 bg-blue-50 dark:bg-blue-500/20"
                         : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
                     )}
                   >
-                    <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4", `bg-gradient-to-br ${saas.color}`)}>
-                      <Icon className="w-6 h-6" />
+                    <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center text-white mb-3", `bg-gradient-to-br ${saas.color}`)}>
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <h4 className={cn("font-semibold text-lg mb-2", get("text.primary"))}>{saas.name}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{saas.description}</p>
-                    <ul className="text-sm space-y-1">
+                    <h4 className={cn("font-semibold text-base mb-2", get("text.primary"))}>{saas.name}</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{saas.description}</p>
+                    <ul className="text-xs space-y-1">
                       {saas.features.map((feature, index) => (
                         <li key={index} className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                          <CheckCircle className="w-3 h-3 text-green-500 mr-2" />
                           {feature}
                         </li>
                       ))}
@@ -302,14 +302,14 @@ export const CreateClient: React.FC = () => {
 
       case 2:
         return (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-semibold mb-2">Escolha o Plano</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+          <div className="space-y-4">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-semibold mb-1">Escolha o Plano</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Selecione o plano ideal para o cliente
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {planOptions.map((plan) => {
                 const isSelected = selectedPlan === plan.id;
                 return (
@@ -317,28 +317,28 @@ export const CreateClient: React.FC = () => {
                     key={plan.id}
                     onClick={() => setSelectedPlan(plan.id)}
                     className={cn(
-                      "p-6 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:scale-105 relative",
+                      "p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:scale-105 relative",
                       isSelected
                         ? "border-blue-500 bg-blue-50 dark:bg-blue-500/20"
                         : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
                     )}
                   >
                     {plan.popular && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <span className="bg-blue-500 text-white px-3 py-1 text-xs font-medium rounded-full">
+                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                        <span className="bg-blue-500 text-white px-2 py-1 text-xs font-medium rounded-full">
                           Mais Popular
                         </span>
                       </div>
                     )}
                     <div className="text-center mb-4">
-                      <h4 className={cn("font-semibold text-lg", get("text.primary"))}>{plan.name}</h4>
-                      <p className="text-3xl font-bold text-blue-500">{formatCurrency(plan.price)}</p>
+                      <h4 className={cn("font-semibold text-base", get("text.primary"))}>{plan.name}</h4>
+                      <p className="text-2xl font-bold text-blue-500">{formatCurrency(plan.price)}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">por mês</p>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                       {plan.features.map((feature, index) => (
-                        <li key={index} className="flex items-center text-sm">
-                          <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                        <li key={index} className="flex items-center text-xs">
+                          <CheckCircle className="w-3 h-3 text-green-500 mr-2" />
                           {feature}
                         </li>
                       ))}
@@ -352,14 +352,14 @@ export const CreateClient: React.FC = () => {
 
       case 3:
         return (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-semibold mb-2">Informações do Cliente</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+          <div className="space-y-4">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-semibold mb-1">Informações do Cliente</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Dados pessoais do responsável pela conta
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField name="name" label="Nome Completo">
                 {({ value, error, onChange, onBlur }) => (
                   <Input
@@ -437,14 +437,14 @@ export const CreateClient: React.FC = () => {
 
       case 4:
         return (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-semibold mb-2">Informações da Empresa</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+          <div className="space-y-4">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-semibold mb-1">Informações da Empresa</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Dados da empresa do cliente
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField name="company" label="Nome da Empresa">
                 {({ value, error, onChange, onBlur }) => (
                   <Input
@@ -562,15 +562,15 @@ export const CreateClient: React.FC = () => {
         const selectedPlanData = getSelectedPlan();
         
         return (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-semibold mb-2">Revisão dos Dados</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+          <div className="space-y-4">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-semibold mb-1">Revisão dos Dados</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Confirme todas as informações antes de criar o cliente
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {/* SAAS e Plano */}
               <Card>
                 <CardHeader title="SAAS e Plano">
@@ -681,10 +681,10 @@ export const CreateClient: React.FC = () => {
             aria-label="Voltar"
           />
           <div>
-            <h1 className={cn("text-3xl font-bold", get("text.primary"))}>
+            <h1 className={cn("text-2xl font-bold mb-1", get("text.primary"))}>
               Criar Novo Cliente
             </h1>
-            <p className={cn("text-lg", get("text.secondary"))}>
+            <p className={cn("text-base", get("text.secondary"))}>
               Adicione um novo cliente ao sistema
             </p>
           </div>
@@ -692,29 +692,29 @@ export const CreateClient: React.FC = () => {
 
       {/* Steps */}
         <Card>
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <div className="flex items-center justify-between">
               {steps.map((step, index) => (
                 <div key={step.id} className="flex items-center">
                   <div className={cn(
-                    "w-10 h-10 rounded-full flex items-center justify-center font-semibold",
+                    "w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold",
                     currentStep >= step.id
                       ? "bg-blue-500 text-white"
                       : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
                   )}>
                     {step.id}
                   </div>
-                  <div className="ml-3">
+                  <div className="ml-2">
                     <p className={cn(
-                      "font-medium",
+                      "text-sm font-medium",
                       currentStep >= step.id ? "text-blue-500" : "text-gray-600 dark:text-gray-400"
                     )}>
                       {step.title}
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{step.description}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{step.description}</p>
                   </div>
                   {index < steps.length - 1 && (
-                    <div className="w-12 h-0.5 bg-gray-200 dark:bg-gray-700 mx-4" />
+                    <div className="w-8 h-0.5 bg-gray-200 dark:bg-gray-700 mx-3" />
                   )}
                 </div>
               ))}
@@ -724,20 +724,22 @@ export const CreateClient: React.FC = () => {
 
       {/* Form Content */}
         <Card>
-          <CardContent className="p-8">
+          <CardContent className="p-4">
             {renderStepContent()}
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button
               variant="secondary"
+              size="sm"
               onClick={prevStep}
               disabled={currentStep === 1}
             >
               Anterior
             </Button>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <Button
                 variant="secondary"
+                size="sm"
                 onClick={() => navigate("/admin/clients")}
               >
                 Cancelar
@@ -753,6 +755,7 @@ export const CreateClient: React.FC = () => {
               ) : (
                 <Button
                   variant="primary"
+                  size="sm"
                   onClick={nextStep}
                   disabled={!canProceed()}
                 >
