@@ -55,7 +55,31 @@ export function useCardClasses(additionalClasses?: string) {
  * Hook para classes de botão
  */
 export function useButtonClasses(
-  variant: "primary" | "secondary" | "ghost" | "danger" = "primary",
+  variant: 
+    // Botões Normais (Sólidos)
+    | "primary" 
+    | "secondary" 
+    | "ghost" 
+    | "danger" 
+    | "success" 
+    | "warning" 
+    | "info" 
+    | "purple" 
+    | "pink" 
+    | "indigo" 
+    | "orange" 
+    | "teal"
+    // Botões Gradientes
+    | "primary-gradient"
+    | "success-gradient"
+    | "warning-gradient"
+    | "danger-gradient"
+    | "info-gradient"
+    | "purple-gradient"
+    | "pink-gradient"
+    | "indigo-gradient"
+    | "orange-gradient"
+    | "teal-gradient" = "primary",
   size: "sm" | "md" | "lg" = "md",
   additionalClasses?: string
 ) {

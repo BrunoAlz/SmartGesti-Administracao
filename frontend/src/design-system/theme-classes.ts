@@ -109,9 +109,12 @@ export const themeClasses = {
 
   // Buttons
   button: {
+    // ========================================
+    // BOTÕES NORMAIS (SÓLIDOS)
+    // ========================================
     primary: {
       light: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow-md",
-      dark: "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl",
     },
     secondary: {
       light: "bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300",
@@ -122,8 +125,84 @@ export const themeClasses = {
       dark: "text-slate-200 hover:bg-white/10 hover:text-white",
     },
     danger: {
-      light: "bg-red-600 hover:bg-red-700 text-white",
-      dark: "bg-red-500 hover:bg-red-600 text-white shadow-lg",
+      light: "bg-red-600 hover:bg-red-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl",
+    },
+    success: {
+      light: "bg-green-600 hover:bg-green-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl",
+    },
+    warning: {
+      light: "bg-yellow-600 hover:bg-yellow-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-yellow-600 hover:bg-yellow-700 text-white shadow-lg hover:shadow-xl",
+    },
+    info: {
+      light: "bg-cyan-600 hover:bg-cyan-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-cyan-600 hover:bg-cyan-700 text-white shadow-lg hover:shadow-xl",
+    },
+    purple: {
+      light: "bg-purple-600 hover:bg-purple-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl",
+    },
+    pink: {
+      light: "bg-pink-600 hover:bg-pink-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-pink-600 hover:bg-pink-700 text-white shadow-lg hover:shadow-xl",
+    },
+    indigo: {
+      light: "bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg hover:shadow-xl",
+    },
+    orange: {
+      light: "bg-orange-600 hover:bg-orange-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-orange-600 hover:bg-orange-700 text-white shadow-lg hover:shadow-xl",
+    },
+    teal: {
+      light: "bg-teal-600 hover:bg-teal-700 text-white shadow-sm hover:shadow-md",
+      dark: "bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl",
+    },
+    
+    // ========================================
+    // BOTÕES GRADIENTES (VIBRANTES)
+    // ========================================
+    "primary-gradient": {
+      light: "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl",
+    },
+    "success-gradient": {
+      light: "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white shadow-xl hover:shadow-2xl",
+    },
+    "warning-gradient": {
+      light: "bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600 text-white shadow-xl hover:shadow-2xl",
+    },
+    "danger-gradient": {
+      light: "bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white shadow-xl hover:shadow-2xl",
+    },
+    "info-gradient": {
+      light: "bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-600 hover:to-indigo-600 text-white shadow-xl hover:shadow-2xl",
+    },
+    "purple-gradient": {
+      light: "bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-xl hover:shadow-2xl",
+    },
+    "pink-gradient": {
+      light: "bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl",
+    },
+    "indigo-gradient": {
+      light: "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white shadow-xl hover:shadow-2xl",
+    },
+    "orange-gradient": {
+      light: "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white shadow-xl hover:shadow-2xl",
+    },
+    "teal-gradient": {
+      light: "bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl",
+      dark: "bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white shadow-xl hover:shadow-2xl",
     },
   },
 

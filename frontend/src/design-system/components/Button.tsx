@@ -1,5 +1,5 @@
 import React from "react";
-import { useButtonClasses, useIconClasses } from "../hooks";
+import { useButtonClasses, useIconClasses, useThemeClasses } from "../hooks";
 import { cn } from "../theme-classes";
 
 // ================================
@@ -8,7 +8,31 @@ import { cn } from "../theme-classes";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "ghost" | "danger";
+  variant?: 
+    // Botões Normais (Sólidos)
+    | "primary" 
+    | "secondary" 
+    | "ghost" 
+    | "danger" 
+    | "success" 
+    | "warning" 
+    | "info" 
+    | "purple" 
+    | "pink" 
+    | "indigo" 
+    | "orange" 
+    | "teal"
+    // Botões Gradientes
+    | "primary-gradient"
+    | "success-gradient"
+    | "warning-gradient"
+    | "danger-gradient"
+    | "info-gradient"
+    | "purple-gradient"
+    | "pink-gradient"
+    | "indigo-gradient"
+    | "orange-gradient"
+    | "teal-gradient";
   size?: "sm" | "md" | "lg";
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
@@ -44,6 +68,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
+  const { get } = useThemeClasses();
   const buttonClasses = useButtonClasses(variant, size);
   
   const sizeClasses = {
@@ -52,12 +77,22 @@ export const Button: React.FC<ButtonProps> = ({
     lg: "px-4 py-2 text-base",
   };
   
-  const iconSize = size === "sm" ? "sm" : size === "lg" ? "lg" : "md";
-  const defaultIconClasses = useIconClasses("primary", iconSize);
-  // Para botões primários, usar ícones brancos no modo claro
-  const iconClasses = variant === "primary" 
-    ? cn("text-white", size === "sm" ? "w-4 h-4" : size === "lg" ? "w-6 h-6" : "w-5 h-5")
-    : defaultIconClasses;
+  // Função para determinar a cor do ícone baseada no variant
+  const getIconClasses = (variant: string, size: string) => {
+    const sizeClass = size === "sm" ? "w-4 h-4" : size === "lg" ? "w-6 h-6" : "w-5 h-5";
+    
+    // Para botões com texto branco (todos exceto secondary e ghost)
+    if (variant === "secondary") {
+      return cn(sizeClass, get("text.primary"));
+    } else if (variant === "ghost") {
+      return cn(sizeClass, get("text.secondary"));
+    } else {
+      // Todos os outros botões (coloridos) têm texto branco
+      return cn(sizeClass, "text-white");
+    }
+  };
+  
+  const iconClasses = getIconClasses(variant, size);
   
   const isDisabled = disabled || loading;
   
@@ -123,6 +158,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   className,
   ...props
 }) => {
+  const { get } = useThemeClasses();
   const buttonClasses = useButtonClasses(variant, size);
   
   const sizeClasses = {
@@ -131,12 +167,22 @@ const IconButton: React.FC<IconButtonProps> = ({
     lg: "p-2",
   };
   
-  const iconSize = size === "sm" ? "sm" : size === "lg" ? "lg" : "md";
-  const defaultIconClasses = useIconClasses("primary", iconSize);
-  // Para botões primários, usar ícones brancos no modo claro
-  const iconClasses = variant === "primary" 
-    ? cn("text-white", size === "sm" ? "w-4 h-4" : size === "lg" ? "w-6 h-6" : "w-5 h-5")
-    : defaultIconClasses;
+  // Função para determinar a cor do ícone baseada no variant
+  const getIconClasses = (variant: string, size: string) => {
+    const sizeClass = size === "sm" ? "w-4 h-4" : size === "lg" ? "w-6 h-6" : "w-5 h-5";
+    
+    // Para botões com texto branco (todos exceto secondary e ghost)
+    if (variant === "secondary") {
+      return cn(sizeClass, get("text.primary"));
+    } else if (variant === "ghost") {
+      return cn(sizeClass, get("text.secondary"));
+    } else {
+      // Todos os outros botões (coloridos) têm texto branco
+      return cn(sizeClass, "text-white");
+    }
+  };
+  
+  const iconClasses = getIconClasses(variant, size);
   
   return (
     <button
