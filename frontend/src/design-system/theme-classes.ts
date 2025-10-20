@@ -35,7 +35,7 @@ export const themeClasses = {
 
   // Cards
   card: {
-    light: "bg-white shadow-sm",
+    light: "bg-slate-50/50 backdrop-blur-sm shadow-sm",
     dark: "bg-white/5 backdrop-blur-lg shadow-2xl",
   },
 
