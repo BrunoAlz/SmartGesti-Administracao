@@ -101,6 +101,56 @@ const conditionalClass = conditional(true, "button.primary", "button.secondary")
 />
 ```
 
+#### **SectionDivider**
+
+Componente para criar divisores de seção elegantes com ícone, título e badge opcional.
+
+```tsx
+// Exemplo básico
+<SectionDivider
+  title="Métricas Gerais"
+  icon={<TrendingUp />}
+  badgeColor="blue"
+/>
+
+// Com badge textual
+<SectionDivider
+  title="Sistemas SAAS"
+  icon={<Server />}
+  badge="4 sistemas ativos"
+  badgeColor="green"
+  spacing="lg"
+/>
+
+// Com badge customizado (ReactNode)
+<SectionDivider
+  title="Estatísticas"
+  icon={<PieChart />}
+  badge={<div className="flex items-center gap-1">
+    <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+    Tempo real
+  </div>}
+  badgeColor="purple"
+/>
+```
+
+**Props:**
+- `title`: Título da seção (obrigatório)
+- `icon`: Ícone da seção (obrigatório) 
+- `badge?`: Badge textual ou ReactNode
+- `badgeColor?`: 'blue' | 'green' | 'purple' | 'orange' | 'red'
+- `spacing?`: 'sm' | 'md' | 'lg'
+- `className?`: Classes CSS customizadas
+
+**Características:**
+- ✅ **Modo claro/escuro** otimizado
+- ✅ **Linhas divisoras** visíveis (`bg-slate-300` claro, `bg-white/10` escuro)
+- ✅ **Badges bem contrastantes** (fundos `*-200` + texto `*-900` no modo claro)
+- ✅ **Ícones perfeitamente alinhados** com containers coloridos
+- ✅ **Layout responsivo** com flexbox
+- ✅ **Animações** suportadas nos badges
+- ✅ **Acessibilidade** com excelente contraste de cores
+
 ## 🎨 Sistema de Temas
 
 ### **Design Tokens**

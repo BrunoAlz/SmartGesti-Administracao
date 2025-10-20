@@ -310,28 +310,32 @@ export const ClientProfile: React.FC = () => {
                     value={`${client.activeUsers}/${client.planDetails?.limits?.users || client.totalUsers}`}
                     change={`${client.totalUsers - client.activeUsers} disponíveis`}
                     changeType="neutral"
-                    icon={<Users className="w-5 h-5 text-purple-600" />}
+                    icon={<Users />}
+                    iconColor="info"
                   />
                   <StatCard
                     title="Armazenamento"
                     value={client.planDetails?.limits?.storage || 'N/A'}
                     change="Em uso: 65%"
                     changeType="positive"
-                    icon={<Database className="w-5 h-5 text-blue-600" />}
+                    icon={<Database />}
+                    iconColor="primary"
                   />
                   <StatCard
                     title="Banda"
                     value={client.planDetails?.limits?.bandwidth || 'N/A'}
                     change="Ilimitado"
                     changeType="positive"
-                    icon={<Activity className="w-5 h-5 text-emerald-600" />}
+                    icon={<Activity />}
+                    iconColor="success"
                   />
                   <StatCard
                     title="Suporte"
                     value={client.planDetails?.limits?.support || 'N/A'}
                     change="Ativo"
                     changeType="positive"
-                    icon={<HeadphonesIcon className="w-5 h-5 text-orange-600" />}
+                    icon={<HeadphonesIcon />}
+                    iconColor="warning"
                   />
                 </div>
               </CardContent>
@@ -348,21 +352,24 @@ export const ClientProfile: React.FC = () => {
                 title="Receita Mensal"
                 value={`R$ ${client.monthlyRevenue.toLocaleString()}`}
                 change={`Próxima cobrança: ${client.nextBilling}`}
-                icon={<DollarSign className="w-6 h-6 text-green-600" />}
+                icon={<DollarSign />}
+                iconColor="success"
               />
               
               <StatCardCentered
                 title="Receita Total"
                 value={`R$ ${client.totalRevenue?.toLocaleString() || '0'}`}
                 change={`Desde ${client.startDate}`}
-                icon={<CreditCard className="w-6 h-6 text-blue-600" />}
+                icon={<CreditCard />}
+                iconColor="primary"
               />
               
               <StatCardCentered
                 title="Contrato Até"
                 value={client.contractEndDate || 'N/A'}
                 change="Vencimento"
-                icon={<Calendar className="w-6 h-6 text-purple-600" />}
+                icon={<Calendar />}
+                iconColor="info"
               />
             </div>
 
@@ -490,17 +497,20 @@ export const ClientProfile: React.FC = () => {
               <StatCard
                 title="Tickets Abertos"
                 value={client.support?.tickets?.filter(t => t.status === 'open').length || 0}
-                icon={<HeadphonesIcon className="w-5 h-5 text-orange-600" />}
+                icon={<HeadphonesIcon />}
+                iconColor="warning"
               />
               <StatCard
                 title="Satisfação"
                 value={`${client.support?.satisfaction || 0}/5`}
-                icon={<Activity className="w-5 h-5 text-emerald-600" />}
+                icon={<Activity />}
+                iconColor="success"
               />
               <StatCard
                 title="Tempo Resposta"
                 value={client.support?.responseTime || 'N/A'}
-                icon={<Activity className="w-5 h-5 text-blue-600" />}
+                icon={<Activity />}
+                iconColor="primary"
               />
             </div>
             <Card>
@@ -581,17 +591,20 @@ export const ClientProfile: React.FC = () => {
                 title="Usuários Ativos"
                 value={client.activeUsers}
                 change={`de ${client.totalUsers} total`}
-                icon={<Users className="w-5 h-5 text-purple-600" />}
+                icon={<Users />}
+                iconColor="info"
               />
               <StatCard
                 title="Ultimo Login"
                 value={client.lastLogin}
-                icon={<Activity className="w-5 h-5 text-emerald-600" />}
+                icon={<Activity />}
+                iconColor="success"
               />
               <StatCard
                 title="Receita Total"
                 value={`R$ ${client.totalRevenue?.toLocaleString() || '0'}`}
-                icon={<DollarSign className="w-5 h-5 text-green-600" />}
+                icon={<DollarSign />}
+                iconColor="success"
               />
             </div>
           </div>
@@ -644,7 +657,7 @@ export const ClientProfile: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 space-y-4">
       {/* Botão Voltar */}
       <div className="mb-4">
         <Button
@@ -677,10 +690,10 @@ export const ClientProfile: React.FC = () => {
               {/* Informações Principais */}
               <div className="flex-1">
                 <div className="mb-3">
-                  <h1 className={cn("text-3xl font-bold mb-1", get("text.primary"))}>
+                  <h1 className={cn("text-xl font-bold mb-1", get("text.primary"))}>
                     {client.company}
                   </h1>
-                  <p className="text-xl text-gray-600 dark:text-gray-400">
+                  <p className="text-base text-gray-600 dark:text-gray-400">
                     {client.name} • {client.position || 'Responsável'}
                   </p>
                 </div>
@@ -722,22 +735,26 @@ export const ClientProfile: React.FC = () => {
             <StatCardCentered
               title="Plano Atual"
               value={client.plan}
-              icon={<Package className="w-5 h-5 text-blue-600" />}
+              icon={<Package />}
+              iconColor="primary"
             />
             <StatCardCentered
               title="Receita Mensal"
               value={`R$ ${client.monthlyRevenue.toLocaleString()}`}
-              icon={<DollarSign className="w-5 h-5 text-emerald-600" />}
+              icon={<DollarSign />}
+              iconColor="success"
             />
             <StatCardCentered
               title="Usuários Ativos"
               value={`${client.activeUsers}/${client.totalUsers}`}
-              icon={<Users className="w-5 h-5 text-purple-600" />}
+              icon={<Users />}
+              iconColor="info"
             />
             <StatCardCentered
               title="Último Acesso"
               value={client.lastLogin}
-              icon={<Activity className="w-5 h-5 text-emerald-600" />}
+              icon={<Activity />}
+              iconColor="success"
             />
           </div>
         </CardContent>

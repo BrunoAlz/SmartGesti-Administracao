@@ -76,9 +76,9 @@ const Card: React.FC<CardProps> = ({
   
   const paddingClasses = {
     none: "",
-    sm: "p-3",
-    md: "p-6",
-    lg: "p-8",
+    sm: "p-2",
+    md: "p-4",
+    lg: "p-6",
   };
   
   const hoverClasses = hover ? "hover:bg-gray-50 dark:hover:bg-white/5" : "";
@@ -116,11 +116,11 @@ const CardHeader: React.FC<CardHeaderProps> = ({
   action,
 }) => {
   const { cn, get } = useThemeClasses();
-  const titleClasses = useTextClasses("primary", "text-lg font-semibold");
-  const subtitleClasses = useTextClasses("secondary", "text-sm");
+  const titleClasses = useTextClasses("primary", "text-base font-semibold");
+  const subtitleClasses = useTextClasses("secondary", "text-xs");
   
   return (
-    <div className={cn(`flex items-start justify-between p-4 border-b ${get("border.subtle")}`, className)}>
+    <div className={cn(`flex items-start justify-between pb-2 border-b ${get("border.subtle")}`, className)}>
       <div className="flex-1">
         {title && <h3 className={titleClasses}>{title}</h3>}
         {subtitle && <p className={subtitleClasses}>{subtitle}</p>}
@@ -133,7 +133,7 @@ const CardHeader: React.FC<CardHeaderProps> = ({
 
 const CardTitle: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
   const { cn, get } = useThemeClasses();
-  return <h3 className={cn("text-lg font-semibold", get("text.primary"), className)}>{children}</h3>;
+  return <h3 className={cn("text-base font-semibold", get("text.primary"), className)}>{children}</h3>;
 };
 
 const CardDescription: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
@@ -151,7 +151,7 @@ const CardContent: React.FC<CardContentProps> = ({
 }) => {
   const { cn } = useThemeClasses();
   return (
-    <div className={cn("p-4", className)}>
+    <div className={cn("p-3", className)}>
       {children}
     </div>
   );
@@ -167,7 +167,7 @@ const CardFooter: React.FC<CardFooterProps> = ({
 }) => {
   const { cn, get } = useThemeClasses();
   return (
-    <div className={cn(`p-4 border-t ${get("border.subtle")}`, className)}>
+    <div className={cn(`p-3 border-t ${get("border.subtle")}`, className)}>
       {children}
     </div>
   );
@@ -222,8 +222,8 @@ const StatCard: React.FC<StatCardProps> = ({
   // Clone icon with appropriate classes, preserving existing className
   const iconNode = icon ? React.cloneElement(icon, {
     className: cn(
-      // Size based on card size
-      size === 'sm' ? 'w-5 h-5' : 'w-6 h-6',
+      // Size based on card size - smaller icons
+      size === 'sm' ? 'w-4 h-4' : 'w-5 h-5',
       // Apply semantic color only if iconColor is defined
       iconColor ? iconColorMap(get)[iconColor] : '',
       // NEVER force text-* by default here; let existing className win
@@ -238,8 +238,8 @@ const StatCard: React.FC<StatCardProps> = ({
     get('text.secondary');
     
   const contentAlign = align === 'center' ? 'flex-col items-center text-center' : 'flex-row items-center';
-  const gap = size === 'sm' ? 'gap-2' : 'gap-3';
-  const valueSize = size === 'sm' ? 'text-lg' : 'text-2xl';
+  const gap = size === 'sm' ? 'gap-1.5' : 'gap-2';
+  const valueSize = size === 'sm' ? 'text-base' : 'text-lg';
   
   if (isLoading) {
     return (
@@ -266,19 +266,19 @@ const StatCard: React.FC<StatCardProps> = ({
     >
       <CardContent className={cn('flex', contentAlign, gap)}>
         {align === 'center' && iconNode && (
-          <div className="flex items-center justify-center mb-2">
+          <div className="flex items-center justify-center mb-1">
             {iconNode}
           </div>
         )}
         <div className="flex-1">
-          <div className={cn('text-sm font-medium mb-1', get('text.secondary'))}>
+          <div className={cn('text-xs font-medium mb-0.5', get('text.secondary'))}>
             {title}
           </div>
-          <div className={cn(valueSize, 'font-bold mb-1', get('text.primary'))}>
+          <div className={cn(valueSize, 'font-bold mb-0.5', get('text.primary'))}>
             {value}
           </div>
           {change && (
-            <div className={cn('text-sm font-medium', changeColor)}>
+            <div className={cn('text-xs font-medium', changeColor)}>
               {change}
             </div>
           )}

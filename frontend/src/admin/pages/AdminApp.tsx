@@ -3,8 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { AdminLayout } from "../layout/AdminLayout";
-import { SimpleDashboard } from "./dashboard/SimpleDashboard";
-import { SaasDashboard } from "./dashboard/SaasDashboard";
+import { AdminDashboard } from "./dashboard/AdminDashboard";
+import { Reports } from "./reports/Reports";
 import { ClientsManagement } from "./clients/ClientsManagement";
 import { CreateClient } from "./clients/CreateClient";
 import { ClientDetails } from "./clients/ClientDetails";
@@ -41,8 +41,7 @@ export const AdminApp: React.FC = () => {
         <AdminLayout>
           <Routes>
             {/* Dashboard Principal */}
-            <Route index element={<SaasDashboard />} />
-            <Route path="dashboard" element={<SimpleDashboard />} />
+            <Route index element={<AdminDashboard />} />
 
             {/* Gerenciamento de SAAS */}
             <Route path="saas" element={<SaasList />} />
@@ -72,21 +71,7 @@ export const AdminApp: React.FC = () => {
             />
 
             {/* Analytics e Relatórios */}
-            <Route
-              path="analytics"
-              element={
-                <div className="p-6">
-                  <h1 className="text-2xl font-bold mb-4">
-                    Analytics e Relatórios
-                  </h1>
-                  <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <p className="text-gray-600">
-                      Página em desenvolvimento...
-                    </p>
-                  </div>
-                </div>
-              }
-            />
+            <Route path="analytics" element={<Reports />} />
 
             {/* Configurações */}
             <Route

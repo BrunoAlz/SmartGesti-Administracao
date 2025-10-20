@@ -1,141 +1,166 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   Users,
   Building2,
-  TrendingUp,
   DollarSign,
   Activity,
-  AlertCircle,
   CheckCircle,
-  Clock,
+  Plus,
+  BarChart3,
+  AlertTriangle,
+  ArrowRight,
+  TrendingUp,
+  Server,
+  PieChart
 } from "lucide-react";
-import { useAdminDashboard } from "../../hooks/useAdmin";
-import { StatCard, Card, CardHeader, CardContent } from "../../../design-system";
+import { 
+  StatCard, 
+  Card, 
+  CardHeader, 
+  CardContent, 
+  Button,
+  SectionDivider,
+  useThemeClasses,
+  cn
+} from "../../../design-system";
+
+// ================================
+// TIPOS E DADOS MOCK
+// ================================
+
+
+// SAAS data from SaasList page
+const saasData = [
+  {
+    id: "smartsaude",
+    name: "SmartSaúde",
+    description: "Sistema de gestão para clínicas e hospitais",
+    icon: Building2,
+    color: "from-blue-500 to-cyan-500",
+    totalClients: 45,
+    activeClients: 42,
+    monthlyRevenue: 12500,
+    growthRate: 8.5,
+    lastActivity: "2 min atrás",
+    status: "active"
+  },
+  {
+    id: "smarteduca",
+    name: "SmartEduca",
+    description: "Plataforma educacional para escolas e universidades",
+    icon: Users,
+    color: "from-green-500 to-emerald-500",
+    totalClients: 32,
+    activeClients: 28,
+    monthlyRevenue: 8900,
+    growthRate: 12.3,
+    lastActivity: "15 min atrás",
+    status: "active"
+  },
+  {
+    id: "smartimoveis",
+    name: "SmartImóveis",
+    description: "Gestão completa para imobiliárias",
+    icon: Building2,
+    color: "from-purple-500 to-pink-500",
+    totalClients: 28,
+    activeClients: 25,
+    monthlyRevenue: 6700,
+    growthRate: 5.2,
+    lastActivity: "1 hora atrás",
+    status: "active"
+  },
+  {
+    id: "smartbusiness",
+    name: "SmartBusiness",
+    description: "Solução empresarial completa",
+    icon: Building2,
+    color: "from-orange-500 to-red-500",
+    totalClients: 18,
+    activeClients: 15,
+    monthlyRevenue: 4500,
+    growthRate: -2.1,
+    lastActivity: "2 horas atrás",
+    status: "maintenance"
+  }
+];
 
 
 // ================================
 // COMPONENTE ATIVIDADE RECENTE
 // ================================
 
-const RecentActivity: React.FC = () => {
-  const activities = [
-    {
-      id: 1,
-      type: "user_created",
-      message: "Novo usuário cadastrado: Dr. João Silva",
-      timestamp: "5 minutos atrás",
-      icon: <Users className="w-4 h-4 text-blue-600" />,
-    },
-    {
-      id: 2,
-      type: "tenant_activated",
-      message: "Tenant ativado: Clínica Odonto Center",
-      timestamp: "15 minutos atrás",
-      icon: <Building2 className="w-4 h-4 text-green-600" />,
-    },
-    {
-      id: 3,
-      type: "payment_received",
-      message: "Pagamento recebido: R$ 299,00",
-      timestamp: "1 hora atrás",
-      icon: <DollarSign className="w-4 h-4 text-green-600" />,
-    },
-    {
-      id: 4,
-      type: "system_alert",
-      message: "Alto uso de CPU detectado no servidor",
-      timestamp: "2 horas atrás",
-      icon: <AlertCircle className="w-4 h-4 text-yellow-600" />,
-    },
-  ];
 
+// ================================
+// COMPONENTE GRÁFICO DE RECEITA
+// ================================
+
+const RevenueChart: React.FC = () => {
+  const { get } = useThemeClasses();
+  
+  const monthlyData = [
+    { month: "Jan", revenue: 28000, clients: 95 },
+    { month: "Fev", revenue: 31200, clients: 102 },
+    { month: "Mar", revenue: 29800, clients: 108 },
+    { month: "Abr", revenue: 32600, clients: 123 },
+    { month: "Mai", revenue: 35100, clients: 130 },
+    { month: "Jun", revenue: 32600, clients: 123 }
+  ];
+  
+  const maxRevenue = Math.max(...monthlyData.map(d => d.revenue));
+  
   return (
     <Card>
-      <CardHeader title="Atividade Recente">
-        <div></div>
+      <CardHeader title="Receita dos Últimos 6 Meses">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+          <span className="text-sm text-gray-600 dark:text-gray-400">Receita Mensal</span>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {activities.map((activity) => (
-            <div key={activity.id} className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center flex-shrink-0">
-                {activity.icon}
+          {monthlyData.map((data, index) => {
+            const heightPercentage = (data.revenue / maxRevenue) * 100;
+            const isCurrentMonth = index === monthlyData.length - 1;
+            
+            return (
+              <div key={data.month} className="flex items-center gap-4">
+                <div className="w-8 text-xs font-medium text-gray-600 dark:text-gray-400">
+                  {data.month}
+                </div>
+                <div className="flex-1 flex items-center gap-3">
+                  <div className="flex-1 bg-gray-100 dark:bg-white/5 rounded-full h-6 relative overflow-hidden">
+                    <div 
+                      className={cn(
+                        "h-full rounded-full transition-all duration-500",
+                        isCurrentMonth ? "bg-blue-500" : "bg-blue-300 dark:bg-blue-600"
+                      )}
+                      style={{ width: `${heightPercentage}%` }}
+                    />
+                    <div className="absolute inset-0 flex items-center px-3">
+                      <span className={cn(
+                        "text-xs font-medium",
+                        heightPercentage > 40 ? "text-white" : get("text.primary")
+                      )}>
+                        R$ {data.revenue.toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 w-12 text-right">
+                    {data.clients} clientes
+                  </div>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-gray-900">{activity.message}</p>
-                <p className="text-xs text-gray-500 mt-1">{activity.timestamp}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        <button className="w-full mt-4 text-sm text-blue-600 hover:text-blue-800 font-medium">
-          Ver todas as atividades
-        </button>
-      </CardContent>
-    </Card>
-  );
-};
-
-// ================================
-// COMPONENTE STATUS DO SISTEMA
-// ================================
-
-const SystemStatus: React.FC = () => {
-  const services = [
-    { name: "API Principal", status: "online", uptime: "99.9%" },
-    { name: "Base de Dados", status: "online", uptime: "99.8%" },
-    { name: "Processamento de Pagamentos", status: "online", uptime: "99.5%" },
-    { name: "Notificações Email", status: "maintenance", uptime: "98.2%" },
-  ];
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "online":
-        return <CheckCircle className="w-4 h-4 text-green-600" />;
-      case "maintenance":
-        return <Clock className="w-4 h-4 text-yellow-600" />;
-      default:
-        return <AlertCircle className="w-4 h-4 text-red-600" />;
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case "online":
-        return "Online";
-      case "maintenance":
-        return "Manutenção";
-      default:
-        return "Offline";
-    }
-  };
-
-  return (
-    <Card>
-      <CardHeader title="Status do Sistema">
-        <div></div>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-3">
-          {services.map((service) => (
-            <div key={service.name} className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                {getStatusIcon(service.status)}
-                <span className="text-sm text-gray-900">{service.name}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-xs text-gray-500">{service.uptime}</span>
-                <span className="text-xs font-medium text-gray-900">
-                  {getStatusText(service.status)}
-                </span>
-              </div>
-            </div>
-          ))}
+        <div className="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
+          <div className="flex justify-between items-center text-sm">
+            <span className={cn("font-medium", get("text.secondary"))}>Crescimento médio:</span>
+            <span className="text-green-500 font-semibold">+8.2%</span>
+          </div>
         </div>
-        <button className="w-full mt-4 text-sm text-blue-600 hover:text-blue-800 font-medium">
-          Ver detalhes do sistema
-        </button>
       </CardContent>
     </Card>
   );
@@ -146,98 +171,338 @@ const SystemStatus: React.FC = () => {
 // ================================
 
 export const AdminDashboard: React.FC = () => {
-  const { stats, isLoadingStats } = useAdminDashboard();
+  const { get } = useThemeClasses();
+  const navigate = useNavigate();
+  
+  const handleViewClients = (saasId: string) => {
+    navigate(`/admin/saas/${saasId}/clients`);
+  };
+  
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "active":
+        return "text-green-500 bg-green-50 dark:bg-green-500/20";
+      case "inactive":
+        return "text-red-500 bg-red-50 dark:bg-red-500/20";
+      case "maintenance":
+        return "text-yellow-500 bg-yellow-50 dark:bg-yellow-500/20";
+      default:
+        return "text-gray-500 bg-gray-50 dark:bg-gray-500/20";
+    }
+  };
+
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case "active":
+        return "Ativo";
+      case "maintenance":
+        return "Manutenção";
+      case "inactive":
+        return "Inativo";
+      default:
+        return "Desconhecido";
+    }
+  };
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    }).format(value);
+  };
+
 
   return (
-    <div className="p-6">
+    <div className="p-3 space-y-4">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
-          Dashboard Administrativo
-        </h1>
-        <p className="text-gray-600">Visão geral do sistema SmartGesTI</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className={cn("text-xl font-bold mb-1", get("text.primary"))}>
+            Dashboard Administrativo
+          </h1>
+          <p className={cn("text-base", get("text.secondary"))}>
+            Visão geral dos seus SAAS e clientes
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Button variant="secondary" size="sm" icon={<BarChart3 className="w-4 h-4" />}>
+            Relatórios
+          </Button>
+          <Button variant="primary" size="sm" icon={<Plus className="w-4 h-4" />}>
+            Novo SAAS
+          </Button>
+        </div>
       </div>
 
-      {/* Cards de Estatísticas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      {/* Seção: Métricas Gerais */}
+      <SectionDivider
+        title="Métricas Gerais"
+        icon={<TrendingUp />}
+        badge="Atualizado agora"
+        badgeColor="blue"
+        spacing="lg"
+      />
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatCard
-          title="Total de Tenants"
-          value={stats.totalTenants}
-          icon={<Building2 className="w-6 h-6 text-blue-600" />}
-          change="+2 este mês"
+          title="Total de SAAS"
+          value={saasData.length}
+          change="+1 este mês"
           changeType="positive"
-          isLoading={isLoadingStats}
+          icon={<Building2 />}
+          iconColor="primary"
         />
         <StatCard
-          title="Tenants Ativos"
-          value={stats.activeTenants}
-          icon={<Activity className="w-6 h-6 text-green-600" />}
-          change="91.7% do total"
-          changeType="positive"
-          isLoading={isLoadingStats}
-        />
-        <StatCard
-          title="Total de Usuários"
-          value={stats.totalUsers}
-          icon={<Users className="w-6 h-6 text-purple-600" />}
+          title="Total de Clientes"
+          value={saasData.reduce((sum, saas) => sum + saas.totalClients, 0)}
           change="+12 esta semana"
           changeType="positive"
-          isLoading={isLoadingStats}
+          icon={<Users />}
+          iconColor="success"
         />
         <StatCard
           title="Receita Mensal"
-          value={`R$ ${stats.monthlyRevenue.toLocaleString()}`}
-          icon={<DollarSign className="w-6 h-6 text-green-600" />}
+          value={formatCurrency(saasData.reduce((sum, saas) => sum + saas.monthlyRevenue, 0))}
           change="+8.5% vs. mês anterior"
           changeType="positive"
-          isLoading={isLoadingStats}
+          icon={<DollarSign />}
+          iconColor="success"
+        />
+        <StatCard
+          title="Taxa de Crescimento"
+          value={`${(saasData.reduce((sum, saas) => sum + saas.growthRate, 0) / saasData.length).toFixed(1)}%`}
+          change="Média geral"
+          changeType="positive"
+          icon={<Activity />}
+          iconColor="info"
         />
       </div>
+      
+      {/* Seção: Sistemas SAAS */}
+      <SectionDivider
+        title="Sistemas SAAS"
+        icon={<Server />}
+        badge={`${saasData.length} sistemas ativos`}
+        badgeColor="green"
+        spacing="lg"
+      />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {saasData.map((saas) => {
+          const Icon = saas.icon;
+          return (
+            <Card key={saas.id} hover className="transition-all duration-200 hover:scale-105">
+              <CardHeader>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center text-white", `bg-gradient-to-br ${saas.color}`)}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className={cn("text-lg font-semibold", get("text.primary"))}>
+                        {saas.name}
+                      </h3>
+                      <p className={cn("text-sm", get("text.secondary"))}>
+                        {saas.description}
+                      </p>
+                    </div>
+                  </div>
+                  <span className={cn("px-2 py-1 rounded-full text-xs font-medium", getStatusColor(saas.status))}>
+                    {getStatusText(saas.status)}
+                  </span>
+                </div>
+              </CardHeader>
+              
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="text-center">
+                    <p className={cn("text-2xl font-bold", get("text.primary"))}>
+                      {saas.totalClients}
+                    </p>
+                    <p className={cn("text-sm", get("text.secondary"))}>
+                      Total de Clientes
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className={cn("text-2xl font-bold", get("text.primary"))}>
+                      {saas.activeClients}
+                    </p>
+                    <p className={cn("text-sm", get("text.secondary"))}>
+                      Clientes Ativos
+                    </p>
+                  </div>
+                </div>
 
-      {/* Gráficos e Tabelas */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        {/* Atividade Recente */}
-        <RecentActivity />
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center">
+                    <span className={cn("text-sm", get("text.secondary"))}>Receita Mensal:</span>
+                    <span className={cn("font-semibold", get("text.primary"))}>
+                      R$ {saas.monthlyRevenue.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className={cn("text-sm", get("text.secondary"))}>Crescimento:</span>
+                    <span className={cn("font-semibold", saas.growthRate >= 0 ? "text-green-500" : "text-red-500")}>
+                      {saas.growthRate >= 0 ? "+" : ""}{saas.growthRate}%
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className={cn("text-sm", get("text.secondary"))}>\u00daltima Atividade:</span>
+                    <span className={cn("text-sm", get("text.muted"))}>
+                      {saas.lastActivity}
+                    </span>
+                  </div>
+                </div>
 
-        {/* Status do Sistema */}
-        <SystemStatus />
+                <Button
+                  variant="primary"
+                  size="sm"
+                  fullWidth
+                  icon={<ArrowRight className="w-4 h-4" />}
+                  iconPosition="right"
+                  onClick={() => handleViewClients(saas.id)}
+                >
+                  Ver Clientes
+                </Button>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
+      
+      {/* Seção: Estatísticas e Atividades */}
+      <SectionDivider
+        title="Estatísticas e Atividades"
+        icon={<PieChart />}
+        badge={<div className="flex items-center gap-1">
+          <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+          Tempo real
+        </div>}
+        badgeColor="purple"
+        spacing="lg"
+      />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Enhanced Recent Activity */}
+        <Card>
+          <CardHeader title="Atividade Recente">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-gray-600 dark:text-gray-400">Ao vivo</span>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { 
+                  action: "Novo cliente cadastrado", 
+                  saas: "SmartSaúde", 
+                  time: "2 min atrás", 
+                  type: "success",
+                  details: "Dr. Carlos Silva - Clínica Médica",
+                  value: "R$ 299/mês"
+                },
+                { 
+                  action: "Pagamento confirmado", 
+                  saas: "SmartEduca", 
+                  time: "15 min atrás", 
+                  type: "success",
+                  details: "Colégio Santa Maria - Plano Premium",
+                  value: "R$ 890,00"
+                },
+                { 
+                  action: "Cliente suspenso", 
+                  saas: "SmartImóveis", 
+                  time: "1 hora atrás", 
+                  type: "warning",
+                  details: "Imobiliária Central - Pagamento em atraso",
+                  value: "R$ 450,00"
+                },
+                { 
+                  action: "Nova funcionalidade ativada", 
+                  saas: "SmartBusiness", 
+                  time: "2 horas atrás", 
+                  type: "info",
+                  details: "Módulo de Relatórios Avançados",
+                  value: "+15 clientes"
+                },
+                { 
+                  action: "Backup automatizado", 
+                  saas: "Sistema", 
+                  time: "3 horas atrás", 
+                  type: "info",
+                  details: "Backup diário realizado com sucesso",
+                  value: "2.4GB"
+                }
+              ].map((activity, index) => (
+                <div key={index} className="group relative">
+                  <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-200">
+                    {/* Status indicator with gradient */}
+                    <div className={cn(
+                      "w-10 h-10 rounded-full flex items-center justify-center relative overflow-hidden",
+                      activity.type === "success" ? "bg-gradient-to-br from-green-100 to-green-200 dark:from-green-500/20 dark:to-green-600/20" :
+                      activity.type === "warning" ? "bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-yellow-500/20 dark:to-yellow-600/20" :
+                      "bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-500/20 dark:to-blue-600/20"
+                    )}>
+                      {activity.type === "success" ? <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" /> :
+                       activity.type === "warning" ? <AlertTriangle className="w-5 h-5 text-yellow-600 dark:text-yellow-400" /> :
+                       <Activity className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
+                        <p className={cn("font-semibold text-sm", get("text.primary"))}>
+                          {activity.action}
+                        </p>
+                        <span className={cn(
+                          "px-2 py-1 rounded-full text-xs font-medium",
+                          activity.type === "success" ? "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-300" :
+                          activity.type === "warning" ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500/20 dark:text-yellow-300" :
+                          "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300"
+                        )}>
+                          {activity.saas}
+                        </span>
+                      </div>
+                      <p className={cn("text-sm mb-2", get("text.secondary"))}>
+                        {activity.details}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          {activity.time}
+                        </span>
+                        <span className={cn(
+                          "text-xs font-bold",
+                          activity.type === "success" ? "text-green-600 dark:text-green-400" :
+                          activity.type === "warning" ? "text-yellow-600 dark:text-yellow-400" :
+                          "text-blue-600 dark:text-blue-400"
+                        )}>
+                          {activity.value}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Timeline line */}
+                  {index < 4 && (
+                    <div className="absolute left-8 top-12 w-0.5 h-4 bg-gray-200 dark:bg-white/10"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
+              <div className="flex items-center justify-center">
+                <button className={cn(
+                  "text-sm font-medium px-4 py-2 rounded-lg transition-colors",
+                  "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-500/10"
+                )}>
+                  Ver todas as atividades →
+                </button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-      {/* Seção de Ações Rápidas */}
-      <Card>
-        <CardHeader title="Ações Rápidas">
-          <div></div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <button className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left">
-              <Building2 className="w-6 h-6 text-blue-600 mb-2" />
-              <h4 className="font-medium text-gray-900">Criar Tenant</h4>
-              <p className="text-sm text-gray-500">Adicionar novo cliente</p>
-            </button>
-
-            <button className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left">
-              <Users className="w-6 h-6 text-green-600 mb-2" />
-              <h4 className="font-medium text-gray-900">Gerenciar Usuários</h4>
-              <p className="text-sm text-gray-500">
-                Visualizar todos os usuários
-              </p>
-            </button>
-
-            <button className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left">
-              <TrendingUp className="w-6 h-6 text-purple-600 mb-2" />
-              <h4 className="font-medium text-gray-900">Ver Relatórios</h4>
-              <p className="text-sm text-gray-500">Analytics detalhados</p>
-            </button>
-
-            <button className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left">
-              <AlertCircle className="w-6 h-6 text-yellow-600 mb-2" />
-              <h4 className="font-medium text-gray-900">Sistema</h4>
-              <p className="text-sm text-gray-500">Monitorar status</p>
-            </button>
-          </div>
-        </CardContent>
-      </Card>
+        {/* Revenue Chart */}
+        <RevenueChart />
+      </div>
     </div>
   );
 };

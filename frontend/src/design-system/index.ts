@@ -59,6 +59,12 @@ export {
 } from "./components/Card";
 
 export {
+  default as SectionDivider,
+  SectionDivider as SectionDividerComponent,
+} from "./components/SectionDivider";
+export type { SectionDividerProps } from "./components/SectionDivider";
+
+export {
   Button,
   IconButton,
   ButtonGroup,

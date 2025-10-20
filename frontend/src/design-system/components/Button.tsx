@@ -47,9 +47,9 @@ export const Button: React.FC<ButtonProps> = ({
   const buttonClasses = useButtonClasses(variant, size);
   
   const sizeClasses = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-6 py-3 text-lg",
+    sm: "px-2 py-1 text-xs",
+    md: "px-3 py-1.5 text-sm",
+    lg: "px-4 py-2 text-base",
   };
   
   const iconSize = size === "sm" ? "sm" : size === "lg" ? "lg" : "md";
@@ -126,9 +126,9 @@ const IconButton: React.FC<IconButtonProps> = ({
   const buttonClasses = useButtonClasses(variant, size);
   
   const sizeClasses = {
-    sm: "p-1.5",
-    md: "p-2",
-    lg: "p-3",
+    sm: "p-1",
+    md: "p-1.5",
+    lg: "p-2",
   };
   
   const iconSize = size === "sm" ? "sm" : size === "lg" ? "lg" : "md";
