@@ -20,7 +20,7 @@ import {
   Mail,
   MapPin
 } from "lucide-react";
-import { Card, CardHeader, CardContent, Button, StatCard } from "../../../design-system";
+import { Card, CardHeader, CardContent, Button, StatCard, StatCardCentered, SectionCard } from "../../../design-system";
 import { useThemeClasses } from "../../../design-system";
 import { findClientById, saasInfo } from "../../data/mockClients";
 
@@ -237,68 +237,65 @@ export const ClientProfile: React.FC = () => {
       case "plano":
         return (
           <div className="space-y-6">
-            <Card>
-              <CardHeader title="Detalhes do Plano Atual">
+            <SectionCard 
+              title="Detalhes do Plano Atual" 
+              description="Informações do plano ativo"
+              actions={
                 <span className={cn("px-3 py-1 rounded-full text-sm font-medium", getStatusColor(client.status))}>
                   {getStatusText(client.status)}
                 </span>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Nome do Plano</label>
-                      <p className={cn("text-xl font-semibold", get("text.primary"))}>{client.planDetails?.name || client.plan}</p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Valor Mensal</label>
-                    <p className={cn("text-2xl font-bold text-green-500")}>
-                        R$ {client.planDetails?.price?.toLocaleString() || client.monthlyRevenue.toLocaleString()}
-                        <span className={cn("text-sm font-normal", get("text.secondary"))}>/mês</span>
-                      </p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Tipo de Cobrança</label>
-                      <p className={cn("text-base", get("text.primary"))}>{client.planDetails?.billing === 'monthly' ? 'Mensal' : 'Anual'}</p>
-                    </div>
+              }
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Nome do Plano</label>
+                    <p className={cn("text-xl font-semibold", get("text.primary"))}>{client.planDetails?.name || client.plan}</p>
                   </div>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Data de Início</label>
-                      <p className={cn("text-base", get("text.primary"))}>{client.startDate}</p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Próxima Cobrança</label>
-                      <p className={cn("text-base", get("text.primary"))}>{client.nextBilling}</p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Vencimento do Contrato</label>
-                      <p className={cn("text-base", get("text.primary"))}>{client.contractEndDate || 'N/A'}</p>
-                    </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Valor Mensal</label>
+                  <p className={cn("text-2xl font-bold text-green-500")}>
+                      R$ {client.planDetails?.price?.toLocaleString() || client.monthlyRevenue.toLocaleString()}
+                      <span className={cn("text-sm font-normal", get("text.secondary"))}>/mês</span>
+                    </p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Tipo de Cobrança</label>
+                    <p className={cn("text-base", get("text.primary"))}>{client.planDetails?.billing === 'monthly' ? 'Mensal' : 'Anual'}</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Data de Início</label>
+                    <p className={cn("text-base", get("text.primary"))}>{client.startDate}</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Próxima Cobrança</label>
+                    <p className={cn("text-base", get("text.primary"))}>{client.nextBilling}</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Vencimento do Contrato</label>
+                    <p className={cn("text-base", get("text.primary"))}>{client.contractEndDate || 'N/A'}</p>
+                  </div>
+                </div>
+              </div>
+            </SectionCard>
 
-            <Card>
-              <CardHeader title="Recursos Inclusos">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Funcionalidades do plano
-                </p>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {client.planDetails?.features?.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full" />
-                      <span className={cn("text-sm", get("text.primary"))}>{feature}</span>
-                    </div>
-                  )) || (
-                    <p className="text-xs text-gray-600 dark:text-gray-400">Nenhum recurso específico listado</p>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+            <SectionCard 
+              title="Recursos Inclusos" 
+              description="Funcionalidades do plano"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {client.planDetails?.features?.map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <span className={cn("text-sm", get("text.primary"))}>{feature}</span>
+                  </div>
+                )) || (
+                  <p className="text-xs text-gray-600 dark:text-gray-400">Nenhum recurso específico listado</p>
+                )}
+              </div>
+            </SectionCard>
 
             <Card>
               <CardHeader title="Limites e Cotas">
@@ -313,28 +310,28 @@ export const ClientProfile: React.FC = () => {
                     value={`${client.activeUsers}/${client.planDetails?.limits?.users || client.totalUsers}`}
                     change={`${client.totalUsers - client.activeUsers} disponíveis`}
                     changeType="neutral"
-                    icon={<Users className="w-5 h-5" />}
+                    icon={<Users className="w-5 h-5 text-purple-600" />}
                   />
                   <StatCard
                     title="Armazenamento"
                     value={client.planDetails?.limits?.storage || 'N/A'}
                     change="Em uso: 65%"
                     changeType="positive"
-                    icon={<Database className="w-5 h-5" />}
+                    icon={<Database className="w-5 h-5 text-blue-600" />}
                   />
                   <StatCard
                     title="Banda"
                     value={client.planDetails?.limits?.bandwidth || 'N/A'}
                     change="Ilimitado"
                     changeType="positive"
-                    icon={<Activity className="w-5 h-5" />}
+                    icon={<Activity className="w-5 h-5 text-emerald-600" />}
                   />
                   <StatCard
                     title="Suporte"
                     value={client.planDetails?.limits?.support || 'N/A'}
                     change="Ativo"
                     changeType="positive"
-                    icon={<HeadphonesIcon className="w-5 h-5" />}
+                    icon={<HeadphonesIcon className="w-5 h-5 text-orange-600" />}
                   />
                 </div>
               </CardContent>
@@ -347,44 +344,26 @@ export const ClientProfile: React.FC = () => {
           <div className="space-y-6">
             {/* Cards de Métricas Financeiras */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card>
-                <CardContent>
-                  <div className="text-center p-4">
-                    <div className="w-12 h-12 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <DollarSign className="w-6 h-6 text-green-500" />
-                    </div>
-                    <p className="text-sm font-medium text-green-500 mb-1">Receita Mensal</p>
-                    <p className={cn("text-2xl font-bold text-green-500")}>R$ {client.monthlyRevenue.toLocaleString()}</p>
-                    <p className={cn("text-xs mt-1", get("text.secondary"))}>Próxima cobrança: {client.nextBilling}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <StatCardCentered
+                title="Receita Mensal"
+                value={`R$ ${client.monthlyRevenue.toLocaleString()}`}
+                change={`Próxima cobrança: ${client.nextBilling}`}
+                icon={<DollarSign className="w-6 h-6 text-green-600" />}
+              />
               
-              <Card>
-                <CardContent>
-                  <div className="text-center p-4">
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <CreditCard className="w-6 h-6 text-blue-500" />
-                    </div>
-                    <p className="text-sm font-medium text-blue-500 mb-1">Receita Total</p>
-                    <p className={cn("text-2xl font-bold text-blue-500")}>R$ {client.totalRevenue?.toLocaleString() || '0'}</p>
-                    <p className={cn("text-xs mt-1", get("text.secondary"))}>Desde {client.startDate}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <StatCardCentered
+                title="Receita Total"
+                value={`R$ ${client.totalRevenue?.toLocaleString() || '0'}`}
+                change={`Desde ${client.startDate}`}
+                icon={<CreditCard className="w-6 h-6 text-blue-600" />}
+              />
               
-              <Card>
-                <CardContent>
-                  <div className="text-center p-4">
-                    <div className="w-12 h-12 bg-purple-100 dark:bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Calendar className="w-6 h-6 text-purple-500" />
-                    </div>
-                    <p className="text-sm font-medium text-purple-500 mb-1">Contrato Até</p>
-                    <p className={cn("text-lg font-bold text-purple-500")}>{client.contractEndDate || 'N/A'}</p>
-                    <p className={cn("text-xs mt-1", get("text.secondary"))}>Vencimento</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <StatCardCentered
+                title="Contrato Até"
+                value={client.contractEndDate || 'N/A'}
+                change="Vencimento"
+                icon={<Calendar className="w-6 h-6 text-purple-600" />}
+              />
             </div>
 
             {/* Método de Pagamento */}
@@ -511,17 +490,17 @@ export const ClientProfile: React.FC = () => {
               <StatCard
                 title="Tickets Abertos"
                 value={client.support?.tickets?.filter(t => t.status === 'open').length || 0}
-                icon={<HeadphonesIcon className="w-5 h-5" />}
+                icon={<HeadphonesIcon className="w-5 h-5 text-orange-600" />}
               />
               <StatCard
                 title="Satisfação"
                 value={`${client.support?.satisfaction || 0}/5`}
-                icon={<Activity className="w-5 h-5" />}
+                icon={<Activity className="w-5 h-5 text-emerald-600" />}
               />
               <StatCard
                 title="Tempo Resposta"
                 value={client.support?.responseTime || 'N/A'}
-                icon={<Activity className="w-5 h-5" />}
+                icon={<Activity className="w-5 h-5 text-blue-600" />}
               />
             </div>
             <Card>
@@ -602,17 +581,17 @@ export const ClientProfile: React.FC = () => {
                 title="Usuários Ativos"
                 value={client.activeUsers}
                 change={`de ${client.totalUsers} total`}
-                icon={<Users className="w-5 h-5" />}
+                icon={<Users className="w-5 h-5 text-purple-600" />}
               />
               <StatCard
                 title="Ultimo Login"
                 value={client.lastLogin}
-                icon={<Activity className="w-5 h-5" />}
+                icon={<Activity className="w-5 h-5 text-emerald-600" />}
               />
               <StatCard
                 title="Receita Total"
                 value={`R$ ${client.totalRevenue?.toLocaleString() || '0'}`}
-                icon={<DollarSign className="w-5 h-5" />}
+                icon={<DollarSign className="w-5 h-5 text-green-600" />}
               />
             </div>
           </div>
@@ -739,41 +718,33 @@ export const ClientProfile: React.FC = () => {
           </div>
           
           {/* Métricas Principais */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6 pt-6 border-t">
-            <div className="text-center p-3 bg-gray-50 dark:bg-white/5 rounded-lg">
-              <div className="flex items-center justify-center mb-2">
-                <Package className="w-5 h-5 text-blue-500" />
-              </div>
-              <p className={cn("text-sm font-medium mb-1", get("text.secondary"))}>Plano Atual</p>
-              <p className={cn("text-lg font-bold", get("text.primary"))}>{client.plan}</p>
-            </div>
-            <div className="text-center p-3 bg-gray-50 dark:bg-white/5 rounded-lg">
-              <div className="flex items-center justify-center mb-2">
-                <DollarSign className="w-5 h-5 text-green-500" />
-              </div>
-              <p className={cn("text-sm font-medium mb-1", get("text.secondary"))}>Receita Mensal</p>
-              <p className="text-lg font-bold text-green-500">R$ {client.monthlyRevenue.toLocaleString()}</p>
-            </div>
-            <div className="text-center p-3 bg-gray-50 dark:bg-white/5 rounded-lg">
-              <div className="flex items-center justify-center mb-2">
-                <Users className="w-5 h-5 text-purple-500" />
-              </div>
-              <p className={cn("text-sm font-medium mb-1", get("text.secondary"))}>Usuários Ativos</p>
-              <p className={cn("text-lg font-bold", get("text.primary"))}>{client.activeUsers}/{client.totalUsers}</p>
-            </div>
-            <div className="text-center p-3 bg-gray-50 dark:bg-white/5 rounded-lg">
-              <div className="flex items-center justify-center mb-2">
-                <Activity className="w-5 h-5 text-emerald-500" />
-              </div>
-              <p className={cn("text-sm font-medium mb-1", get("text.secondary"))}>Último Acesso</p>
-              <p className={cn("text-lg font-bold", get("text.primary"))}>{client.lastLogin}</p>
-            </div>
+          <div className={cn("grid grid-cols-1 md:grid-cols-4 gap-4 mt-6 pt-6 border-t", get("border.subtle"))}>
+            <StatCardCentered
+              title="Plano Atual"
+              value={client.plan}
+              icon={<Package className="w-5 h-5 text-blue-600" />}
+            />
+            <StatCardCentered
+              title="Receita Mensal"
+              value={`R$ ${client.monthlyRevenue.toLocaleString()}`}
+              icon={<DollarSign className="w-5 h-5 text-emerald-600" />}
+            />
+            <StatCardCentered
+              title="Usuários Ativos"
+              value={`${client.activeUsers}/${client.totalUsers}`}
+              icon={<Users className="w-5 h-5 text-purple-600" />}
+            />
+            <StatCardCentered
+              title="Último Acesso"
+              value={client.lastLogin}
+              icon={<Activity className="w-5 h-5 text-emerald-600" />}
+            />
           </div>
         </CardContent>
       </Card>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200 dark:border-gray-700">
+      <div className={cn("border-b", get("border.primary"))}>
         <nav className="-mb-px flex space-x-8">
           {tabs.map((tab) => {
             const Icon = tab.icon;
@@ -785,7 +756,7 @@ export const ClientProfile: React.FC = () => {
                   "flex items-center gap-2 py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap",
                   activeTab === tab.id
                     ? "border-blue-500 text-blue-600 dark:text-blue-400"
-                    : "border-transparent hover:border-gray-300 dark:hover:border-gray-600",
+                    : `border-transparent hover:${get("border.subtle")}`,
                   get("text.secondary")
                 )}
               >

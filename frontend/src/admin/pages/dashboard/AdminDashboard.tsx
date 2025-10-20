@@ -11,60 +11,8 @@ import {
   Clock,
 } from "lucide-react";
 import { useAdminDashboard } from "../../hooks/useAdmin";
+import { StatCard, Card, CardHeader, CardContent } from "../../../design-system";
 
-// ================================
-// COMPONENTE CARD DE ESTATÍSTICA
-// ================================
-
-interface StatCardProps {
-  title: string;
-  value: string | number;
-  icon: React.ReactNode;
-  change?: string;
-  changeType?: "positive" | "negative" | "neutral";
-  isLoading?: boolean;
-}
-
-const StatCard: React.FC<StatCardProps> = ({
-  title,
-  value,
-  icon,
-  change,
-  changeType = "neutral",
-  isLoading = false,
-}) => {
-  const changeColors = {
-    positive: "text-green-600",
-    negative: "text-red-600",
-    neutral: "text-gray-600",
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow"
-    >
-      <div className="flex items-center justify-between">
-        <div className="flex-1">
-          <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
-          {isLoading ? (
-            <div className="h-8 bg-gray-200 rounded animate-pulse mb-2"></div>
-          ) : (
-            <p className="text-3xl font-bold text-gray-900 mb-2">{value}</p>
-          )}
-          {change && !isLoading && (
-            <p className={`text-sm ${changeColors[changeType]}`}>{change}</p>
-          )}
-        </div>
-        <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
-          {icon}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 // ================================
 // COMPONENTE ATIVIDADE RECENTE
@@ -103,27 +51,29 @@ const RecentActivity: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">
-        Atividade Recente
-      </h3>
-      <div className="space-y-4">
-        {activities.map((activity) => (
-          <div key={activity.id} className="flex items-start space-x-3">
-            <div className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center flex-shrink-0">
-              {activity.icon}
+    <Card>
+      <CardHeader title="Atividade Recente">
+        <div></div>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          {activities.map((activity) => (
+            <div key={activity.id} className="flex items-start space-x-3">
+              <div className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center flex-shrink-0">
+                {activity.icon}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-gray-900">{activity.message}</p>
+                <p className="text-xs text-gray-500 mt-1">{activity.timestamp}</p>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm text-gray-900">{activity.message}</p>
-              <p className="text-xs text-gray-500 mt-1">{activity.timestamp}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <button className="w-full mt-4 text-sm text-blue-600 hover:text-blue-800 font-medium">
-        Ver todas as atividades
-      </button>
-    </div>
+          ))}
+        </div>
+        <button className="w-full mt-4 text-sm text-blue-600 hover:text-blue-800 font-medium">
+          Ver todas as atividades
+        </button>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -162,30 +112,32 @@ const SystemStatus: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">
-        Status do Sistema
-      </h3>
-      <div className="space-y-3">
-        {services.map((service) => (
-          <div key={service.name} className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              {getStatusIcon(service.status)}
-              <span className="text-sm text-gray-900">{service.name}</span>
+    <Card>
+      <CardHeader title="Status do Sistema">
+        <div></div>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3">
+          {services.map((service) => (
+            <div key={service.name} className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                {getStatusIcon(service.status)}
+                <span className="text-sm text-gray-900">{service.name}</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-xs text-gray-500">{service.uptime}</span>
+                <span className="text-xs font-medium text-gray-900">
+                  {getStatusText(service.status)}
+                </span>
+              </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-xs text-gray-500">{service.uptime}</span>
-              <span className="text-xs font-medium text-gray-900">
-                {getStatusText(service.status)}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-      <button className="w-full mt-4 text-sm text-blue-600 hover:text-blue-800 font-medium">
-        Ver detalhes do sistema
-      </button>
-    </div>
+          ))}
+        </div>
+        <button className="w-full mt-4 text-sm text-blue-600 hover:text-blue-800 font-medium">
+          Ver detalhes do sistema
+        </button>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -252,38 +204,40 @@ export const AdminDashboard: React.FC = () => {
       </div>
 
       {/* Seção de Ações Rápidas */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          Ações Rápidas
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <button className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left">
-            <Building2 className="w-6 h-6 text-blue-600 mb-2" />
-            <h4 className="font-medium text-gray-900">Criar Tenant</h4>
-            <p className="text-sm text-gray-500">Adicionar novo cliente</p>
-          </button>
+      <Card>
+        <CardHeader title="Ações Rápidas">
+          <div></div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <button className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left">
+              <Building2 className="w-6 h-6 text-blue-600 mb-2" />
+              <h4 className="font-medium text-gray-900">Criar Tenant</h4>
+              <p className="text-sm text-gray-500">Adicionar novo cliente</p>
+            </button>
 
-          <button className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left">
-            <Users className="w-6 h-6 text-green-600 mb-2" />
-            <h4 className="font-medium text-gray-900">Gerenciar Usuários</h4>
-            <p className="text-sm text-gray-500">
-              Visualizar todos os usuários
-            </p>
-          </button>
+            <button className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left">
+              <Users className="w-6 h-6 text-green-600 mb-2" />
+              <h4 className="font-medium text-gray-900">Gerenciar Usuários</h4>
+              <p className="text-sm text-gray-500">
+                Visualizar todos os usuários
+              </p>
+            </button>
 
-          <button className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left">
-            <TrendingUp className="w-6 h-6 text-purple-600 mb-2" />
-            <h4 className="font-medium text-gray-900">Ver Relatórios</h4>
-            <p className="text-sm text-gray-500">Analytics detalhados</p>
-          </button>
+            <button className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left">
+              <TrendingUp className="w-6 h-6 text-purple-600 mb-2" />
+              <h4 className="font-medium text-gray-900">Ver Relatórios</h4>
+              <p className="text-sm text-gray-500">Analytics detalhados</p>
+            </button>
 
-          <button className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left">
-            <AlertCircle className="w-6 h-6 text-yellow-600 mb-2" />
-            <h4 className="font-medium text-gray-900">Sistema</h4>
-            <p className="text-sm text-gray-500">Monitorar status</p>
-          </button>
-        </div>
-      </div>
+            <button className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left">
+              <AlertCircle className="w-6 h-6 text-yellow-600 mb-2" />
+              <h4 className="font-medium text-gray-900">Sistema</h4>
+              <p className="text-sm text-gray-500">Monitorar status</p>
+            </button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

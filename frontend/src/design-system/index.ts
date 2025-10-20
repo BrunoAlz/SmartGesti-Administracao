@@ -46,11 +46,15 @@ export {
 
 // Components
 export {
-  Card,
+  default as Card,
   CardHeader,
+  CardTitle,
+  CardDescription,
   CardContent,
   CardFooter,
   StatCard,
+  StatCardCentered,
+  SectionCard,
   FeatureCard,
 } from "./components/Card";
 

@@ -1,17 +1,21 @@
 import React from "react";
-import { useCardClasses, useTextClasses } from "../hooks";
+import { useTextClasses, useThemeClasses } from "../hooks";
 import { cn } from "../theme-classes";
 
 // ================================
 // TIPOS
 // ================================
 
-interface CardProps {
+export interface CardProps {
   children: React.ReactNode;
   className?: string;
   variant?: "default" | "elevated" | "outlined" | "filled";
   padding?: "none" | "sm" | "md" | "lg";
   hover?: boolean;
+  border?: boolean;
+  elevation?: 0 | 1 | 2;
+  interactive?: boolean;
+  as?: React.ElementType;
   onClick?: () => void;
 }
 
@@ -37,21 +41,37 @@ interface CardFooterProps {
 // COMPONENTE CARD PRINCIPAL
 // ================================
 
-export const Card: React.FC<CardProps> = ({
+const Card: React.FC<CardProps> = ({
   children,
   className,
   variant = "default",
   padding = "md",
   hover = false,
+  border = true,
+  elevation = 0,
+  interactive = false,
+  as: Component = "div",
   onClick,
+  ...props
 }) => {
-  const cardClasses = useCardClasses();
+  const { get, cn } = useThemeClasses();
+  
+  const baseClasses = "rounded-lg transition-all duration-200";
+  
+  const cardBaseClasses = get("card") || "bg-white dark:bg-gray-900";
+  const borderClasses = border ? `border ${get("border.secondary")}` : "";
   
   const variantClasses = {
-    default: "",
-    elevated: "shadow-lg",
-    outlined: "border-2",
-    filled: "bg-opacity-50",
+    default: cardBaseClasses,
+    elevated: cn(cardBaseClasses, "shadow-lg"),
+    outlined: cn(cardBaseClasses, "border-2"),
+    filled: cn(cardBaseClasses, "bg-opacity-50"),
+  };
+  
+  const shadowClasses = {
+    0: "",
+    1: "shadow-sm",
+    2: "shadow-md",
   };
   
   const paddingClasses = {
@@ -61,21 +81,26 @@ export const Card: React.FC<CardProps> = ({
     lg: "p-8",
   };
   
-  const hoverClasses = hover ? "hover:scale-105 hover:shadow-xl cursor-pointer" : "";
+  const hoverClasses = hover ? "hover:bg-gray-50 dark:hover:bg-white/5" : "";
+  const interactiveClasses = interactive ? "cursor-pointer" : "";
   
   return (
-    <div
+    <Component
       className={cn(
-        cardClasses,
+        baseClasses,
         variantClasses[variant],
+        borderClasses,
+        shadowClasses[elevation],
         paddingClasses[padding],
         hoverClasses,
+        interactiveClasses,
         className
       )}
       onClick={onClick}
+      {...props}
     >
       {children}
-    </div>
+    </Component>
   );
 };
 
@@ -90,11 +115,12 @@ const CardHeader: React.FC<CardHeaderProps> = ({
   subtitle,
   action,
 }) => {
+  const { cn, get } = useThemeClasses();
   const titleClasses = useTextClasses("primary", "text-lg font-semibold");
   const subtitleClasses = useTextClasses("secondary", "text-sm");
   
   return (
-    <div className={cn("flex items-start justify-between mb-4", className)}>
+    <div className={cn(`flex items-start justify-between p-4 border-b ${get("border.subtle")}`, className)}>
       <div className="flex-1">
         {title && <h3 className={titleClasses}>{title}</h3>}
         {subtitle && <p className={subtitleClasses}>{subtitle}</p>}
@@ -105,6 +131,16 @@ const CardHeader: React.FC<CardHeaderProps> = ({
   );
 };
 
+const CardTitle: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
+  const { cn, get } = useThemeClasses();
+  return <h3 className={cn("text-lg font-semibold", get("text.primary"), className)}>{children}</h3>;
+};
+
+const CardDescription: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
+  const { cn, get } = useThemeClasses();
+  return <p className={cn("text-sm", get("text.secondary"), className)}>{children}</p>;
+};
+
 // ================================
 // COMPONENTE CARD CONTENT
 // ================================
@@ -113,8 +149,9 @@ const CardContent: React.FC<CardContentProps> = ({
   children,
   className,
 }) => {
+  const { cn } = useThemeClasses();
   return (
-    <div className={cn("flex-1", className)}>
+    <div className={cn("p-4", className)}>
       {children}
     </div>
   );
@@ -128,8 +165,9 @@ const CardFooter: React.FC<CardFooterProps> = ({
   children,
   className,
 }) => {
+  const { cn, get } = useThemeClasses();
   return (
-    <div className={cn("mt-4 pt-4 border-t border-gray-200 dark:border-white/5", className)}>
+    <div className={cn(`p-4 border-t ${get("border.subtle")}`, className)}>
       {children}
     </div>
   );
@@ -140,55 +178,161 @@ const CardFooter: React.FC<CardFooterProps> = ({
 // ================================
 
 interface StatCardProps {
-  title: string;
-  value: string | number;
+  title: React.ReactNode;
+  value: React.ReactNode;
+  icon?: React.ReactElement;
+  iconColor?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'muted';
+  iconClassName?: string;
   change?: string;
   changeType?: "positive" | "negative" | "neutral";
-  icon?: React.ReactNode;
+  isLoading?: boolean;
+  align?: 'start' | 'center';
+  size?: 'sm' | 'md';
+  border?: boolean;
   className?: string;
   onClick?: () => void;
 }
 
+const iconColorMap = (get: (k: string) => string) => ({
+  primary: 'text-blue-600 dark:text-blue-400',
+  success: 'text-emerald-600 dark:text-emerald-400', 
+  warning: 'text-amber-600 dark:text-amber-400',
+  danger: 'text-rose-600 dark:text-rose-400',
+  info: 'text-sky-600 dark:text-sky-400',
+  muted: get('text.secondary')
+});
+
 const StatCard: React.FC<StatCardProps> = ({
   title,
   value,
+  icon,
+  iconColor,
+  iconClassName,
   change,
   changeType = "neutral",
-  icon,
+  isLoading = false,
+  align = 'start',
+  size = 'md',
+  border = true,
   className,
   onClick,
 }) => {
-  const titleClasses = useTextClasses("secondary", "text-sm font-medium mb-1");
-  const valueClasses = useTextClasses("primary", "text-2xl font-bold mb-1");
+  const { cn, get } = useThemeClasses();
   
-  const changeClasses = {
-    positive: "text-green-400",
-    negative: "text-red-400", 
-    neutral: "text-gray-400",
-  };
+  // Clone icon with appropriate classes, preserving existing className
+  const iconNode = icon ? React.cloneElement(icon, {
+    className: cn(
+      // Size based on card size
+      size === 'sm' ? 'w-5 h-5' : 'w-6 h-6',
+      // Apply semantic color only if iconColor is defined
+      iconColor ? iconColorMap(get)[iconColor] : '',
+      // NEVER force text-* by default here; let existing className win
+      icon.props.className,
+      iconClassName
+    )
+  }) : null;
+  
+  const changeColor = 
+    changeType === 'positive' ? 'text-emerald-600 dark:text-emerald-400' :
+    changeType === 'negative' ? 'text-rose-600 dark:text-rose-400' :
+    get('text.secondary');
+    
+  const contentAlign = align === 'center' ? 'flex-col items-center text-center' : 'flex-row items-center';
+  const gap = size === 'sm' ? 'gap-2' : 'gap-3';
+  const valueSize = size === 'sm' ? 'text-lg' : 'text-2xl';
+  
+  if (isLoading) {
+    return (
+      <Card border={border} className={cn(className)} padding="none">
+        <CardContent className="flex items-center justify-between">
+          <div className="flex-1">
+            <div className="h-4 w-20 bg-gray-200 dark:bg-white/10 rounded animate-pulse mb-2" />
+            <div className="h-6 w-12 bg-gray-200 dark:bg-white/10 rounded animate-pulse" />
+          </div>
+          <div className="w-6 h-6 rounded-md bg-gray-200 dark:bg-white/10 animate-pulse" />
+        </CardContent>
+      </Card>
+    );
+  }
   
   return (
-    <Card 
+    <Card
+      border={border}
       hover={!!onClick}
+      interactive={!!onClick}
       onClick={onClick}
-      className={cn("transition-all duration-200 border", className)}
+      className={cn(className)}
+      padding="none"
     >
-      <div className="flex items-center justify-between">
-        <div className="flex-1">
-          <p className={titleClasses}>{title}</p>
-          <p className={valueClasses}>{value}</p>
-          {change && (
-            <p className={cn("text-sm", changeClasses[changeType])}>
-              {change}
-            </p>
-          )}
-        </div>
-        {icon && (
-          <div className="w-10 h-10 rounded-lg bg-blue-500/20 backdrop-blur-sm flex items-center justify-center">
-            {icon}
+      <CardContent className={cn('flex', contentAlign, gap)}>
+        {align === 'center' && iconNode && (
+          <div className="flex items-center justify-center mb-2">
+            {iconNode}
           </div>
         )}
-      </div>
+        <div className="flex-1">
+          <div className={cn('text-sm font-medium mb-1', get('text.secondary'))}>
+            {title}
+          </div>
+          <div className={cn(valueSize, 'font-bold mb-1', get('text.primary'))}>
+            {value}
+          </div>
+          {change && (
+            <div className={cn('text-sm font-medium', changeColor)}>
+              {change}
+            </div>
+          )}
+        </div>
+        {align === 'start' && iconNode && (
+          <div className="shrink-0">
+            {iconNode}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+// ================================
+// COMPONENTE STAT CARD CENTRALIZADO
+// ================================
+
+const StatCardCentered: React.FC<Omit<StatCardProps, 'align' | 'size'>> = (props) => {
+  return <StatCard align="center" size="sm" {...props} />;
+};
+
+// ================================
+// COMPONENTE SECTION CARD
+// ================================
+
+interface SectionCardProps {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  actions?: React.ReactNode;
+  border?: boolean;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const SectionCard: React.FC<SectionCardProps> = ({
+  title,
+  description,
+  actions,
+  border = true,
+  children,
+  className
+}) => {
+  const { cn } = useThemeClasses();
+  return (
+    <Card border={border} className={cn(className)} padding="none">
+      <CardHeader className="flex items-start justify-between gap-2">
+        <div>
+          <CardTitle>{title}</CardTitle>
+          {description && <CardDescription>{description}</CardDescription>}
+        </div>
+        {actions}
+      </CardHeader>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 };
@@ -250,4 +394,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 // ================================
 
 export default Card;
-export { CardHeader, CardContent, CardFooter, StatCard, FeatureCard };
+export { 
+  CardHeader, 
+  CardTitle, 
+  CardDescription, 
+  CardContent, 
+  CardFooter, 
+  StatCard, 
+  StatCardCentered, 
+  SectionCard, 
+  FeatureCard 
+};

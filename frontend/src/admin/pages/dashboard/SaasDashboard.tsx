@@ -223,28 +223,28 @@ export const SaasDashboard: React.FC = () => {
             value={systemStats.totalSaas}
             change="+1 este mês"
             changeType="positive"
-            icon={<Building2 className="w-5 h-5 text-blue-500" />}
+            icon={<Building2 className="w-6 h-6 text-blue-600" />}
           />
           <StatCard
             title="Total de Clientes"
             value={systemStats.totalClients}
             change="+12 esta semana"
             changeType="positive"
-            icon={<Users className="w-5 h-5 text-emerald-500" />}
+            icon={<Users className="w-6 h-6 text-emerald-600" />}
           />
           <StatCard
             title="Receita Mensal"
             value={formatCurrency(systemStats.totalRevenue)}
             change="+8.5% vs. mês anterior"
             changeType="positive"
-            icon={<DollarSign className="w-5 h-5 text-green-500" />}
+            icon={<DollarSign className="w-6 h-6 text-green-600" />}
           />
           <StatCard
             title="Usuários Ativos"
             value={systemStats.activeUsers}
             change="+5 hoje"
             changeType="positive"
-            icon={<Activity className="w-5 h-5 text-purple-500" />}
+            icon={<Activity className="w-6 h-6 text-purple-600" />}
           />
         </div>
 
