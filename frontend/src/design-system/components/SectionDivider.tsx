@@ -1,5 +1,5 @@
 import React from "react";
-import { useThemeClasses } from "../hooks";
+import { useThemeClasses, useBadgeClasses } from "../hooks";
 
 // ================================
 // TIPOS
@@ -50,13 +50,20 @@ const SectionDivider: React.FC<SectionDividerProps> = ({
     red: 'text-red-600 dark:text-red-400'
   };
   
-  const badgeColors = {
-    blue: 'bg-blue-200 text-blue-900 border border-blue-400 dark:bg-blue-500/10 dark:text-blue-300 dark:border-blue-500/20',
-    green: 'bg-green-200 text-green-900 border border-green-400 dark:bg-green-500/10 dark:text-green-300 dark:border-green-500/20',
-    purple: 'bg-purple-200 text-purple-900 border border-purple-400 dark:bg-purple-500/10 dark:text-purple-300 dark:border-purple-500/20',
-    orange: 'bg-orange-200 text-orange-900 border border-orange-400 dark:bg-orange-500/10 dark:text-orange-300 dark:border-orange-500/20',
-    red: 'bg-red-200 text-red-900 border border-red-400 dark:bg-red-500/10 dark:text-red-300 dark:border-red-500/20'
+  // Mapear cores do badge para variantes do sistema
+  const getVariantFromColor = (color: string) => {
+    switch (color) {
+      case 'blue': return 'info';
+      case 'green': return 'success';
+      case 'purple': return 'purple';
+      case 'orange': return 'warning';
+      case 'red': return 'error';
+      default: return 'info';
+    }
   };
+  
+  const badgeVariant = getVariantFromColor(badgeColor) as "success" | "warning" | "error" | "info" | "purple";
+  const badgeClasses = useBadgeClasses(badgeVariant, 'md');
   
   return (
     <div className={cn(spacingClasses[spacing], className)}>
@@ -74,13 +81,10 @@ const SectionDivider: React.FC<SectionDividerProps> = ({
           {title}
         </h2>
         
-        <div className="flex-1 h-px mx-4 bg-slate-300 dark:bg-white/10"></div>
+        <div className={cn("flex-1 h-px mx-4 border-t", get("border.secondary"))}></div>
         
         {badge && (
-          <div className={cn(
-            "text-sm px-3 py-1.5 rounded-full font-medium flex-shrink-0",
-            badgeColors[badgeColor]
-          )}>
+          <div className={badgeClasses}>
             {badge}
           </div>
         )}

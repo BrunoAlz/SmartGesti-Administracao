@@ -36,6 +36,7 @@ export {
   useTextClasses,
   useIconClasses,
   useStatusClasses,
+  useBadgeClasses,
   useLayoutClasses,
   useSidebarClasses,
   useNavbarClasses,

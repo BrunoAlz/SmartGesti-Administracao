@@ -15,14 +15,8 @@ import {
   PieChart
 } from "lucide-react";
 import { 
-  StatCard, 
-  Card, 
-  CardHeader, 
-  CardContent, 
-  Button,
-  SectionDivider,
-  useThemeClasses,
-  cn
+  Card, CardHeader, CardContent, StatCard, SectionDivider, Button,
+  useThemeClasses, useBadgeClasses, cn 
 } from "../../../design-system";
 
 // ================================
@@ -173,6 +167,20 @@ const RevenueChart: React.FC = () => {
 export const AdminDashboard: React.FC = () => {
   const { get } = useThemeClasses();
   const navigate = useNavigate();
+  
+  // Hook para badges com tipos diferentes
+  const successBadge = useBadgeClasses("success", "sm");
+  const warningBadge = useBadgeClasses("warning", "sm");
+  const infoBadge = useBadgeClasses("info", "sm");
+  
+  const getBadgeClasses = (type: string) => {
+    switch (type) {
+      case "success": return successBadge;
+      case "warning": return warningBadge;
+      case "info": return infoBadge;
+      default: return infoBadge;
+    }
+  };
   
   const handleViewClients = (saasId: string) => {
     navigate(`/admin/saas/${saasId}/clients`);
@@ -451,12 +459,7 @@ export const AdminDashboard: React.FC = () => {
                         <p className={cn("font-semibold text-sm", get("text.primary"))}>
                           {activity.action}
                         </p>
-                        <span className={cn(
-                          "px-2 py-1 rounded-full text-xs font-medium",
-                          activity.type === "success" ? "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-300" :
-                          activity.type === "warning" ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500/20 dark:text-yellow-300" :
-                          "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300"
-                        )}>
+                        <span className={getBadgeClasses(activity.type)}>
                           {activity.saas}
                         </span>
                       </div>

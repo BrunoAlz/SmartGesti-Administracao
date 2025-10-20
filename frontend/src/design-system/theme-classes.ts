@@ -179,6 +179,10 @@ export const themeClasses = {
       light: "bg-blue-50 text-blue-800 border-blue-200",
       dark: "bg-blue-500/20 text-blue-300 border-blue-400/30",
     },
+    purple: {
+      light: "bg-purple-50 text-purple-800 border-purple-200",
+      dark: "bg-purple-500/20 text-purple-300 border-purple-400/30",
+    },
   },
 
   // Hover States

@@ -142,6 +142,29 @@ export function useStatusClasses(
   );
 }
 
+/**
+ * Hook para classes de badge
+ */
+export function useBadgeClasses(
+  variant: "success" | "warning" | "error" | "info" | "purple" = "info",
+  size: "sm" | "md" = "sm",
+  additionalClasses?: string
+) {
+  const { get, cn } = useThemeClasses();
+  
+  const sizeClasses = {
+    sm: "px-2 py-1 text-xs",
+    md: "px-3 py-1.5 text-sm",
+  };
+  
+  return cn(
+    get(`status.${variant}`),
+    sizeClasses[size],
+    "rounded-full font-medium border",
+    additionalClasses
+  );
+}
+
 // ================================
 // HOOKS DE LAYOUT
 // ================================
