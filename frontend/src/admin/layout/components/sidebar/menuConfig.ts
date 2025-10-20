@@ -19,6 +19,15 @@ import {
   TrendingUp,
   AlertCircle,
   User,
+  Palette,
+  Square,
+  MousePointer,
+  Type,
+  Layout,
+  Bell,
+  Table,
+  Calendar,
+  BarChart,
 } from "lucide-react";
 
 // ================================
@@ -160,6 +169,100 @@ export const adminSidebarConfig: SidebarConfig = {
         {
           type: "separator",
           id: "sep-1",
+          label: "Desenvolvimento",
+        },
+      ],
+    },
+
+    // ================================
+    // SEÇÃO UI KIT
+    // ================================
+    {
+      id: "ui-kit",
+      label: "UI Kit",
+      items: [
+        {
+          type: "submenu",
+          id: "ui-components",
+          label: "Componentes",
+          icon: Palette,
+          children: [
+            {
+              id: "ui-buttons",
+              label: "Botões",
+              path: "/admin/ui-kit/buttons",
+              icon: MousePointer,
+            },
+            {
+              id: "ui-cards",
+              label: "Cards",
+              path: "/admin/ui-kit/cards",
+              icon: Square,
+            },
+            {
+              id: "ui-badges",
+              label: "Badges",
+              path: "/admin/ui-kit/badges",
+              icon: CheckCircle,
+            },
+            {
+              id: "ui-inputs",
+              label: "Inputs & Forms",
+              path: "/admin/ui-kit/inputs",
+              icon: Type,
+            },
+            {
+              id: "ui-layout",
+              label: "Layout",
+              path: "/admin/ui-kit/layout",
+              icon: Layout,
+            },
+            {
+              id: "ui-notifications",
+              label: "Notificações",
+              path: "/admin/ui-kit/notifications",
+              icon: Bell,
+            },
+            {
+              id: "ui-tables",
+              label: "Tabelas",
+              path: "/admin/ui-kit/tables",
+              icon: Table,
+            },
+            {
+              id: "ui-animations",
+              label: "Animações",
+              path: "/admin/ui-kit/animations",
+              icon: BarChart,
+            },
+          ],
+        },
+        {
+          type: "link",
+          id: "design-tokens",
+          label: "Design Tokens",
+          path: "/admin/ui-kit/tokens",
+          icon: Palette,
+        },
+        {
+          type: "link",
+          id: "theme-colors",
+          label: "Cores & Temas",
+          path: "/admin/ui-kit/colors",
+          icon: Palette,
+        },
+      ],
+    },
+
+    // ================================
+    // SEPARADOR
+    // ================================
+    {
+      id: "separator-2",
+      items: [
+        {
+          type: "separator",
+          id: "sep-2",
           label: "Sistema",
         },
       ],

@@ -12,6 +12,9 @@ import { SaasList } from "./saas/SaasList";
 import { ClientsList } from "./saas/ClientsList";
 import { ClientProfile } from "./saas/ClientProfile";
 
+// UI Kit Pages
+import { ButtonsUIKit, BadgesUIKit } from "./ui-kit";
+
 // ================================
 // COMPONENT ROTA PROTEGIDA
 // ================================
@@ -72,6 +75,98 @@ export const AdminApp: React.FC = () => {
 
             {/* Analytics e Relatórios */}
             <Route path="analytics" element={<Reports />} />
+
+            {/* UI Kit */}
+            <Route path="ui-kit/buttons" element={<ButtonsUIKit />} />
+            <Route path="ui-kit/badges" element={<BadgesUIKit />} />
+            <Route 
+              path="ui-kit/cards" 
+              element={
+                <div className="p-6">
+                  <h1 className="text-2xl font-bold mb-4">Cards</h1>
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <p className="text-gray-600">Página em desenvolvimento...</p>
+                  </div>
+                </div>
+              } 
+            />
+            <Route 
+              path="ui-kit/inputs" 
+              element={
+                <div className="p-6">
+                  <h1 className="text-2xl font-bold mb-4">Inputs & Forms</h1>
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <p className="text-gray-600">Página em desenvolvimento...</p>
+                  </div>
+                </div>
+              } 
+            />
+            <Route 
+              path="ui-kit/layout" 
+              element={
+                <div className="p-6">
+                  <h1 className="text-2xl font-bold mb-4">Layout</h1>
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <p className="text-gray-600">Página em desenvolvimento...</p>
+                  </div>
+                </div>
+              } 
+            />
+            <Route 
+              path="ui-kit/notifications" 
+              element={
+                <div className="p-6">
+                  <h1 className="text-2xl font-bold mb-4">Notificações</h1>
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <p className="text-gray-600">Página em desenvolvimento...</p>
+                  </div>
+                </div>
+              } 
+            />
+            <Route 
+              path="ui-kit/tables" 
+              element={
+                <div className="p-6">
+                  <h1 className="text-2xl font-bold mb-4">Tabelas</h1>
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <p className="text-gray-600">Página em desenvolvimento...</p>
+                  </div>
+                </div>
+              } 
+            />
+            <Route 
+              path="ui-kit/animations" 
+              element={
+                <div className="p-6">
+                  <h1 className="text-2xl font-bold mb-4">Animações</h1>
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <p className="text-gray-600">Página em desenvolvimento...</p>
+                  </div>
+                </div>
+              } 
+            />
+            <Route 
+              path="ui-kit/tokens" 
+              element={
+                <div className="p-6">
+                  <h1 className="text-2xl font-bold mb-4">Design Tokens</h1>
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <p className="text-gray-600">Página em desenvolvimento...</p>
+                  </div>
+                </div>
+              } 
+            />
+            <Route 
+              path="ui-kit/colors" 
+              element={
+                <div className="p-6">
+                  <h1 className="text-2xl font-bold mb-4">Cores & Temas</h1>
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <p className="text-gray-600">Página em desenvolvimento...</p>
+                  </div>
+                </div>
+              } 
+            />
 
             {/* Configurações */}
             <Route
