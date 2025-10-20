@@ -11,14 +11,11 @@ import {
   Textarea,
   PasswordInput,
   LoadingButton,
-  LoadingState,
   useThemeClasses,
   cn,
   useForm,
   validators,
-  FormField,
-  FormError,
-  FormSummary
+  FormField
 } from "../../../design-system";
 import {
   ArrowLeft,
@@ -28,12 +25,9 @@ import {
   Mail,
   Phone,
   MapPin,
-  CreditCard,
-  Settings,
   Users,
   Calendar,
   CheckCircle,
-  AlertCircle,
   Heart,
   GraduationCap,
   ShoppingCart,
@@ -147,7 +141,7 @@ const planOptions: PlanOption[] = [
 
 export const CreateClient = () => {
   const navigate = useNavigate();
-  const { get, combine } = useThemeClasses();
+  const { get } = useThemeClasses();
   
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedSaas, setSelectedSaas] = useState<string>("");

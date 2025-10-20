@@ -7,7 +7,6 @@ import {
   TrendingUp,
   Shield,
   Database,
-  Clock,
 } from "lucide-react";
 import { useTheme } from "../../contexts/ThemeContext";
 import { getThemeClasses } from "../../../design-system";

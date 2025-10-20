@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { useCardClasses, useTextClasses, useIconClasses } from "../hooks";
+import { useTextClasses, useIconClasses } from "../hooks";
 import { cn } from "../theme-classes";
 import { X, AlertTriangle, CheckCircle, Info, AlertCircle } from "lucide-react";
 
@@ -248,8 +248,6 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   variant = "default",
   loading = false,
 }) => {
-  const iconClasses = useIconClasses("primary", "lg");
-  
   const variantConfig = {
     default: {
       icon: <Info className="w-6 h-6 text-blue-500" />,

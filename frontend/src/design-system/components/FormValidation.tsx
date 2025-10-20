@@ -319,8 +319,6 @@ interface FormSummaryProps {
 }
 
 const FormSummary: React.FC<FormSummaryProps> = ({ errors, className }) => {
-  const { get } = useThemeClasses();
-  
   const errorMessages = Object.values(errors).filter(Boolean);
 
   if (errorMessages.length === 0) return null;

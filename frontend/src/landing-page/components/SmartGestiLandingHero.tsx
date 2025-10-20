@@ -6,11 +6,9 @@ import {
   Play,
   Star,
   Users,
-  BarChart3,
   Shield,
   Brain,
   Settings,
-  Zap,
   ChevronRight,
 } from "lucide-react";
 

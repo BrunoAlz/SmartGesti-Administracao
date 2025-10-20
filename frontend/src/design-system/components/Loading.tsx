@@ -1,7 +1,7 @@
 import React from "react";
 import { useThemeClasses } from "../hooks";
 import { cn } from "../theme-classes";
-import { Loader2, RefreshCw, Zap, Clock, CheckCircle, AlertCircle } from "lucide-react";
+import { Loader2, Clock, AlertCircle } from "lucide-react";
 
 // ================================
 // TIPOS
@@ -71,8 +71,6 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   color = "primary",
   className,
 }) => {
-  const { get } = useThemeClasses();
-
   const sizeClasses = {
     xs: "w-3 h-3",
     sm: "w-4 h-4",
@@ -166,8 +164,6 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
   variant = "rectangular",
   animation = "pulse",
 }) => {
-  const { get } = useThemeClasses();
-
   const variantClasses = {
     text: "h-4",
     rectangular: "",
@@ -378,8 +374,6 @@ const LoadingProgress: React.FC<LoadingProgressProps> = ({
   showPercentage = true,
   className,
 }) => {
-  const { get } = useThemeClasses();
-
   const sizeClasses = {
     sm: "h-1",
     md: "h-2",

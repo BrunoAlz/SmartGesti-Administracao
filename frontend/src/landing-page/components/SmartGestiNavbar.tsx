@@ -8,7 +8,6 @@ import {
   BarChart3,
   Star,
   Shield,
-  Users,
   Home,
   Zap,
   ArrowRight,

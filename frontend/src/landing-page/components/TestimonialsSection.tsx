@@ -11,7 +11,6 @@ import {
   Award,
   CheckCircle,
   Play,
-  ArrowLeft,
   ArrowRight,
 } from "lucide-react";
 

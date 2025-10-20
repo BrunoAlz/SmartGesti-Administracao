@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import React, { createContext, useContext, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useThemeClasses } from "../hooks";
 import { cn } from "../theme-classes";
@@ -9,8 +9,7 @@ import {
   Info, 
   X, 
   Bell,
-  BellOff,
-  Settings
+  BellOff
 } from "lucide-react";
 
 // ================================
@@ -78,6 +77,10 @@ const NotificationProvider: React.FC<NotificationProviderProps> = ({
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isEnabled, setIsEnabled] = useState(true);
 
+  const removeNotification = useCallback((id: string) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  }, []);
+
   const addNotification = useCallback((notification: Omit<Notification, "id" | "timestamp">) => {
     if (!isEnabled) return "";
 
@@ -102,11 +105,7 @@ const NotificationProvider: React.FC<NotificationProviderProps> = ({
     }
 
     return id;
-  }, [isEnabled, defaultDuration, maxNotifications]);
-
-  const removeNotification = useCallback((id: string) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
-  }, []);
+  }, [isEnabled, defaultDuration, maxNotifications, removeNotification]);
 
   const clearAllNotifications = useCallback(() => {
     setNotifications([]);

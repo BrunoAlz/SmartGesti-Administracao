@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
@@ -31,13 +31,13 @@ interface AdminLoginForm {
 // ================================
 
 const TypingText: React.FC = () => {
-  const phrases = [
+  const phrases = useMemo(() => [
     "Transformando a gestão com tecnologia avançada",
     "Revolucionando o atendimento odontológico inteligente",
     "Conectando profissionais através de soluções inovadoras",
     "Otimizando processos clínicos com inteligência artificial",
     "Construindo o futuro da saúde digital personalizada",
-  ];
+  ], []);
 
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
@@ -145,7 +145,7 @@ export const AdminLoginPage: React.FC = () => {
         remember_me: form.remember_me,
       };
 
-      const response = await AdminAuthApiService.login(credentials);
+      await AdminAuthApiService.login(credentials);
 
       toast.success("Login administrativo realizado com sucesso!");
       navigate(from, { replace: true });

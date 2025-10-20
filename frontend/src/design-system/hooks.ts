@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { useTheme } from "../admin/contexts/ThemeContext";
 import { 
   getThemeClasses, 
@@ -7,7 +6,6 @@ import {
   cn,
   responsiveClasses 
 } from "./theme-classes";
-import type { Theme } from "./theme-classes";
 
 // ================================
 // HOOK PRINCIPAL DE TEMA
@@ -247,8 +245,6 @@ export function useResponsiveClasses(
  * Hook para breakpoints
  */
 export function useBreakpoint() {
-  const { theme } = useThemeClasses();
-  
   // Esta função seria implementada com um hook de media query
   // Por enquanto, retorna um valor padrão
   return {

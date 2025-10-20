@@ -7,7 +7,6 @@ import {
   TrendingUp,
   Shield,
   Database,
-  Clock,
 } from "lucide-react";
 import { useThemeClasses, Card, StatCard, Button } from "../../../design-system";
 
@@ -16,7 +15,7 @@ import { useThemeClasses, Card, StatCard, Button } from "../../../design-system"
 // ================================
 
 export const RefactoredDashboard: React.FC = () => {
-  const { theme, isDark, get, combine, cn } = useThemeClasses();
+  const { isDark, get, cn } = useThemeClasses();
 
   return (
     <div className={cn("p-6", get("layout"))}>
@@ -142,7 +141,7 @@ export const RefactoredDashboard: React.FC = () => {
             {localStorage.getItem("admin_user") ? "✅ Logado" : "❌ Não logado"}
           </p>
           <p>🕒 Última atualização: {new Date().toLocaleString()}</p>
-          <p>🌐 Versão: SmartGesTI v1.0.0</p>
+          <p>🌐 Versão: SmartGesTI2 v1.0.0</p>
         </div>
       </Card>
     </div>

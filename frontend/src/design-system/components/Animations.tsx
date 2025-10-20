@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import { useThemeClasses } from "../hooks";
 import { cn } from "../theme-classes";
 
 // ================================
@@ -51,7 +50,6 @@ export const Animation: React.FC<AnimationProps> = ({
   once = true,
 }) => {
   const [isVisible, setIsVisible] = useState(trigger === "mount");
-  const [isAnimating, setIsAnimating] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
   // Classes de animação
@@ -106,21 +104,18 @@ export const Animation: React.FC<AnimationProps> = ({
   const handleMouseEnter = () => {
     if (trigger === "hover") {
       setIsVisible(true);
-      setIsAnimating(true);
     }
   };
 
   const handleMouseLeave = () => {
     if (trigger === "hover") {
       setIsVisible(false);
-      setIsAnimating(false);
     }
   };
 
   const handleClick = () => {
     if (trigger === "click") {
       setIsVisible(!isVisible);
-      setIsAnimating(true);
     }
   };
 
@@ -158,16 +153,12 @@ const Transition: React.FC<TransitionProps> = ({
   direction = "up",
   className,
 }) => {
-  const [isVisible, setIsVisible] = useState(show);
   const [shouldRender, setShouldRender] = useState(show);
 
   useEffect(() => {
     if (show) {
       setShouldRender(true);
-      // Pequeno delay para garantir que o elemento está no DOM
-      setTimeout(() => setIsVisible(true), 10);
     } else {
-      setIsVisible(false);
       // Aguardar a animação terminar antes de remover do DOM
       setTimeout(() => setShouldRender(false), duration);
     }

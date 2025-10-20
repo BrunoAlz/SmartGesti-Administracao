@@ -6,10 +6,6 @@ import {
   Star,
   Crown,
   Zap,
-  Shield,
-  Users,
-  Calendar,
-  Brain,
   CreditCard,
   Smartphone,
   ArrowRight,
@@ -89,8 +85,6 @@ export default function PricingPreviewSection() {
       ],
     },
   ];
-
-  const savings = isAnnual ? "Economize até 20%" : "Teste grátis 14 dias";
 
   return (
     <section className="py-20 bg-gradient-to-b from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">

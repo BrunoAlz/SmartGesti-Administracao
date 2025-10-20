@@ -1,5 +1,3 @@
-import { designTokens } from "./tokens";
-
 // ================================
 // SISTEMA DE CLASSES TEMÁTICAS
 // ================================

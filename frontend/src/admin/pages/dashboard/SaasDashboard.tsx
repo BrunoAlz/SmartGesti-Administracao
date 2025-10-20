@@ -12,7 +12,6 @@ import {
 import {
   Users,
   Building2,
-  TrendingUp,
   DollarSign,
   Activity,
   Plus,
@@ -24,8 +23,6 @@ import {
   ShoppingCart,
   Briefcase,
   Home,
-  Calendar,
-  Clock,
   CheckCircle,
   AlertTriangle,
   ArrowUpRight,
@@ -151,7 +148,7 @@ const systemStats: SystemStats = {
 // ================================
 
 export const SaasDashboard: React.FC = () => {
-  const { get, combine } = useThemeClasses();
+  const { get } = useThemeClasses();
 
   const getStatusColor = (status: string) => {
     switch (status) {
