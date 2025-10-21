@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Bell, Settings, LogOut, Moon, Sun, User, Menu as MenuIcon, ChevronDown } from "lucide-react";
+import { Bell, Settings, LogOut, Moon, Sun, User, Menu as MenuIcon, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import { getThemeClasses } from "../../design-system";
 import { TopNavigation } from "./components/navigation/TopNavigation";
@@ -43,28 +43,32 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
         "navbar"
       )}`}
     >
-      {/* Logo/Title e Menu Toggle */}
+      {/* Logo/Title */}
       <div className="flex items-center space-x-4">
-        {/* Toggle para sidebar quando visível */}
-        {(isSidebarVisible || isFloatingMode) && (
-          <button
-            onClick={isFloatingMode ? toggleFloatingSidebar : toggleSidebar}
-            className={`p-2 rounded-lg transition-all ${getThemeClasses(
-              theme.theme,
-              "button.secondary"
-            )}`}
-            title="Alternar menu lateral"
-          >
-            <MenuIcon className="w-5 h-5" />
-          </button>
-        )}
-        
         {/* Título do sistema */}
         <h1
           className={`text-xl font-bold ${getThemeClasses(theme.theme, "text.primary")}`}
         >
           SmartGesTI Admin
         </h1>
+        
+        {/* Botão de toggle - apenas no layout padrão */}
+        {layoutMode === "default" && (
+          <button
+            onClick={toggleSidebar}
+            className={`p-2 rounded-lg transition-all ${getThemeClasses(
+              theme.theme,
+              "button.secondary"
+            )}`}
+            title={isSidebarVisible ? "Recolher sidebar" : "Expandir sidebar"}
+          >
+            {isSidebarVisible ? (
+              <ChevronLeft className="w-5 h-5" />
+            ) : (
+              <ChevronRight className="w-5 h-5" />
+            )}
+          </button>
+        )}
       </div>
       
       {/* Menu de navegação horizontal quando no modo top - Centro da navbar */}

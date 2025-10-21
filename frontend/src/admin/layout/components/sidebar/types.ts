@@ -96,12 +96,6 @@ export interface SubMenuProps {
   onItemClick?: (item: SubMenuItem) => void;
 }
 
-export interface SidebarHeaderProps {
-  isCollapsed: boolean;
-  onToggle: () => void;
-  branding?: SidebarConfig["branding"];
-}
-
 export interface SidebarFooterProps {
   isCollapsed: boolean;
   footer?: SidebarConfig["footer"];

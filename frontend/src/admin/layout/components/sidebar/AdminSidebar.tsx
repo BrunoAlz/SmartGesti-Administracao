@@ -8,7 +8,6 @@ import {
   MenuItemWithSubMenu,
 } from "./types";
 import { useSidebarMenu } from "./useSidebarMenu";
-import { SidebarHeader } from "./SidebarHeader";
 import { SidebarFooter } from "./SidebarFooter";
 import { MenuItem } from "./MenuItem";
 import { SubMenu } from "./SubMenu";
@@ -71,13 +70,8 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
         isCollapsed ? "w-16 sidebar-collapsed" : "w-64"
       } ${getThemeClasses(theme.theme, "sidebar")} ${className}`}
     >
-      {/* Header */}
-      <SidebarHeader
-        isCollapsed={isCollapsed}
-        onToggle={onToggle}
-        branding={config.branding}
-      />
-
+      {/* Cabeçalho removido - controles movidos para o Navbar */}
+      
       {/* Navigation */}
       <nav className="p-4 space-y-2 flex-1 overflow-y-auto sidebar-scrollbar">
         {config.sections.map((section) => (

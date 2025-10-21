@@ -4,7 +4,6 @@
 export { AdminSidebar } from "./AdminSidebar";
 export { MenuItem } from "./MenuItem";
 export { SubMenu } from "./SubMenu";
-export { SidebarHeader } from "./SidebarHeader";
 export { SidebarFooter } from "./SidebarFooter";
 
 // ================================
@@ -31,7 +30,6 @@ export type {
   MenuSection,
   MenuItemProps,
   SubMenuProps,
-  SidebarHeaderProps,
   SidebarFooterProps,
   UseSidebarMenuState,
 } from "./types";
