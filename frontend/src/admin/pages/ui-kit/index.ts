@@ -3,7 +3,7 @@
 // ================================
 
 export { default as ButtonsUIKit } from "./ButtonsUIKit";
-export { default as BadgesUIKit } from "./BadgesUIKit";
+export { BadgesUIKit } from "./BadgesUIKit";
 export { default as CardsUIKit } from "./CardsUIKit";
 
 // Componentes auxiliares

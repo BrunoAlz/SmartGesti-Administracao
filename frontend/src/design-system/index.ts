@@ -66,6 +66,12 @@ export {
 export type { SectionDividerProps } from "./components/SectionDivider";
 
 export {
+  Badge,
+  BadgeGroup,
+} from "./components/Badge";
+export type { BadgeProps } from "./components/Badge";
+
+export {
   Button,
   IconButton,
   ButtonGroup,
