@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentShowcase, ComponentSection } from './components/ComponentShowcase';
 import { Divider, Button, Card } from '@/design-system';
-import { useThemeClasses } from '@/design-system/hooks';
+import { useThemeClasses } from '@/design-system';
 
 export function DividersUIKit() {
   const { cn } = useThemeClasses();

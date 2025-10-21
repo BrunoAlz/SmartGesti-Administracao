@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { ThemeProvider } from "../contexts/ThemeContext";
+import { ThemeProvider } from "@/admin/contexts/ThemeContext";
 import { AdminLayout } from "../layout/AdminLayout";
 import { AdminDashboard } from "./dashboard/AdminDashboard";
 import { Reports } from "./reports/Reports";

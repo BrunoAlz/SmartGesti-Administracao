@@ -11,8 +11,8 @@ import {
   CardContent,
   useModal
 } from "../../../design-system";
-import { useThemeClasses } from "../../../design-system/hooks";
-import { cn } from "../../../design-system/theme-classes";
+import { useThemeClasses } from "@/design-system";
+import { cn } from "@/design-system";
 import { 
   Plus, 
   Download, 

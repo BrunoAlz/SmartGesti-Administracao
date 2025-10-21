@@ -2,33 +2,19 @@
 // DESIGN SYSTEM - SmartGesTI
 // ================================
 
-// Design Tokens
-export { designTokens } from "./tokens";
-export type { 
-  ColorScale, 
-  ColorShade, 
-  Spacing, 
-  FontSize, 
-  FontWeight, 
-  BorderRadius, 
-  BoxShadow, 
-  Breakpoint 
-} from "./tokens";
-
-// Theme Classes
-export { 
-  themeClasses, 
-  getThemeClasses, 
-  combineThemeClasses, 
-  conditionalThemeClasses,
-  commonClasses,
-  cn,
-  responsiveClasses 
-} from "./theme-classes";
-export type { Theme } from "./theme-classes";
-
-// Hooks
+// Sistema de Tema
 export {
+  // Tipos
+  type Theme,
+  
+  // Context
+  ThemeContext,
+  useThemeContext,
+  
+  // Provider
+  ThemeProvider,
+  
+  // Hooks
   useThemeClasses,
   useCardClasses,
   useButtonClasses,
@@ -41,9 +27,31 @@ export {
   useSidebarClasses,
   useNavbarClasses,
   useAnimationClasses,
-  useResponsiveClasses,
   useBreakpoint,
-} from "./hooks";
+  
+  // Utilitários
+  applyTheme,
+  getThemeClasses,
+  combineThemeClasses,
+  conditionalThemeClasses,
+  commonClasses,
+  cn,
+  responsiveClasses,
+  
+  // Design Tokens
+  designTokens,
+  type ColorScale,
+  type ColorShade,
+  type Spacing,
+  type FontSize,
+  type FontWeight,
+  type BorderRadius,
+  type BoxShadow,
+  type Breakpoint,
+  
+  // Componentes Base
+  componentBaseStyles,
+} from './theme';
 
 // Components
 export {

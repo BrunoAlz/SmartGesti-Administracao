@@ -1,60 +1,97 @@
-# 🎨 Design System - SmartGesti
+# 🎨 Design System - SmartGesti (Reestruturado)
 
 ## 🌟 Visão Geral
 
-Este é o Design System completo do SmartGesti, que fornece componentes reutilizáveis, hooks personalizados e um sistema de temas consistente para toda a aplicação.
+Este é o Design System centralizado do SmartGesti, fornecendo componentes reutilizáveis, hooks personalizados e um sistema de temas consistente para toda a aplicação. A estrutura foi reorganizada para manter tudo relacionado ao tema em um local centralizado.
 
-## 🗂️ Estrutura
+## 📂 Nova Estrutura Centralizada
 
 ```
-design-system/
-├── components/          # Componentes reutilizáveis
-│   ├── Button.tsx      # Sistema completo de botões
-│   ├── Badge.tsx       # Sistema de badges
-│   └── Card.tsx        # Sistema de cards
-├── hooks.ts            # Hooks personalizados para styling
-├── theme-classes.ts    # Classes de tema (light/dark)
-├── tokens.ts           # Tokens de design
-├── docs/               # Documentação detalhada
-│   ├── badges.md       # Documentação específica de badges
-│   └── cards.md        # Documentação específica de cards
-└── README.md           # Esta documentação
+frontend/src/design-system/
+├── components/        # Componentes reutilizáveis
+│   ├── Button.tsx     # Sistema completo de botões
+│   ├── Badge.tsx      # Sistema de badges
+│   └── Card.tsx       # Sistema de cards
+├── hooks/             # Hooks específicos de componente
+├── theme/             # Sistema de tema centralizado
+│   ├── README.md      # Documentação específica do tema
+│   ├── classes.ts     # Classes CSS por tema (light/dark)
+│   ├── components.ts  # Estilos base de componentes
+│   ├── context.tsx    # Contexto React para o tema
+│   ├── hooks.ts       # Hooks para gerenciamento de tema
+│   ├── index.ts       # Exportações unificadas
+│   ├── provider.tsx   # Provider do tema
+│   ├── tokens.ts      # Design tokens (cores, espaçamento, etc.)
+│   ├── types.ts       # Tipos comuns do tema
+│   └── variables.ts   # Variáveis CSS e aplicação do tema
+├── hooks.ts           # Re-exporta hooks/
+├── index.ts           # Exportações principais - PONTO DE ENTRADA PRINCIPAL
+├── theme-classes.ts   # Re-exporta theme/classes
+├── theme.ts           # Re-exporta theme/
+└── tokens.ts          # Re-exporta theme/tokens
 ```
 
-## 🎯 Como Usar
+## 🔄 Sistema de Importação Centralizado
 
-### 1. **Importações Básicas**
+Após a reestruturação, todas as importações devem ser feitas a partir do ponto de entrada principal do design system:
 
 ```typescript
-// Componentes
-import { Button } from '@/design-system/components/Button';
-import { Badge } from '@/design-system/components/Badge';
-import { Card } from '@/design-system/components/Card';
+// ✅ Forma correta - Importação centralizada
+import { 
+  Button, 
+  Badge, 
+  Card, 
+  useThemeClasses, 
+  useButtonClasses,
+  ThemeProvider,
+  useThemeContext
+} from '@/design-system';
 
-// Hooks
-import { useThemeClasses, useButtonClasses, useBadgeClasses } from '@/design-system/hooks';
-
-// Classes de tema
-import { themeClasses } from '@/design-system/theme-classes';
+// ❌ Forma incorreta - Importação direta dos arquivos específicos
+// import { useThemeClasses } from '@/design-system/hooks';
+// import { ThemeProvider } from '@/design-system/theme';
 ```
 
-### 2. **Sistema de Temas**
+## 🎨 Uso do Sistema de Temas
 
-O sistema suporta **modo claro** e **escuro** automaticamente:
+O sistema de temas foi completamente centralizado para facilitar o uso e manutenção:
 
 ```typescript
-const { get, cn } = useThemeClasses();
-
-// Usar classes de tema
-<div className={cn("p-4", get("bg.primary"))}>
-  <h1 className={get("text.primary")}>Título</h1>
-  <p className={get("text.secondary")}>Descrição</p>
-</div>
+function MeuComponente() {
+  // Hook para acesso ao tema e classes
+  const { get, cn, theme, isDark } = useThemeClasses();
+  
+  return (
+    <div className={cn(
+      get('card'),           // Classes automáticas light/dark
+      get('text.primary'),   // Texto com tema
+      'p-4 rounded-lg'       // Estilos adicionais
+    )}>
+      {/* conteúdo */}
+      
+      {/* Acesso ao tema atual */}
+      <p>Tema atual: {theme}</p>
+      
+      {/* Verificação condicional do tema */}
+      {isDark ? 'Modo escuro ativo' : 'Modo claro ativo'}
+    </div>
+  );
+}
 ```
 
-### 3. **Hook Principal**
-```tsx
-const { theme, isDark, get, combine, cn } = useThemeClasses();
+## 🧩 Classes de Componentes
+
+Para componentes específicos, use os hooks de classe dedicados:
+
+```typescript
+// Botões
+const buttonClasses = useButtonClasses('primary', 'md', 'my-2');
+
+// Badges
+const badgeClasses = useBadgeClasses('success', 'sm', 'mr-2');
+
+// Cards
+const cardClasses = useCardClasses('elevated', 'p-4');
 ```
 
 ## 🔘 Sistema de Botões
@@ -282,6 +319,12 @@ interface CardProps {
 
 **📖 Documentação completa:** [cards.md](./docs/cards.md)
 
+## 📚 Documentação Detalhada
+
+Para mais informações sobre o sistema de temas centralizado, consulte:
+- [Sistema de Tema](/frontend/src/design-system/theme/README.md) - Documentação detalhada
+- [Componentes do UI-Kit](/frontend/src/admin/pages/ui-kit/) - Exemplos interativos
+
 ## 🎨 UI Kit - Documentação Interativa
 
 Acesse `/admin/ui-kit` para ver todos os componentes em ação:
@@ -348,7 +391,7 @@ const badgeClass = getBadgeClasses('success'); // Classes completas do badge
 
 ### **Adicionando Nova Cor de Botão**
 
-1. **theme-classes.ts** - Adicionar classes:
+1. **theme/components.ts** - Adicionar classes:
 ```typescript
 button: {
   normal: {
@@ -362,7 +405,7 @@ button: {
 }
 ```
 
-2. **hooks.ts** - Atualizar tipos:
+2. **theme/types.ts** - Atualizar tipos:
 ```typescript
 type ButtonVariant = 
   | 'primary' | 'secondary' | 'success' // ... existentes
@@ -394,10 +437,8 @@ O sistema de temas **automaticamente** adapta todos os componentes para modo esc
 ## 🚀 Quick Start para Agentes
 
 ```typescript
-// 1. Importar componentes
-import { Button } from '@/design-system/components/Button';
-import { Badge } from '@/design-system/components/Badge';
-import { Card } from '@/design-system/components/Card';
+// 1. Importar componentes centralizados
+import { Button, Badge, Card, useThemeClasses } from '@/design-system';
 import { Plus, CheckCircle } from 'lucide-react';
 
 // 2. Usar diretamente
@@ -424,6 +465,7 @@ import { Plus, CheckCircle } from 'lucide-react';
 - **[badges.md](./docs/badges.md)** - Guia completo de badges
 - **[cards.md](./docs/cards.md)** - Guia completo de cards
 - **UI Kit Interativo** - `/admin/ui-kit`
+- **[Sistema de Tema](./theme/README.md)** - Documentação completa do sistema de tema
 
 ## 🛠️ Suporte
 
@@ -432,5 +474,5 @@ Para dúvidas ou sugestões sobre o Design System:
 - 📝 Verifique os exemplos de código nos componentes
 - 📧 Entre em contato com a equipe de desenvolvimento
 
-**Versão:** 2.0.0  
-**Última atualização:** Dezembro 2024
+**Versão:** 3.0.0  
+**Última atualização:** Janeiro 2025

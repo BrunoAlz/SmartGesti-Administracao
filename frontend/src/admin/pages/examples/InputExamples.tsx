@@ -11,8 +11,8 @@ import {
   CardContent,
   Button
 } from "../../../design-system";
-import { useThemeClasses } from "../../../design-system/hooks";
-import { cn } from "../../../design-system/theme-classes";
+import { useThemeClasses } from "@/design-system";
+import { cn } from "@/design-system";
 import { Mail, User, Lock, Search, DollarSign } from "lucide-react";
 
 // ================================
