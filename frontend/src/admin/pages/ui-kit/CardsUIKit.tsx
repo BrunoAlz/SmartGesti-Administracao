@@ -640,7 +640,7 @@ iconColor="muted"      // Cinza - Dados neutros`}
           component={
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Card Azul - Informação */}
-              <Card className="border-blue-400 dark:border-blue-400/30 bg-blue-200/60 dark:bg-blue-900/20">
+              <Card className="border-blue-400 dark:border-blue-400/30 bg-blue-200 dark:bg-blue-900/20">
                 <CardContent>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-md">
@@ -659,7 +659,7 @@ iconColor="muted"      // Cinza - Dados neutros`}
               </Card>
 
               {/* Card Verde - Sucesso */}
-              <Card className="border-green-400 dark:border-green-400/30 bg-green-200/60 dark:bg-green-900/20">
+              <Card className="border-green-400 dark:border-green-400/30 bg-green-200 dark:bg-green-900/20">
                 <CardContent>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center shadow-md">
@@ -678,7 +678,7 @@ iconColor="muted"      // Cinza - Dados neutros`}
               </Card>
 
               {/* Card Amarelo - Aviso */}
-              <Card className="border-amber-400 dark:border-yellow-400/30 bg-amber-200/60 dark:bg-yellow-900/20">
+              <Card className="border-amber-400 dark:border-yellow-400/30 bg-amber-200 dark:bg-yellow-900/20">
                 <CardContent>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center shadow-md">
@@ -697,7 +697,7 @@ iconColor="muted"      // Cinza - Dados neutros`}
               </Card>
 
               {/* Card Roxo - Premium */}
-              <Card className="border-purple-400 dark:border-purple-400/30 bg-purple-200/60 dark:bg-purple-900/20">
+              <Card className="border-purple-400 dark:border-purple-400/30 bg-purple-200 dark:bg-purple-900/20">
                 <CardContent>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center shadow-md">
@@ -717,7 +717,7 @@ iconColor="muted"      // Cinza - Dados neutros`}
             </div>
           }
           code={`// Card Azul - Informações
-<Card className="border-blue-200 dark:border-blue-400/30 bg-blue-50 dark:bg-blue-900/20">
+<Card className="border-blue-200 dark:border-blue-400/30 bg-blue-100 dark:bg-blue-900/20">
   <CardContent>
     <div className="flex items-center gap-3">
       <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
@@ -736,9 +736,9 @@ iconColor="muted"      // Cinza - Dados neutros`}
 </Card>
 
 // Outras cores disponíveis:
-// Verde: border-green-400 dark:border-green-400/30 bg-green-200/60 dark:bg-green-900/20
-// Amarelo: border-amber-400 dark:border-yellow-400/30 bg-amber-200/60 dark:bg-yellow-900/20  
-// Roxo: border-purple-400 dark:border-purple-400/30 bg-purple-200/60 dark:bg-purple-900/20`}
+// Verde: border-green-400 dark:border-green-400/30 bg-green-200 dark:bg-green-900/20
+// Amarelo: border-amber-400 dark:border-yellow-400/30 bg-amber-200 dark:bg-yellow-900/20  
+// Roxo: border-purple-400 dark:border-purple-400/30 bg-purple-200 dark:bg-purple-900/20`}
         />
 
         <ComponentShowcase
