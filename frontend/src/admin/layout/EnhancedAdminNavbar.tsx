@@ -33,7 +33,8 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
     isSidebarVisible, 
     isTopNavigation,
     toggleFloatingSidebar,
-    isFloatingMode
+    isFloatingMode,
+    sidebarCollapsed
   } = useAdminLayout();
 
   return (
@@ -52,17 +53,17 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
           SmartGesTI Admin
         </h1>
         
-        {/* Botão de toggle - apenas no layout padrão */}
-        {layoutMode === "default" && (
+        {/* Botão de toggle - apenas no layout padrão e quando o sidebar estiver visível */}
+        {layoutMode === "default" && isSidebarVisible && (
           <button
             onClick={toggleSidebar}
             className={`p-2 rounded-lg transition-all ${getThemeClasses(
               theme.theme,
               "button.secondary"
             )}`}
-            title={isSidebarVisible ? "Recolher sidebar" : "Expandir sidebar"}
+            title={!sidebarCollapsed ? "Recolher sidebar" : "Expandir sidebar"}
           >
-            {isSidebarVisible ? (
+            {!sidebarCollapsed ? (
               <ChevronLeft className="w-5 h-5" />
             ) : (
               <ChevronRight className="w-5 h-5" />

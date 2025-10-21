@@ -94,6 +94,7 @@ module.exports = {
         scaleIn: "scaleIn 0.2s ease-out forwards",
         fadeInLeft: "fadeInLeft 0.2s ease-out forwards",
         fadeInDown: "fadeInDown 0.2s ease-out forwards",
+        fadeInFast: "fadeIn 0.15s ease-out forwards",
       },
       keyframes: {
         swing: {
@@ -115,6 +116,10 @@ module.exports = {
         fadeInDown: {
           "from": { opacity: "0", transform: "translateY(-10px)" },
           "to": { opacity: "1", transform: "translateY(0)" }
+        },
+        fadeIn: {
+          "from": { opacity: "0" },
+          "to": { opacity: "1" }
         },
       },
     },

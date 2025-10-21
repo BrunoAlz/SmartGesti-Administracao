@@ -69,11 +69,12 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
       className={`h-full border-r transition-all duration-300 flex flex-col ${
         isCollapsed ? "w-16 sidebar-collapsed" : "w-64"
       } ${getThemeClasses(theme.theme, "sidebar")} ${className}`}
+      style={{ overflow: 'visible' }} // Garantir que o menu expandido não seja cortado
     >
       {/* Cabeçalho removido - controles movidos para o Navbar */}
       
       {/* Navigation */}
-      <nav className="p-4 space-y-2 flex-1 overflow-y-auto sidebar-scrollbar">
+      <nav className="p-4 space-y-2 flex-1 overflow-y-auto overflow-x-visible sidebar-scrollbar">
         {config.sections.map((section) => (
           <div key={section.id} className="space-y-2">
             {/* Label da seção */}

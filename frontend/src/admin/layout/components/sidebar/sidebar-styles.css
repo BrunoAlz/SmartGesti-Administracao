@@ -49,6 +49,66 @@
   width: 4px;
 }
 
+/* Estilos para garantir que os dropdowns da sidebar funcionem corretamente */
+#dropdown-portal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+#dropdown-portal-container > div {
+  pointer-events: auto;
+}
+
+/* ================================
+   ESTILOS PARA HOVER EM MENU RECOLHIDO
+   ================================ */
+
+/* Efeito de hover para itens de menu recolhidos */
+.sidebar-collapsed .group:hover .group-hover\:flex {
+  display: flex !important;
+  animation: fadeIn 0.2s ease-in-out;
+  position: fixed !important; /* Garantir que o menu fique acima de tudo */
+  pointer-events: auto !important; /* Habilita interações com o mouse */
+  z-index: 999999 !important; /* Garantir z-index máximo */
+}
+
+/* Garantir que menus de bloco também apareçam corretamente */
+.sidebar-collapsed .group:hover .group-hover\:block {
+  display: block !important;
+  position: fixed !important; 
+  pointer-events: auto !important;
+  z-index: 999999 !important;
+}
+
+/* Garantir que os links dentro do hover possam ser clicados */
+.sidebar-collapsed .group:hover .group-hover\:flex a,
+.sidebar-collapsed .group:hover .group-hover\:flex button,
+.sidebar-collapsed .group:hover .group-hover\:block a,
+.sidebar-collapsed .group:hover .group-hover\:block button {
+  pointer-events: auto !important;
+}
+
+/* Força todos os itens a ficarem em primeiro plano */
+.sidebar-collapsed .fixed {
+  z-index: 999999 !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-5px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInFast {
+  from { opacity: 0; transform: translateX(-2px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 /* Animações suaves */
 .sidebar-scrollbar::-webkit-scrollbar-thumb {
   transition: background-color 0.2s ease;

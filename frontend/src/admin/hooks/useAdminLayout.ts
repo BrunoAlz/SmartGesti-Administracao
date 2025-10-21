@@ -26,7 +26,14 @@ export const useAdminLayout = () => {
 
   // Estado para o colapso da sidebar
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(() => {
+    const savedLayout = localStorage.getItem("admin-layout-mode");
     const savedState = localStorage.getItem("admin-sidebar-collapsed");
+    
+    // Se for layout padrão e não tiver preferência salva, começa expandido
+    if (savedLayout === "default" || !savedLayout) {
+      return savedState === "true" ? true : false;
+    }
+    
     return savedState === "true";
   });
 
@@ -54,6 +61,10 @@ export const useAdminLayout = () => {
     if (mode === "compact") {
       setSidebarCollapsed(true);
       localStorage.setItem("admin-sidebar-collapsed", "true");
+    } else if (mode === "default") {
+      // Quando o layout padrão for escolhido, o menu sempre vem expandido
+      setSidebarCollapsed(false);
+      localStorage.setItem("admin-sidebar-collapsed", "false");
     }
     
     // Força uma atualização da página depois de um curto intervalo
@@ -74,6 +85,12 @@ export const useAdminLayout = () => {
   // Salvar configurações quando mudam
   useEffect(() => {
     localStorage.setItem("admin-layout-mode", layoutMode);
+    
+    // Se mudar para o layout padrão, garantir que o menu venha expandido
+    if (layoutMode === "default") {
+      setSidebarCollapsed(false);
+      localStorage.setItem("admin-sidebar-collapsed", "false");
+    }
   }, [layoutMode]);
 
   return {
