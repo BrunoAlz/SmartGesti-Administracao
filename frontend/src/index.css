@@ -8,6 +8,9 @@
 /* Design system input overrides */
 @import './design-system/input-overrides.css';
 
+/* Estilos personalizados para barras de rolagem */
+@import './design-system/scrollbar.css';
+
 /* React Toastify styles */
 @import 'react-toastify/dist/ReactToastify.css';
 

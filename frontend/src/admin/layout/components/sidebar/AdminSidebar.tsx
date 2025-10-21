@@ -82,7 +82,7 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
       {/* Cabeçalho removido - controles movidos para o Navbar */}
       
       {/* Navigation */}
-      <nav className="p-4 space-y-2 flex-1 overflow-y-auto overflow-x-visible sidebar-scrollbar">
+      <nav className={`p-4 space-y-2 flex-1 overflow-y-auto overflow-x-visible sidebar-scrollbar ${theme.isDark ? 'scrollbar-dark' : 'scrollbar-light'}`}>
         {config.sections.map((section) => (
           <div key={section.id} className="space-y-2">
             {/* Label da seção */}

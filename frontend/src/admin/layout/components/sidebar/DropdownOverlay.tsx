@@ -69,7 +69,7 @@ export const DropdownOverlay: React.FC<DropdownOverlayProps> = ({
       
       {/* Conteúdo do dropdown */}
       <div
-        className={`fixed z-[99999] animate-fadeInFast rounded-lg overflow-hidden ${getMenuBackdrop()}`}
+        className={`fixed z-[99999] animate-fadeInFast rounded-lg overflow-hidden ${getMenuBackdrop()} ${theme.isDark ? 'scrollbar-dark' : 'scrollbar-light'}`}
         style={{
           top: `${position.top}px`,
           left: `${position.left}px`,

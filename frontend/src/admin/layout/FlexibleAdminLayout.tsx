@@ -166,7 +166,7 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
         }`}>
           {/* Content Area */}
           <div className="flex-1 overflow-hidden">
-            <div className="h-full overflow-y-auto">
+            <div className={`h-full overflow-y-auto ${theme.isDark ? 'scrollbar-dark' : 'scrollbar-light'}`}>
               <div className="p-6">
                 {/* Breadcrumbs */}
                 <SimpleAdminBreadcrumb

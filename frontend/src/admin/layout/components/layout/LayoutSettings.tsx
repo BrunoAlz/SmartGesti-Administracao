@@ -184,7 +184,7 @@ export const LayoutSettings: React.FC = () => {
         position={dropdownPosition}
         width={380}
       >
-        <div className="p-4 max-h-[85vh] overflow-y-auto">
+        <div className={`p-4 max-h-[85vh] overflow-y-auto ${theme.isDark ? 'scrollbar-dark' : 'scrollbar-light'}`}>
           {/* Cabeçalho principal */}
           <div className="mb-4 pb-2 border-b border-slate-700/30">
             <div className="flex items-center mb-1">
