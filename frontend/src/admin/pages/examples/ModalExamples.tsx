@@ -178,11 +178,12 @@ export const ModalExamples: React.FC = () => {
       <AlertModal
         isOpen={alertModal.isOpen}
         onClose={alertModal.close}
+        variant="success"
         title="Operação Concluída"
-        message="A operação foi realizada com sucesso!"
-        type="success"
-        confirmText="OK"
-      />
+        width="md"
+      >
+        A operação foi realizada com sucesso!
+      </AlertModal>
 
       {/* Sidebar Modal */}
       <SidebarModal

@@ -8,6 +8,9 @@
 /* Design system input overrides */
 @import './design-system/input-overrides.css';
 
+/* React Toastify styles */
+@import 'react-toastify/dist/ReactToastify.css';
+
 /* Custom CSS */
 @layer base {
   html {

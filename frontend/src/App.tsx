@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
 
 // Contexts
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -59,24 +59,22 @@ function AppContent() {
           <Route path="/admin/*" element={<AdminApp />} />
         </Routes>
 
-        <Toaster
+        <ToastContainer
           position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: "#363636",
-              color: "#fff",
-            },
-            success: {
-              style: {
-                background: "#10b981",
-              },
-            },
-            error: {
-              style: {
-                background: "#ef4444",
-              },
-            },
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          toastStyle={{
+            backgroundColor: '#ffffff',
+            color: '#111827',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
           }}
         />
       </div>
