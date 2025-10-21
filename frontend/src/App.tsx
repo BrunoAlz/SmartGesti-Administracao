@@ -7,6 +7,9 @@ import {
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 
+// Estilos personalizados
+import "@/admin/styles/menu-animations.css";
+
 // Contexts
 import { AuthProvider } from "@/contexts/AuthContext";
 import { RoleProvider } from "@/contexts/RoleContext";

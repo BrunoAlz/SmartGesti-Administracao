@@ -21,10 +21,34 @@ export const themeClasses = {
     dark: "bg-black/20 backdrop-blur-xl border-white/5",
   },
 
-  // Navbar
+  // Navbar e Itens
   navbar: {
     light: "bg-white border-slate-200",
     dark: "bg-black/20 backdrop-blur-xl border-white/5",
+  },
+  
+  navItem: {
+    light: "text-slate-600 hover:bg-slate-100",
+    dark: "text-slate-200 hover:bg-white/10",
+  },
+  
+  navActiveItem: {
+    light: "text-primary-600 bg-primary-50/50",
+    dark: "text-primary-400 bg-primary-900/20",
+  },
+  
+  // Dropdown Menu
+  dropdown: {
+    light: "bg-white border border-slate-200 shadow-lg",
+    dark: "bg-slate-900 border border-white/10 shadow-2xl",
+    item: {
+      light: "hover:bg-slate-100 text-slate-700",
+      dark: "hover:bg-white/10 text-slate-200",
+    },
+    activeItem: {
+      light: "bg-primary-50 text-primary-600",
+      dark: "bg-primary-900/30 text-primary-400",
+    },
   },
 
   // Content Area

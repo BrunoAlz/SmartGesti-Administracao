@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/admin/contexts/ThemeContext";
-import { AdminLayout } from "../layout/AdminLayout";
+import AdminLayout from "../layout"; // Importando o layout flexível
 import { AdminDashboard } from "./dashboard/AdminDashboard";
 import { Reports } from "./reports/Reports";
 import { ClientsManagement } from "./clients/ClientsManagement";
@@ -13,7 +13,7 @@ import { ClientsList } from "./saas/ClientsList";
 import { ClientProfile } from "./saas/ClientProfile";
 
 // UI Kit Pages
-import { ButtonsUIKit, BadgesUIKit, InputsUIKit, TypographyUIKit } from "./ui-kit";
+import { ButtonsUIKit, BadgesUIKit, InputsUIKit, TypographyUIKit, LayoutsUIKit } from "./ui-kit";
 import CardsUIKit from "./ui-kit/CardsUIKit";
 import AlertsUIKit from "./ui-kit/AlertsUIKit";
 import LoadingUIKit from "./ui-kit/LoadingUIKit";
@@ -89,14 +89,7 @@ export const AdminApp: React.FC = () => {
             <Route path="ui-kit/typography" element={<TypographyUIKit />} />
             <Route 
               path="ui-kit/layout" 
-              element={
-                <div className="p-6">
-                  <h1 className="text-2xl font-bold mb-4">Layout</h1>
-                  <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <p className="text-gray-600">Página em desenvolvimento...</p>
-                  </div>
-                </div>
-              } 
+              element={<LayoutsUIKit />} 
             />
             <Route 
               path="ui-kit/notifications" 

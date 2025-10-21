@@ -51,22 +51,5 @@ export const useAdminAuth = () => {
 // HOOK SIMPLIFICADO PARA LAYOUT
 // ================================
 
-export const useAdminLayout = () => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [breadcrumbs, setBreadcrumbs] = useState<any[]>([]);
-
-  const toggleSidebar = useCallback(() => {
-    setSidebarCollapsed(prev => !prev);
-  }, []);
-
-  const updateBreadcrumbs = useCallback((items: any[]) => {
-    setBreadcrumbs(items);
-  }, []);
-
-  return {
-    sidebarCollapsed,
-    breadcrumbs,
-    toggleSidebar,
-    updateBreadcrumbs,
-  };
-};
+// Importamos o hook completo do arquivo dedicado
+export { useAdminLayout } from './useAdminLayout';

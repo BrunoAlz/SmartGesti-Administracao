@@ -10,6 +10,7 @@ export { default as AlertsUIKit } from "./AlertsUIKit";
 export { default as LoadingUIKit } from "./LoadingUIKit";
 export { default as DividersUIKit } from "./DividersUIKit";
 export { default as TypographyUIKit } from "./TypographyUIKit";
+export { default as LayoutsUIKit } from "./LayoutsUIKit";
 
 // Componentes auxiliares
 export { ComponentShowcase, ComponentSection } from "./components/ComponentShowcase";

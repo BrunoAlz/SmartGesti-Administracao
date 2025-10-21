@@ -91,6 +91,9 @@ module.exports = {
       },
       animation: {
         swing: "swing 0.6s ease-in-out",
+        scaleIn: "scaleIn 0.2s ease-out forwards",
+        fadeInLeft: "fadeInLeft 0.2s ease-out forwards",
+        fadeInDown: "fadeInDown 0.2s ease-out forwards",
       },
       keyframes: {
         swing: {
@@ -100,6 +103,18 @@ module.exports = {
           "50%": { transform: "rotate(5deg)" },
           "70%": { transform: "rotate(-5deg)" },
           "100%": { transform: "rotate(0deg)" },
+        },
+        scaleIn: {
+          "from": { opacity: "0", transform: "translateY(-10px) translateX(-50%) scale(0.95)" },
+          "to": { opacity: "1", transform: "translateY(0) translateX(-50%) scale(1)" }
+        },
+        fadeInLeft: {
+          "from": { opacity: "0", transform: "translateX(-10px) scale(0.98)" },
+          "to": { opacity: "1", transform: "translateX(0) scale(1)" }
+        },
+        fadeInDown: {
+          "from": { opacity: "0", transform: "translateY(-10px)" },
+          "to": { opacity: "1", transform: "translateY(0)" }
         },
       },
     },
