@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  darkMode: 'class', // Explicitar o modo dark baseado em classe
   theme: {
     extend: {
       colors: {
@@ -15,6 +16,9 @@ module.exports = {
           700: "#1d4ed8",
           800: "#1e40af",
           900: "#1e3a8a",
+          '400-rgb': '96, 165, 250',
+          '500-rgb': '59, 130, 246',
+          '600-rgb': '37, 99, 235',
         },
         secondary: {
           50: "#f8fafc",
@@ -27,6 +31,9 @@ module.exports = {
           700: "#334155",
           800: "#1e293b",
           900: "#0f172a",
+          '400-rgb': '148, 163, 184',
+          '500-rgb': '100, 116, 139',
+          '600-rgb': '71, 85, 105',
         },
         success: {
           50: "#f0fdf4",
@@ -39,6 +46,9 @@ module.exports = {
           700: "#15803d",
           800: "#166534",
           900: "#14532d",
+          '400-rgb': '74, 222, 128',
+          '500-rgb': '34, 197, 94',
+          '600-rgb': '22, 163, 74',
         },
         warning: {
           50: "#fffbeb",
@@ -51,6 +61,9 @@ module.exports = {
           700: "#b45309",
           800: "#92400e",
           900: "#78350f",
+          '400-rgb': '251, 191, 36',
+          '500-rgb': '245, 158, 11',
+          '600-rgb': '217, 119, 6',
         },
         error: {
           50: "#fef2f2",
@@ -63,6 +76,9 @@ module.exports = {
           700: "#b91c1c",
           800: "#991b1b",
           900: "#7f1d1d",
+          '400-rgb': '248, 113, 113',
+          '500-rgb': '239, 68, 68',
+          '600-rgb': '220, 38, 38',
         },
       },
       fontFamily: {

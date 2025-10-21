@@ -5,6 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import { applyTheme } from "../../design-system/theme";
 
 // ================================
 // TIPOS
@@ -53,20 +54,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     return "light";
   });
 
-  // Aplicar tema ao documento
+  // Aplicar tema ao documento usando o sistema unificado
   useEffect(() => {
-    const root = document.documentElement;
-
-    if (theme === "dark") {
-      root.classList.add("dark");
-      root.classList.remove("light");
-    } else {
-      root.classList.add("light");
-      root.classList.remove("dark");
-    }
-
-    // Salvar preferência
-    localStorage.setItem("admin-theme", theme);
+    // Usar a nova função unificada de temas que aplica as variáveis CSS
+    applyTheme(theme);
   }, [theme]);
 
   // Alternar tema
@@ -189,6 +180,5 @@ export const themeStyles = {
 // ================================
 
 // Re-export do novo sistema para compatibilidade
-export { getThemeClasses as getNewThemeClasses } from "../../design-system/theme-classes";
-export { themeClasses as newThemeStyles } from "../../design-system/theme-classes";
+export { getThemeClasses, componentBaseStyles, cn } from "../../design-system/theme";
 export { useThemeClasses } from "../../design-system/hooks";

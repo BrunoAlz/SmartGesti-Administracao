@@ -1,0 +1,134 @@
+/* ================================
+   VARIÁVEIS CSS GLOBAIS - SmartGesTI
+   ================================ */
+
+/* 
+Este arquivo é injetado no HTML e define variáveis CSS para cores
+Todas as variáveis são aplicadas dinamicamente via JS usando applyTheme()
+*/
+
+/* Cores base do design system - fallback apenas */
+:root {
+  /* Primary */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  
+  /* RGB variants para opacidade */
+  --color-primary-400-rgb: 96, 165, 250;
+  --color-primary-500-rgb: 59, 130, 246;
+  --color-primary-600-rgb: 37, 99, 235;
+
+  /* Secondary */
+  --color-secondary-50: #f8fafc;
+  --color-secondary-100: #f1f5f9;
+  --color-secondary-200: #e2e8f0;
+  --color-secondary-300: #cbd5e1;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b;
+  --color-secondary-600: #475569;
+  --color-secondary-700: #334155;
+  --color-secondary-800: #1e293b;
+  --color-secondary-900: #0f172a;
+  
+  /* RGB variants para opacidade */
+  --color-secondary-400-rgb: 148, 163, 184;
+  --color-secondary-500-rgb: 100, 116, 139;
+  --color-secondary-600-rgb: 71, 85, 105;
+
+  /* Success */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+  
+  /* RGB variants para opacidade */
+  --color-success-400-rgb: 74, 222, 128;
+  --color-success-500-rgb: 34, 197, 94;
+  --color-success-600-rgb: 22, 163, 74;
+
+  /* Warning */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  
+  /* RGB variants para opacidade */
+  --color-warning-400-rgb: 251, 191, 36;
+  --color-warning-500-rgb: 245, 158, 11;
+  --color-warning-600-rgb: 217, 119, 6;
+
+  /* Error */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+  
+  /* RGB variants para opacidade */
+  --color-error-400-rgb: 248, 113, 113;
+  --color-error-500-rgb: 239, 68, 68;
+  --color-error-600-rgb: 220, 38, 38;
+}
+
+/* Variáveis semânticas com fallback */
+:root {
+  /* Tema claro é default */
+  --text-primary: var(--color-secondary-900);
+  --text-secondary: var(--color-secondary-700);
+  --text-muted: var(--color-secondary-500);
+  
+  --bg-page: var(--color-secondary-50);
+  --bg-card: white;
+  --bg-card-offset: var(--color-secondary-50);
+  
+  --border-subtle: var(--color-secondary-100);
+  --border-default: var(--color-secondary-200);
+  --border-strong: var(--color-secondary-300);
+  
+  --input-bg: white;
+  --input-border: var(--color-secondary-300);
+  --input-text: var(--color-secondary-900);
+  --input-placeholder: var(--color-secondary-500);
+  
+  --focus-ring: var(--color-primary-500);
+  --hover-overlay: rgba(0, 0, 0, 0.05);
+}
+
+/* 
+  Estilos para variantes - cada componente pode usar --variant-bg, --variant-text, etc.
+  As regras específicas são aplicadas via JavaScript com applyTheme()
+*/
+
+/* Configuração para "preflight" do Tailwind */
+html {
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

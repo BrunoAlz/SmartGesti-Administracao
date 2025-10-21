@@ -1,11 +1,9 @@
 import { useTheme } from "../admin/contexts/ThemeContext";
 import { 
   getThemeClasses, 
-  combineThemeClasses, 
-  conditionalThemeClasses,
   cn,
-  responsiveClasses 
-} from "./theme-classes";
+  componentBaseStyles
+} from "./theme";
 
 // ================================
 // HOOK PRINCIPAL DE TEMA
@@ -21,16 +19,29 @@ export function useThemeClasses() {
     isDark,
     isLight,
     
-    // Funções de classe
+    // Funções de classe baseadas nas variáveis CSS
     get: (path: string) => getThemeClasses(theme, path),
-    combine: (...paths: string[]) => combineThemeClasses(theme, ...paths),
-    conditional: (condition: boolean, truePath: string, falsePath: string) => 
-      conditionalThemeClasses(theme, condition, truePath, falsePath),
+    
+    // Acesso aos estilos de componente
+    styles: componentBaseStyles,
     
     // Utilitários
     cn: (...classes: (string | undefined | null | false)[]) => cn(...classes),
-    responsive: (base: string, sm?: string, md?: string, lg?: string, xl?: string) =>
-      responsiveClasses(base, sm, md, lg, xl),
+    
+    // Função para classes responsivas
+    responsive: (base: string, sm?: string, md?: string, lg?: string, xl?: string) => {
+      const classes = [base];
+      if (sm) classes.push(`sm:${sm}`);
+      if (md) classes.push(`md:${md}`);
+      if (lg) classes.push(`lg:${lg}`);
+      if (xl) classes.push(`xl:${xl}`);
+      return classes.join(" ");
+    },
+    
+    // Compatibilidade legada
+    combine: (...paths: string[]) => paths.map(path => getThemeClasses(theme, path)).filter(Boolean).join(" "),
+    conditional: (condition: boolean, truePath: string, falsePath: string) => 
+      getThemeClasses(theme, condition ? truePath : falsePath),
   };
 }
 
@@ -41,12 +52,13 @@ export function useThemeClasses() {
 /**
  * Hook para classes de card
  */
-export function useCardClasses(additionalClasses?: string) {
-  const { get, cn } = useThemeClasses();
+export function useCardClasses(variant: "default" | "elevated" | "outlined" | "interactive" = "default", additionalClasses?: string) {
+  const { cn, styles } = useThemeClasses();
   
   return cn(
-    get("card"),
-    "rounded-lg p-6 transition-all duration-200",
+    styles.card.base,
+    styles.card[variant],
+    "p-6 transition-all duration-200",
     additionalClasses
   );
 }
@@ -83,7 +95,37 @@ export function useButtonClasses(
   size: "sm" | "md" | "lg" = "md",
   additionalClasses?: string
 ) {
-  const { get, cn } = useThemeClasses();
+  const { cn, styles } = useThemeClasses();
+  
+  // Mapear variantes antigas para novas
+  const variantMapping: Record<string, string> = {
+    "primary": "primary",
+    "secondary": "secondary",
+    "ghost": "ghost",
+    "danger": "error", // Mapeando para o nome padronizado
+    "success": "success",
+    "warning": "warning",
+    "info": "info",
+    
+    // Cores adicionais
+    "purple": "bg-purple-600 hover:bg-purple-700 text-white",
+    "pink": "bg-pink-600 hover:bg-pink-700 text-white",
+    "indigo": "bg-indigo-600 hover:bg-indigo-700 text-white",
+    "orange": "bg-orange-600 hover:bg-orange-700 text-white",
+    "teal": "bg-teal-600 hover:bg-teal-700 text-white",
+    
+    // Gradientes
+    "primary-gradient": "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white",
+    "success-gradient": "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white",
+    "warning-gradient": "bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white",
+    "danger-gradient": "bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white",
+    "info-gradient": "bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white",
+    "purple-gradient": "bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white",
+    "pink-gradient": "bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white",
+    "indigo-gradient": "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white",
+    "orange-gradient": "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white",
+    "teal-gradient": "bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white",
+  };
   
   const sizeClasses = {
     sm: "px-3 py-1.5 text-sm",
@@ -91,10 +133,15 @@ export function useButtonClasses(
     lg: "px-6 py-3 text-lg",
   };
   
+  // Usar o estilo baseado em CSS var quando for uma cor básica, ou usar classes diretas para gradientes e cores específicas
+  const mappedVariant = variantMapping[variant] || "primary";
+  const variantClasses = styles.button[mappedVariant as keyof typeof styles.button] || variantMapping[variant];
+  
   return cn(
-    get(`button.${variant}`),
+    styles.button.base,
+    variantClasses,
     sizeClasses[size],
-    "rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2",
+    "shadow-sm hover:shadow-md",
     additionalClasses
   );
 }
@@ -170,21 +217,34 @@ export function useStatusClasses(
  * Hook para classes de badge
  */
 export function useBadgeClasses(
-  variant: "success" | "warning" | "error" | "info" | "purple" = "info",
+  variant: "primary" | "secondary" | "success" | "warning" | "error" | "info" | "purple" = "info",
   size: "sm" | "md" = "sm",
   additionalClasses?: string
 ) {
-  const { get, cn } = useThemeClasses();
+  const { cn, styles } = useThemeClasses();
   
   const sizeClasses = {
     sm: "px-2 py-1 text-xs",
     md: "px-3 py-1.5 text-sm",
   };
   
+  // Mapeamento de variantes antigas para novas
+  const variantMapping: Record<string, keyof typeof styles.badge> = {
+    "success": "success",
+    "warning": "warning",
+    "error": "error",
+    "info": "info",
+    "purple": "primary", // fallback
+    "primary": "primary",
+    "secondary": "secondary"
+  };
+  
+  const mappedVariant = variantMapping[variant] || "info";
+  
   return cn(
-    get(`status.${variant}`),
+    styles.badge.base,
+    styles.badge[mappedVariant],
     sizeClasses[size],
-    "rounded-full font-medium border",
     additionalClasses
   );
 }
