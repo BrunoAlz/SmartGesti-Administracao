@@ -37,6 +37,42 @@ export const ButtonsUIKit: React.FC = () => {
         </p>
       </div>
 
+      {/* Efeitos Interativos - NOVA SEÇÃO */}
+      <ComponentSection
+        title="✨ Novos Efeitos Interativos"
+        description="Os botões agora possuem efeitos avançados de hover, focus e feedback visual"
+      >
+        <ComponentShowcase
+          title="Demonstração de Efeitos"
+          description="Passe o mouse sobre os botões para ver os efeitos de hover, escala e sombras coloridas"
+          component={
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="flex flex-col items-center gap-2">
+                <Button variant="primary">Efeito de Escala</Button>
+                <p className="text-xs text-gray-500">Hover para escala 1.02x</p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Button variant="danger">Sombra Colorida</Button>
+                <p className="text-xs text-gray-500">Sombra vermelha no hover</p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Button variant="success">Anel de Foco</Button>
+                <p className="text-xs text-gray-500">Tab para ver o foco</p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Button variant="primary-gradient">Gradiente Interativo</Button>
+                <p className="text-xs text-gray-500">Cores múltiplas + glow</p>
+              </div>
+            </div>
+          }
+          code={`// Botões com efeitos interativos
+<Button variant="primary">Efeito de Escala</Button>
+<Button variant="danger">Sombra Colorida</Button>
+<Button variant="success">Anel de Foco</Button>
+<Button variant="primary-gradient">Gradiente Interativo</Button>`}
+        />
+      </ComponentSection>
+
       {/* Botões Básicos */}
       <ComponentSection
         title="Botões Básicos"

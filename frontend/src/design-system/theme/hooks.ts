@@ -18,6 +18,37 @@ import { type ButtonVariant, type BadgeVariant, type ComponentSize } from './typ
 export function useThemeClasses() {
   const { theme, isDark, isLight } = useThemeContext();
 
+  // Função para obter classes de anel de foco baseadas na variante
+  const getFocusRing = (variant: string): string => {
+    // Map de variantes para suas cores de foco correspondentes
+    const focusRingColors: Record<string, string> = {
+      'primary': 'focus:ring-blue-500',
+      'secondary': 'focus:ring-gray-400',
+      'success': 'focus:ring-green-500',
+      'danger': 'focus:ring-red-500',
+      'warning': 'focus:ring-yellow-500',
+      'info': 'focus:ring-blue-400',
+      'purple': 'focus:ring-purple-500',
+      'pink': 'focus:ring-pink-500',
+      'indigo': 'focus:ring-indigo-500',
+      'orange': 'focus:ring-orange-500',
+      'teal': 'focus:ring-teal-500',
+      'primary-gradient': 'focus:ring-blue-500',
+      'success-gradient': 'focus:ring-green-500',
+      'danger-gradient': 'focus:ring-red-500',
+      'warning-gradient': 'focus:ring-yellow-500',
+      'info-gradient': 'focus:ring-blue-400',
+      'purple-gradient': 'focus:ring-purple-500',
+      'pink-gradient': 'focus:ring-pink-500',
+      'indigo-gradient': 'focus:ring-indigo-500',
+      'orange-gradient': 'focus:ring-orange-500',
+      'teal-gradient': 'focus:ring-teal-500',
+    };
+    
+    // Retorna a classe de foco para a variante específica ou padrão para primary
+    return focusRingColors[variant] || 'focus:ring-blue-500';
+  };
+
   return {
     // Estados do tema
     theme,
@@ -26,6 +57,7 @@ export function useThemeClasses() {
     
     // Funções de classe baseadas no tema
     get: (path: string) => getThemeClasses(theme, path),
+    getFocusRing, // Nova função para obter anéis de foco
     
     // Acesso aos estilos de componente
     styles: componentBaseStyles,
@@ -84,7 +116,7 @@ export function useButtonClasses(
   size: "sm" | "md" | "lg" = "md",
   additionalClasses?: string
 ) {
-  const { cn, styles, gradients } = useThemeClasses();
+  const { cn, styles, gradients, getFocusRing } = useThemeClasses();
   
   let variantClass = '';
   
@@ -98,9 +130,13 @@ export function useButtonClasses(
     variantClass = styles.button[buttonKey] || styles.button.primary;
   }
   
+  // Obter o anel de foco específico para esta variante
+  const focusRingClass = getFocusRing(variant);
+  
   return cn(
     styles.button.base,
     variantClass,
+    focusRingClass,
     styles.button[size] || styles.button.md,
     additionalClasses
   );

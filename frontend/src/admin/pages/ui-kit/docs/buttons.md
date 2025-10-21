@@ -4,6 +4,14 @@
 
 Sistema completo de botões com **22 variantes** divididas entre normais (sólidos) e gradientes (vibrantes). Totalmente compatível com modo claro/escuro e responsivo.
 
+### ✨ Novos Recursos
+
+- **Efeito de Escala no Hover**: Todos os botões aumentam ligeiramente (scale: 1.02) ao passar o mouse
+- **Sombras Coloridas**: Sombras com cores específicas para cada variante
+- **Transições Suaves**: Animações de 300ms para todas as alterações de estado
+- **Gradientes Melhorados**: Gradientes mais vibrantes com múltiplas cores
+- **Foco Aprimorado**: Anéis de foco personalizados para maior acessibilidade
+
 ---
 
 ## 🎨 Variantes Disponíveis
@@ -29,6 +37,8 @@ Para uso profissional, corporativo e interfaces limpas:
 ### **Botões Gradientes (10 cores)**
 Para call-to-actions, conversões e elementos de destaque:
 
+> **Novidade**: Todos os botões gradientes agora possuem efeitos avançados de interatividade com transições suaves, sombras coloridas e efeito de escala ao passar o mouse.
+
 ```typescript
 <Button variant="primary-gradient">Principal Gradiente</Button>      // CTA principal
 <Button variant="success-gradient">Sucesso Gradiente</Button>        // Começar, confirmar
@@ -40,6 +50,34 @@ Para call-to-actions, conversões e elementos de destaque:
 <Button variant="pink-gradient">Rosa Gradiente</Button>              // Social, engajamento
 <Button variant="indigo-gradient">Índigo Gradiente</Button>          // Tecnologia
 <Button variant="cyan-gradient">Ciano Gradiente</Button>             // Inovação, futuro
+```
+
+---
+
+## 🎭 Efeitos Interativos
+
+Os botões do SmartGesTI agora possuem efeitos avançados de interatividade para melhorar a experiência do usuário:
+
+### Efeitos de Hover
+- **Escala**: Todos os botões aumentam ligeiramente (scale: 1.02) para feedback tátil
+- **Sombras Coloridas**: Cada variante possui uma sombra com sua cor correspondente
+- **Transições**: Todas as mudanças de estado possuem transições suaves de 300ms
+
+### Efeitos de Foco
+- **Anel de Foco**: Destaque visual ao navegar pelo teclado (acessibilidade)
+- **Cor Específica**: Cada variante tem seu próprio anel de foco colorido
+
+### Efeito nos Gradientes
+Os gradientes possuem efeitos especiais que os tornam ainda mais interativos:
+- **Múltiplas Cores**: Gradientes compostos por 3 cores diferentes
+- **Mudança de Saturação**: As cores ficam mais saturadas no hover
+- **Glow Sutil**: Efeito de brilho na sombra ao passar o mouse
+
+```typescript
+// Exemplo de botão com todos os efeitos
+<Button variant="primary-gradient">
+  Botão Interativo
+</Button>
 ```
 
 ---

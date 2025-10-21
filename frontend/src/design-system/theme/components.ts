@@ -19,24 +19,24 @@ export const componentBaseStyles = {
   
   // Buttons
   button: {
-    base: 'rounded-md px-4 py-2 font-medium inline-flex items-center justify-center transition-all duration-200 focus:outline-none',
-    primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm',
-    secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white',
+    base: 'rounded-md font-medium inline-flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-50',
+    primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow hover:scale-[1.02]',
+    secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white hover:scale-[1.02]',
     ghost: 'bg-transparent hover:bg-gray-100 text-gray-700 dark:hover:bg-white/10 dark:text-gray-200',
-    danger: 'bg-red-500 hover:bg-red-600 text-white',
-    success: 'bg-green-500 hover:bg-green-600 text-white',
-    warning: 'bg-yellow-500 hover:bg-yellow-600 text-white',
-    info: 'bg-blue-500 hover:bg-blue-600 text-white',
-    purple: 'bg-purple-600 hover:bg-purple-700 text-white',
-    pink: 'bg-pink-500 hover:bg-pink-600 text-white',
-    indigo: 'bg-indigo-600 hover:bg-indigo-700 text-white',
-    orange: 'bg-orange-500 hover:bg-orange-600 text-white',
-    teal: 'bg-teal-500 hover:bg-teal-600 text-white',
+    danger: 'bg-red-500 hover:bg-red-600 text-white shadow-sm hover:shadow hover:shadow-red-500/30 hover:scale-[1.02]',
+    success: 'bg-green-500 hover:bg-green-600 text-white shadow-sm hover:shadow hover:shadow-green-500/30 hover:scale-[1.02]',
+    warning: 'bg-yellow-500 hover:bg-yellow-600 text-white shadow-sm hover:shadow hover:shadow-yellow-500/30 hover:scale-[1.02]',
+    info: 'bg-blue-500 hover:bg-blue-600 text-white shadow-sm hover:shadow hover:shadow-blue-500/30 hover:scale-[1.02]',
+    purple: 'bg-purple-600 hover:bg-purple-700 text-white shadow-sm hover:shadow hover:shadow-purple-500/30 hover:scale-[1.02]',
+    pink: 'bg-pink-500 hover:bg-pink-600 text-white shadow-sm hover:shadow hover:shadow-pink-500/30 hover:scale-[1.02]',
+    indigo: 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm hover:shadow hover:shadow-indigo-500/30 hover:scale-[1.02]',
+    orange: 'bg-orange-500 hover:bg-orange-600 text-white shadow-sm hover:shadow hover:shadow-orange-500/30 hover:scale-[1.02]',
+    teal: 'bg-teal-500 hover:bg-teal-600 text-white shadow-sm hover:shadow hover:shadow-teal-500/30 hover:scale-[1.02]',
     
-    // Tamanhos
-    sm: 'text-sm px-3 py-1',
-    md: 'text-base px-4 py-2',
-    lg: 'text-lg px-6 py-3',
+    // Tamanhos com design responsivo melhorado
+    sm: 'text-xs px-2.5 py-1 rounded-md',
+    md: 'text-sm px-3.5 py-1.5 rounded-md',
+    lg: 'text-base px-4.5 py-2.5 rounded-lg',
   },
   
   // Badge

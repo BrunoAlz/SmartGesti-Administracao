@@ -73,14 +73,8 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const { get } = useThemeClasses();
+  const { get, styles } = useThemeClasses();
   const buttonClasses = useButtonClasses(variant, size);
-  
-  const sizeClasses = {
-    sm: "px-2 py-1 text-xs",
-    md: "px-3 py-1.5 text-sm",
-    lg: "px-4 py-2 text-base",
-  };
   
   // Função para determinar a cor do ícone baseada no variant
   const getIconClasses = (variant: string, size: string) => {
@@ -103,7 +97,6 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       className={cn(
         buttonClasses,
-        sizeClasses[size],
         fullWidth && "w-full",
         isDisabled && "opacity-50 cursor-not-allowed",
         loading && "cursor-wait",
@@ -173,12 +166,6 @@ export const IconButton: React.FC<IconButtonProps> = ({
   const { get } = useThemeClasses();
   const buttonClasses = useButtonClasses(variant, size);
   
-  const sizeClasses = {
-    sm: "p-1",
-    md: "p-1.5",
-    lg: "p-2",
-  };
-  
   // Função para determinar a cor do ícone baseada no variant
   const getIconClasses = (variant: string, size: string) => {
     const sizeClass = size === "sm" ? "w-4 h-4" : size === "lg" ? "w-6 h-6" : "w-5 h-5";
@@ -207,7 +194,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
       <button
         className={cn(
           buttonClasses,
-          sizeClasses[size],
+          size === 'sm' ? 'p-1' : size === 'md' ? 'p-1.5' : 'p-2',
           "rounded-full",
           className
         )}
