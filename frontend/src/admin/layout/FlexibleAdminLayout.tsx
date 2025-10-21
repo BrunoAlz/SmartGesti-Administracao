@@ -150,10 +150,14 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar Left - visível apenas no modo padrão ou compact */}
         {(layoutMode === "default" || layoutMode === "compact") && (
-          <SimpleAdminSidebar
-            isCollapsed={layoutMode === "compact" ? true : sidebarCollapsed}
-            onToggle={toggleSidebar}
-          />
+          <div className="transition-all duration-300 ease-in-out" style={{ 
+            width: layoutMode === "compact" || sidebarCollapsed ? '4rem' : '16rem',
+          }}>
+            <SimpleAdminSidebar
+              isCollapsed={layoutMode === "compact" ? true : sidebarCollapsed}
+              onToggle={toggleSidebar}
+            />
+          </div>
         )}
 
         {/* Conteúdo Principal - sempre presente, adapta à largura total quando não tem sidebar */}

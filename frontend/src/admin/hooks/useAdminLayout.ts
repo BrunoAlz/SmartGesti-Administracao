@@ -48,9 +48,17 @@ export const useAdminLayout = () => {
     setSidebarCollapsed((prev) => {
       const newValue = !prev;
       localStorage.setItem("admin-sidebar-collapsed", String(newValue));
+      console.log("Sidebar toggle - novo estado:", newValue);
+      
+      // Se estiver no modo compacto e tentar expandir, mude para o modo default
+      if (layoutMode === "compact" && !prev) {
+        setLayoutMode("default");
+        localStorage.setItem("admin-layout-mode", "default");
+      }
+      
       return newValue;
     });
-  }, []);
+  }, [layoutMode]);
 
   // Função para mudar o modo de layout
   const changeLayoutMode = useCallback((mode: LayoutMode) => {

@@ -53,8 +53,8 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
           SmartGesTI Admin
         </h1>
         
-        {/* Botão de toggle - apenas no layout padrão e quando o sidebar estiver visível */}
-        {layoutMode === "default" && isSidebarVisible && (
+        {/* Botão de toggle - visível nos modos padrão e compacto */}
+        {(layoutMode === "default" || layoutMode === "compact") && (
           <button
             onClick={toggleSidebar}
             className={`p-2 rounded-lg transition-all ${getThemeClasses(

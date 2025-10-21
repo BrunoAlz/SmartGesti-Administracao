@@ -64,12 +64,20 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
     );
   };
 
+  // Garantir que o componente re-renderize quando isCollapsed mudar
+  console.log("Sidebar isCollapsed state:", isCollapsed);
+  
+  // Forçar a largura com base no estado isCollapsed
+  const sidebarWidth = isCollapsed ? '4rem' : '16rem'; // Equivalente a w-16 e w-64
+  
   return (
     <div
-      className={`h-full border-r transition-all duration-300 flex flex-col ${
-        isCollapsed ? "w-16 sidebar-collapsed" : "w-64"
-      } ${getThemeClasses(theme.theme, "sidebar")} ${className}`}
-      style={{ overflow: 'visible' }} // Garantir que o menu expandido não seja cortado
+      className={`h-full border-r transition-all duration-300 ease-in-out flex flex-col w-full
+        ${isCollapsed ? "sidebar-collapsed" : ""} 
+        ${getThemeClasses(theme.theme, "sidebar")} ${className}`}
+      style={{ 
+        overflow: 'visible', // Garantir que o menu expandido não seja cortado
+      }}
     >
       {/* Cabeçalho removido - controles movidos para o Navbar */}
       

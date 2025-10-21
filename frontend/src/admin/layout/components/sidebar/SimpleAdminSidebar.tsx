@@ -19,6 +19,7 @@ export const SimpleAdminSidebar: React.FC<SimpleAdminSidebarProps> = ({
   isCollapsed,
   onToggle,
 }) => {
+  console.log("SimpleAdminSidebar recebeu isCollapsed:", isCollapsed);
   return (
     <AdminSidebar
       isCollapsed={isCollapsed}

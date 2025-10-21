@@ -130,3 +130,10 @@
 .sidebar-collapsed .sidebar-scrollbar:hover::-webkit-scrollbar {
   width: 4px;
 }
+
+/* Garantindo transição suave para a sidebar */
+.sidebar-collapsed {
+  width: 4rem !important;
+  min-width: 4rem !important;
+  transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out;
+}
