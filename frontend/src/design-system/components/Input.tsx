@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useId } from "react";
 import { useTextClasses, useThemeClasses } from "../hooks";
-import { cn } from "../theme-classes";
+import { cn } from "../theme/classes";
 import { Eye, EyeOff, AlertCircle, CheckCircle, Loader2 } from "lucide-react";
 
 // ================================

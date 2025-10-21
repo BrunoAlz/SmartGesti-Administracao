@@ -95,58 +95,66 @@ Todas as variáveis são aplicadas dinamicamente via JS usando applyTheme()
   --color-error-600-rgb: 220, 38, 38;
 }
 
-/* Variáveis semânticas com fallback */
+/* Variáveis semânticas para tema claro (padrão) */
 :root {
-  /* Tema claro é default */
-  --text-primary: var(--color-secondary-900);
-  --text-secondary: var(--color-secondary-700);
-  --text-muted: var(--color-secondary-500);
+  /* Backgrounds */
+  --bg-page: #f9fafb;
+  --bg-card: #ffffff;
+  --bg-muted: #f3f4f6;
   
-  --bg-page: var(--color-secondary-50);
-  --bg-card: white;
-  --bg-card-offset: var(--color-secondary-50);
+  /* Texto */
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --text-inverted: #ffffff;
   
-  --border-subtle: var(--color-secondary-100);
-  --border-default: var(--color-secondary-200);
-  --border-strong: var(--color-secondary-300);
+  /* Bordas */
+  --border-default: #e5e7eb;
+  --border-subtle: #f3f4f6;
   
-  --input-bg: white;
-  --input-border: var(--color-secondary-300);
-  --input-text: var(--color-secondary-900);
-  --input-placeholder: var(--color-secondary-500);
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-text: #111827;
+  --input-placeholder: #9ca3af;
   
-  --focus-ring: var(--color-primary-500);
-  --hover-overlay: rgba(0, 0, 0, 0.05);
+  /* Estados */
+  --focus-ring: rgba(59, 130, 246, 0.5);
   
-  /* Linhas divisórias - com contraste aumentado para visibilidade */
-  --divider-color: var(--color-secondary-400);
-  --dotted-color: var(--color-secondary-500);
-  --dashed-color: var(--color-secondary-400);
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Tema escuro (para desenvolvimento) */
-.dark {
-  --border-subtle: rgba(255, 255, 255, 0.05);    /* +0.03 para melhor visibilidade */
-  --border-default: rgba(255, 255, 255, 0.08);   /* +0.04 para melhor visibilidade */
-  --border-strong: rgba(255, 255, 255, 0.12);    /* +0.04 para melhor visibilidade */
-  --hover-overlay: rgba(255, 255, 255, 0.02);
+/* Variáveis para tema escuro */
+html.dark {
+  /* Backgrounds */
+  --bg-page: #111827;
+  --bg-card: #1f2937;
+  --bg-muted: #374151;
   
-  /* Linhas divisórias com contraste reduzido */
-  --divider-color: rgba(255, 255, 255, 0.07);
-  --dotted-color: rgba(255, 255, 255, 0.07);
-  --dashed-color: rgba(255, 255, 255, 0.07);
-}
-
-/* 
-  Estilos para variantes - cada componente pode usar --variant-bg, --variant-text, etc.
-  As regras específicas são aplicadas via JavaScript com applyTheme()
-*/
-
-/* Configuração para "preflight" do Tailwind */
-html {
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  font-family: 'Inter', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  /* Texto */
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  --text-inverted: #111827;
+  
+  /* Bordas */
+  --border-default: #374151;
+  --border-subtle: #1f2937;
+  
+  /* Inputs */
+  --input-bg: #1f2937;
+  --input-border: #4b5563;
+  --input-text: #f9fafb;
+  --input-placeholder: #6b7280;
+  
+  /* Estados */
+  --focus-ring: rgba(59, 130, 246, 0.7);
+  
+  /* Shadows - mais sutis no tema escuro */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTextClasses, useThemeClasses } from "../hooks";
-import { cn } from "../theme-classes";
+import { cn } from "../theme/classes";
 
 // ================================
 // TIPOS

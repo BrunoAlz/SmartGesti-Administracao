@@ -1,6 +1,6 @@
 import React from "react";
 import { useThemeClasses } from "../hooks";
-import { cn } from "../theme-classes";
+import { cn } from "../theme/classes";
 import { Loader2, Clock, AlertCircle } from "lucide-react";
 
 // ================================

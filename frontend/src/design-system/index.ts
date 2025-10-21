@@ -2,7 +2,7 @@
 // DESIGN SYSTEM - SmartGesTI
 // ================================
 
-// Sistema de Tema
+// Sistema de Tema - Importando de './theme' que aponta para './theme/index.ts'
 export {
   // Tipos
   type Theme,
@@ -37,6 +37,7 @@ export {
   commonClasses,
   cn,
   responsiveClasses,
+  themeClasses,
   
   // Design Tokens
   designTokens,
@@ -100,7 +101,7 @@ export type {
   ToggleButtonProps,
   FloatingActionButtonProps
 } from "./components/Button";
-export type { ButtonVariant, BadgeVariant, CardVariant, ComponentSize } from "./components/types";
+export type { CardVariant } from "./components/types";
 
 export {
   default as Input,

@@ -2,7 +2,7 @@ import React from "react";
 import Swal from "sweetalert2";
 import { X } from "lucide-react";
 import { useThemeClasses } from "../hooks";
-import { cn } from "../theme-classes";
+import { cn } from "../theme/classes";
 
 export type ModalVariant = "success" | "error" | "warning" | "info" | "question";
 

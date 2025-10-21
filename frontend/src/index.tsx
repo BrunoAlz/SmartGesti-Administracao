@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import "./design-system/theme-variables.css"; // Importar variáveis CSS globais de tema
+import "./design-system/theme/variables.css"; // Importar variáveis CSS globais de tema
 import App from "./App";
 
 

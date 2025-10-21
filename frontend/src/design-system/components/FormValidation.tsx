@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { useThemeClasses } from "../hooks";
-import { cn } from "../theme-classes";
+import { cn } from "../theme/classes";
 
 // ================================
 // TIPOS

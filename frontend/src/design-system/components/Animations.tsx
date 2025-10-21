@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import { cn } from "../theme-classes";
+import { cn } from "../theme/classes";
 
 // ================================
 // TIPOS

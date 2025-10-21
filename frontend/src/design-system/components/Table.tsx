@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useCardClasses, useTextClasses, useIconClasses } from "../hooks";
-import { cn } from "../theme-classes";
+import { cn } from "../theme/classes";
 import { 
   ChevronUp, 
   ChevronDown, 
