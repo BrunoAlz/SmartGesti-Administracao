@@ -62,29 +62,25 @@ const Card: React.FC<CardProps> = ({
   const borderClasses = border ? `border ${get("border.secondary")}` : "";
   
   const variantClasses = {
-    default: cardBaseClasses,
-    elevated: cn(cardBaseClasses, "shadow-lg"),
-    outlined: cn(cardBaseClasses, "border-2"),
-    filled: cn(cardBaseClasses, "bg-opacity-50"),
-  };
-  
-  const shadowClasses = {
+    default: cn(cardBaseClasses, "shadow-sm shadow-slate-200/50 dark:shadow-md hover:shadow-md hover:shadow-slate-300/50 dark:hover:shadow-lg"),
+    elevated: cn(cardBaseClasses, "shadow-md shadow-slate-300/50 dark:shadow-lg hover:shadow-lg hover:shadow-slate-400/50 dark:hover:shadow-xl"),
+    outlined: cn(cardBaseClasses, "border-2 shadow-sm shadow-slate-200/40 dark:shadow-md hover:shadow-md hover:shadow-slate-300/50 dark:hover:shadow-lg"),
+    filled: cn(cardBaseClasses, "bg-opacity-50 shadow-sm shadow-slate-200/40 dark:shadow-md hover:shadow-md hover:shadow-slate-300/50 dark:hover:shadow-lg"),
+  };  const shadowClasses = {
     0: "",
-    1: "shadow-sm",
-    2: "shadow-md",
+    1: "shadow-md hover:shadow-lg",
+    2: "shadow-lg hover:shadow-xl",
   };
   
   const paddingClasses = {
     none: "",
     sm: "p-2",
-    md: "p-4",
+    md: "p-3",
     lg: "p-6",
   };
-  
-  const hoverClasses = hover ? "hover:bg-gray-50 dark:hover:bg-white/5" : "";
-  const interactiveClasses = interactive ? "cursor-pointer" : "";
-  
-  return (
+
+  const hoverClasses = hover ? "hover:bg-slate-100/70 dark:hover:bg-white/10 hover:scale-[1.02] transition-all duration-200" : "";
+  const interactiveClasses = interactive ? "cursor-pointer" : "";  return (
     <Component
       className={cn(
         baseClasses,
@@ -246,10 +242,10 @@ const StatCard: React.FC<StatCardProps> = ({
       <Card border={border} className={cn(className)} padding="none">
         <CardContent className="flex items-center justify-between">
           <div className="flex-1">
-            <div className="h-4 w-20 bg-gray-200 dark:bg-white/10 rounded animate-pulse mb-2" />
-            <div className="h-6 w-12 bg-gray-200 dark:bg-white/10 rounded animate-pulse" />
+            <div className="h-4 w-20 bg-slate-200 dark:bg-white/10 rounded animate-pulse mb-2" />
+            <div className="h-6 w-12 bg-slate-300 dark:bg-white/20 rounded animate-pulse" />
           </div>
-          <div className="w-6 h-6 rounded-md bg-gray-200 dark:bg-white/10 animate-pulse" />
+          <div className="w-6 h-6 rounded-md bg-slate-200 dark:bg-white/10 animate-pulse" />
         </CardContent>
       </Card>
     );
@@ -325,14 +321,14 @@ const SectionCard: React.FC<SectionCardProps> = ({
   const { cn } = useThemeClasses();
   return (
     <Card border={border} className={cn(className)} padding="none">
-      <CardHeader className="flex items-start justify-between gap-2">
+      <CardHeader className="flex items-start justify-between gap-2 p-4 pb-3">
         <div>
           <CardTitle>{title}</CardTitle>
           {description && <CardDescription>{description}</CardDescription>}
         </div>
         {actions}
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <CardContent className="px-4 pb-4">{children}</CardContent>
     </Card>
   );
 };

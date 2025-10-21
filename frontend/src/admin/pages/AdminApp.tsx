@@ -14,6 +14,7 @@ import { ClientProfile } from "./saas/ClientProfile";
 
 // UI Kit Pages
 import { ButtonsUIKit, BadgesUIKit } from "./ui-kit";
+import CardsUIKit from "./ui-kit/CardsUIKit";
 
 // ================================
 // COMPONENT ROTA PROTEGIDA
@@ -79,17 +80,7 @@ export const AdminApp: React.FC = () => {
             {/* UI Kit */}
             <Route path="ui-kit/buttons" element={<ButtonsUIKit />} />
             <Route path="ui-kit/badges" element={<BadgesUIKit />} />
-            <Route 
-              path="ui-kit/cards" 
-              element={
-                <div className="p-6">
-                  <h1 className="text-2xl font-bold mb-4">Cards</h1>
-                  <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <p className="text-gray-600">Página em desenvolvimento...</p>
-                  </div>
-                </div>
-              } 
-            />
+            <Route path="ui-kit/cards" element={<CardsUIKit />} />
             <Route 
               path="ui-kit/inputs" 
               element={
