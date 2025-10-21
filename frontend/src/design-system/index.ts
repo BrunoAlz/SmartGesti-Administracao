@@ -80,6 +80,11 @@ export {
 export type { SectionDividerProps } from "./components/SectionDivider";
 
 export {
+  default as Typography,
+} from "./components/Typography";
+export type { TypographyProps } from "./components/Typography";
+
+export {
   Badge,
   BadgeGroup,
 } from "./components/Badge";

@@ -242,6 +242,12 @@ export const adminSidebarConfig: SidebarConfig = {
               path: "/admin/ui-kit/animations",
               icon: BarChart,
             },
+            {
+              id: "ui-typography",
+              label: "Tipografia",
+              path: "/admin/ui-kit/typography",
+              icon: Type,
+            },
           ],
         },
         {
