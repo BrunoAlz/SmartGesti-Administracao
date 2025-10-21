@@ -69,7 +69,7 @@ export const ComponentShowcase: React.FC<ComponentShowcaseProps> = ({
         {!showCode ? (
           <div className={cn(
             "p-6 rounded-lg border-2 border-dashed min-h-[100px] flex items-center justify-center",
-            get("border.secondary"),
+            "border-gray-200 dark:border-white/[0.07]",
             get("background.secondary")
           )}>
             {component}

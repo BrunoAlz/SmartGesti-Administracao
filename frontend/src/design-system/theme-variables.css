@@ -117,6 +117,24 @@ Todas as variáveis são aplicadas dinamicamente via JS usando applyTheme()
   
   --focus-ring: var(--color-primary-500);
   --hover-overlay: rgba(0, 0, 0, 0.05);
+  
+  /* Linhas divisórias - com contraste aumentado para visibilidade */
+  --divider-color: var(--color-secondary-400);
+  --dotted-color: var(--color-secondary-500);
+  --dashed-color: var(--color-secondary-400);
+}
+
+/* Tema escuro (para desenvolvimento) */
+.dark {
+  --border-subtle: rgba(255, 255, 255, 0.05);    /* +0.03 para melhor visibilidade */
+  --border-default: rgba(255, 255, 255, 0.08);   /* +0.04 para melhor visibilidade */
+  --border-strong: rgba(255, 255, 255, 0.12);    /* +0.04 para melhor visibilidade */
+  --hover-overlay: rgba(255, 255, 255, 0.02);
+  
+  /* Linhas divisórias com contraste reduzido */
+  --divider-color: rgba(255, 255, 255, 0.07);
+  --dotted-color: rgba(255, 255, 255, 0.07);
+  --dashed-color: rgba(255, 255, 255, 0.07);
 }
 
 /* 

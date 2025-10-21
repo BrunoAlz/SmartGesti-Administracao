@@ -8,6 +8,7 @@ export { default as CardsUIKit } from "./CardsUIKit";
 export { default as InputsUIKit } from "./InputsUIKit";
 export { default as AlertsUIKit } from "./AlertsUIKit";
 export { default as LoadingUIKit } from "./LoadingUIKit";
+export { default as DividersUIKit } from "./DividersUIKit";
 
 // Componentes auxiliares
 export { ComponentShowcase, ComponentSection } from "./components/ComponentShowcase";

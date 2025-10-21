@@ -81,7 +81,7 @@ const SectionDivider: React.FC<SectionDividerProps> = ({
           {title}
         </h2>
         
-        <div className={cn("flex-1 h-px mx-4 border-t", get("border.secondary"))}></div>
+        <div className="flex-1 h-px mx-4 bg-[var(--divider-color)]"></div>
         
         {badge && (
           <div className={badgeClasses}>

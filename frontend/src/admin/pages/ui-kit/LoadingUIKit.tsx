@@ -550,7 +550,7 @@ export const LoadingUIKit: React.FC = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className={cn("p-8 border-2 border-dashed rounded-lg text-center", get("border"))}>
+                <div className={cn("p-8 border-2 border-dashed rounded-lg text-center border-gray-200 dark:border-white/[0.07]")}>
                   <Upload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
                   <p className={cn("text-sm", get("text.secondary"))}>
                     Arraste arquivos ou clique para selecionar

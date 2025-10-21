@@ -50,6 +50,11 @@ export function generateThemeVariables(theme: Theme) {
     // Focus/states
     cssVars['--focus-ring'] = 'var(--color-primary-500)';
     cssVars['--hover-overlay'] = 'rgba(0, 0, 0, 0.05)';
+    
+    // Linhas divisórias e elementos decorativos - com contraste aumentado para visibilidade
+    cssVars['--divider-color'] = 'var(--color-secondary-400)';
+    cssVars['--dotted-color'] = 'var(--color-secondary-500)';
+    cssVars['--dashed-color'] = 'var(--color-secondary-400)';
   } 
   else {
     // Text colors
@@ -60,22 +65,27 @@ export function generateThemeVariables(theme: Theme) {
     // Background colors
     cssVars['--bg-page'] = 'var(--color-secondary-900)';
     cssVars['--bg-card'] = 'rgba(0, 0, 0, 0.2)';
-    cssVars['--bg-card-offset'] = 'rgba(255, 255, 255, 0.05)';
+    cssVars['--bg-card-offset'] = 'rgba(255, 255, 255, 0.01)';
     
-    // Border colors
-    cssVars['--border-subtle'] = 'rgba(255, 255, 255, 0.05)';
-    cssVars['--border-default'] = 'rgba(255, 255, 255, 0.1)';
-    cssVars['--border-strong'] = 'rgba(255, 255, 255, 0.2)';
+    // Border colors - Com visibilidade melhorada para cards e elementos estruturais
+    cssVars['--border-subtle'] = 'rgba(255, 255, 255, 0.05)';    // +0.03 (antes 0.02)
+    cssVars['--border-default'] = 'rgba(255, 255, 255, 0.08)';   // +0.04 (antes 0.04)
+    cssVars['--border-strong'] = 'rgba(255, 255, 255, 0.12)';    // +0.04 (antes 0.08)
+    
+    // Linhas divisórias e elementos decorativos - com contraste reduzido para melhor experiência
+    cssVars['--divider-color'] = 'rgba(255, 255, 255, 0.07)';
+    cssVars['--dotted-color'] = 'rgba(255, 255, 255, 0.07)';
+    cssVars['--dashed-color'] = 'rgba(255, 255, 255, 0.07)';
     
     // Component-specific
     cssVars['--input-bg'] = 'rgba(0, 0, 0, 0.2)';
-    cssVars['--input-border'] = 'rgba(255, 255, 255, 0.2)';
+    cssVars['--input-border'] = 'rgba(255, 255, 255, 0.12)';
     cssVars['--input-text'] = 'white';
     cssVars['--input-placeholder'] = 'var(--color-secondary-400)';
     
     // Focus/states
     cssVars['--focus-ring'] = 'var(--color-primary-400)';
-    cssVars['--hover-overlay'] = 'rgba(255, 255, 255, 0.05)';
+    cssVars['--hover-overlay'] = 'rgba(255, 255, 255, 0.03)';
   }
 
   // Variáveis para componentes específicos baseadas em variantes
@@ -108,8 +118,8 @@ export function generateThemeVariables(theme: Theme) {
     } else {
       cssVars[`--${variant}-bg`] = `var(--color-${mappedColor}-600)`;
       cssVars[`--${variant}-bg-hover`] = `var(--color-${mappedColor}-700)`;
-      cssVars[`--${variant}-bg-subtle`] = `rgba(var(--color-${mappedColor}-400-rgb), 0.2)`;
-      cssVars[`--${variant}-border`] = `rgba(var(--color-${mappedColor}-400-rgb), 0.3)`;
+      cssVars[`--${variant}-bg-subtle`] = `rgba(var(--color-${mappedColor}-400-rgb), 0.15)`;
+      cssVars[`--${variant}-border`] = `rgba(var(--color-${mappedColor}-400-rgb), 0.2)`;
       cssVars[`--${variant}-text`] = `var(--color-${mappedColor}-300)`;
     }
   });
@@ -127,16 +137,16 @@ export function generateThemeVariables(theme: Theme) {
 export const componentBaseStyles = {
   // Layout
   layout: 'bg-[var(--bg-page)] min-h-screen transition-colors duration-200',
-  sidebar: 'bg-[var(--bg-card)] border-[var(--border-default)] backdrop-blur-md transition-colors duration-200',
-  navbar: 'bg-[var(--bg-card)] border-[var(--border-default)] backdrop-blur-md transition-colors duration-200',
-  content: 'bg-[var(--bg-card)] border-[var(--border-default)] transition-colors duration-200',
+  sidebar: 'bg-[var(--bg-card)] border-[var(--border-subtle)] backdrop-blur-md transition-colors duration-200',
+  navbar: 'bg-[var(--bg-card)] border-[var(--border-subtle)] backdrop-blur-md transition-colors duration-200',
+  content: 'bg-[var(--bg-card)] border-[var(--border-subtle)] transition-colors duration-200',
   
   // Card
   card: {
-    base: 'bg-[var(--bg-card)] rounded-lg transition-all duration-200',
+    base: 'bg-[var(--bg-card)] rounded-lg transition-all duration-200 border border-[var(--border-subtle)]',
     default: 'shadow-sm hover:shadow-md',
     elevated: 'shadow-md hover:shadow-lg',
-    outlined: 'border-2 border-[var(--border-default)]',
+    outlined: 'border-2 border-[var(--border-subtle)]',
     interactive: 'cursor-pointer hover:bg-[var(--hover-overlay)]',
   },
   
@@ -191,6 +201,14 @@ export const componentBaseStyles = {
     warning: 'text-[var(--warning-text)]',
     error: 'text-[var(--error-text)]',
     info: 'text-[var(--info-text)]',
+  },
+  
+  // Linhas divisórias - com espessura e contraste ajustados para melhor visibilidade
+  divider: {
+    horizontal: 'h-[1px] w-full bg-[var(--divider-color)]',
+    vertical: 'w-[1px] h-full bg-[var(--divider-color)]',
+    dotted: 'border-t-[1px] border-dotted border-[var(--dotted-color)]',
+    dashed: 'border-t-[1px] border-dashed border-[var(--dashed-color)]',
   },
 };
 

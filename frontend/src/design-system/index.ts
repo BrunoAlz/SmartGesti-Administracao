@@ -60,6 +60,11 @@ export {
 } from "./components/Card";
 
 export {
+  default as Divider,
+} from "./components/Divider";
+export type { DividerProps } from "./components/Divider";
+
+export {
   default as SectionDivider,
   SectionDivider as SectionDividerComponent,
 } from "./components/SectionDivider";
@@ -77,8 +82,17 @@ export {
   ButtonGroup,
   ActionButton,
   ToggleButton,
-  FloatingActionButton,
+  FloatingActionButton
 } from "./components/Button";
+export type { 
+  ButtonProps, 
+  IconButtonProps, 
+  ButtonGroupProps,
+  ActionButtonProps,
+  ToggleButtonProps,
+  FloatingActionButtonProps
+} from "./components/Button";
+export type { ButtonVariant, BadgeVariant, CardVariant, ComponentSize } from "./components/types";
 
 export {
   default as Input,
