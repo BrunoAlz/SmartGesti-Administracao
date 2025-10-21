@@ -16,6 +16,7 @@ import { ClientProfile } from "./saas/ClientProfile";
 import { ButtonsUIKit, BadgesUIKit, InputsUIKit } from "./ui-kit";
 import CardsUIKit from "./ui-kit/CardsUIKit";
 import AlertsUIKit from "./ui-kit/AlertsUIKit";
+import LoadingUIKit from "./ui-kit/LoadingUIKit";
 
 // ================================
 // COMPONENT ROTA PROTEGIDA
@@ -84,6 +85,7 @@ export const AdminApp: React.FC = () => {
             <Route path="ui-kit/cards" element={<CardsUIKit />} />
             <Route path="ui-kit/inputs" element={<InputsUIKit />} />
             <Route path="ui-kit/alerts" element={<AlertsUIKit />} />
+            <Route path="ui-kit/loading" element={<LoadingUIKit />} />
             <Route 
               path="ui-kit/layout" 
               element={

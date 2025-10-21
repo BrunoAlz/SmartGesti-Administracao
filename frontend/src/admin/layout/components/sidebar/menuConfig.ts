@@ -28,6 +28,7 @@ import {
   Table,
   Calendar,
   BarChart,
+  Loader2,
 } from "lucide-react";
 
 // ================================
@@ -210,6 +211,12 @@ export const adminSidebarConfig: SidebarConfig = {
               label: "Inputs & Forms",
               path: "/admin/ui-kit/inputs",
               icon: Type,
+            },
+            {
+              id: "ui-loading",
+              label: "Loading",
+              path: "/admin/ui-kit/loading",
+              icon: Loader2,
             },
             {
               id: "ui-layout",

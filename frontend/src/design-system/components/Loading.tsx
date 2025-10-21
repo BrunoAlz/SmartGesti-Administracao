@@ -178,7 +178,10 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
   return (
     <div
       className={cn(
-        "bg-gray-200 dark:bg-gray-700",
+        // MÁXIMO contraste - gray-400 é MUITO mais visível no light
+        // Light: gray-400 (tom médio-escuro)
+        // Dark: white/10 (padrão que funciona)
+        "bg-gray-400 dark:bg-white/10",
         variantClasses[variant],
         animationClasses[animation],
         className
@@ -214,7 +217,7 @@ const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
     <div className={cn("relative", className)}>
       {children}
       {isLoading && (
-        <div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm flex items-center justify-center z-10">
+        <div className="absolute inset-0 bg-white/60 dark:bg-gray-900/80 backdrop-blur-sm flex items-center justify-center z-10">
           <div className="text-center">
             <LoadingSpinner size={size} />
             <p className={cn("mt-2 font-medium", get("text.primary"), sizeClasses[size])}>
