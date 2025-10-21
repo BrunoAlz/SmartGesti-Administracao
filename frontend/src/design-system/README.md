@@ -1,308 +1,282 @@
-# 🎨 Design System - SmartGesTI
+# 🎨 Design System - SmartGesti
 
-## 📖 Visão Geral
+## � Visão Geral
 
-Sistema de design moderno e eficiente para o SmartGesTI, eliminando a repetição de código e `isDark` em todo o projeto.
+Este é o Design System completo do SmartGesti, que fornece componentes reutilizáveis, hooks personalizados e um sistema de temas consistente para toda a aplicação.
 
-## 🚀 Principais Melhorias
-
-### ❌ **ANTES (Problemático):**
-```tsx
-// Repetitivo e verboso
-<div className={`rounded-lg p-6 transition-all duration-200 hover:scale-105 ${
-  theme.isDark ? "bg-white/5 backdrop-blur-lg border-white/10 shadow-2xl" : "bg-white border-gray-200 shadow-sm"
-}`}>
-  <p className={`text-sm font-medium mb-1 ${
-    theme.isDark ? "text-blue-100" : "text-gray-600"
-  }`}>
-    Título
-  </p>
-</div>
-```
-
-### ✅ **DEPOIS (Eficiente):**
-```tsx
-// Limpo e reutilizável
-<Card hover>
-  <p className={get("text.secondary")}>Título</p>
-</Card>
-```
-
-## 📁 Estrutura do Design System
+## �️ Estrutura
 
 ```
 design-system/
-├── tokens.ts              # Design tokens (cores, espaçamentos, etc.)
-├── theme-classes.ts       # Sistema de classes temáticas
-├── hooks.ts               # Hooks customizados
-├── components/
-│   ├── Card.tsx          # Componentes de card
-│   └── Button.tsx        # Componentes de botão
-└── index.ts              # Exports principais
+├── components/          # Componentes reutilizáveis
+│   └── Button.tsx      # Sistema completo de botões
+├── hooks.ts            # Hooks personalizados para styling
+├── theme-classes.ts    # Classes de tema (light/dark)
+├── tokens.ts           # Tokens de design
+└── README.md           # Esta documentação
 ```
 
 ## 🎯 Como Usar
 
-### **1. Importação Básica**
-```tsx
-import { useThemeClasses, Card, Button } from "@/design-system";
+### 1. **Importações Básicas**
+
+```typescript
+// Componentes
+import { Button } from '@/design-system/components/Button';
+
+// Hooks
+import { useThemeClasses, useButtonClasses, useBadgeClasses } from '@/design-system/hooks';
+
+// Classes de tema
+import { themeClasses } from '@/design-system/theme-classes';
+```
+
+### 2. **Sistema de Temas**
+
+O sistema suporta **modo claro** e **escuro** automaticamente:
+
+```typescript
+const { get, cn } = useThemeClasses();
+
+// Usar classes de tema
+<div className={cn("p-4", get("bg.primary"))}>
+  <h1 className={get("text.primary")}>Título</h1>
+  <p className={get("text.secondary")}>Descrição</p>
+</div>
 ```
 
 ### **2. Hook Principal**
 ```tsx
 const { theme, isDark, get, combine, cn } = useThemeClasses();
+## 🔘 Sistema de Botões
 
-// Obter classes específicas
-const cardClass = get("card");
-const textClass = get("text.primary");
+### **Variantes Disponíveis**
 
-// Combinar múltiplas classes
-const combinedClass = combine("card", "text.primary", "hover.card");
+#### **Botões Normais (Sólidos)**
+```typescript
+// Cores Primárias
+<Button variant="primary">Botão Principal</Button>
+<Button variant="secondary">Botão Secundário</Button>
 
-// Classes condicionais
-const conditionalClass = conditional(true, "button.primary", "button.secondary");
+// Cores de Status
+<Button variant="success">Sucesso</Button>
+<Button variant="danger">Perigo</Button>
+<Button variant="warning">Aviso</Button>
+<Button variant="info">Informação</Button>
+
+// Cores Vibrantes
+<Button variant="purple">Roxo</Button>
+<Button variant="orange">Laranja</Button>
+<Button variant="pink">Rosa</Button>
+<Button variant="indigo">Índigo</Button>
+<Button variant="cyan">Ciano</Button>
+<Button variant="lime">Lima</Button>
 ```
 
-### **3. Componentes Reutilizáveis**
-
-#### **Card**
-```tsx
-<Card variant="elevated" hover padding="lg">
-  <CardHeader title="Título" subtitle="Subtítulo" />
-  <CardContent>
-    Conteúdo do card
-  </CardContent>
-  <CardFooter>
-    <Button>Ação</Button>
-  </CardFooter>
-</Card>
+#### **Botões Gradientes (Vibrantes)**
+```typescript
+// Use o sufixo "-gradient" para efeitos vibrantes
+<Button variant="primary-gradient">Principal Gradiente</Button>
+<Button variant="success-gradient">Sucesso Gradiente</Button>
+<Button variant="danger-gradient">Perigo Gradiente</Button>
+<Button variant="warning-gradient">Aviso Gradiente</Button>
+<Button variant="info-gradient">Info Gradiente</Button>
+<Button variant="purple-gradient">Roxo Gradiente</Button>
+<Button variant="orange-gradient">Laranja Gradiente</Button>
+<Button variant="pink-gradient">Rosa Gradiente</Button>
+<Button variant="indigo-gradient">Índigo Gradiente</Button>
+<Button variant="cyan-gradient">Ciano Gradiente</Button>
 ```
 
-#### **Button**
-```tsx
-<Button 
-  variant="primary" 
-  size="lg" 
-  icon={<Save />}
-  loading={isLoading}
->
+### **Propriedades do Botão**
+
+```typescript
+interface ButtonProps {
+  variant: ButtonVariant;           // Cor do botão
+  size?: 'sm' | 'md' | 'lg';       // Tamanho
+  fullWidth?: boolean;             // Largura total
+  disabled?: boolean;              // Desabilitado
+  loading?: boolean;               // Estado de carregamento
+  icon?: React.ReactNode;          // Ícone (Lucide React)
+  iconPosition?: 'left' | 'right'; // Posição do ícone
+  onClick?: () => void;            // Função de clique
+  children: React.ReactNode;       // Texto do botão
+}
+```
+
+### **Exemplos Práticos**
+
+```typescript
+// Botão com ícone
+import { Plus, Save, Trash2 } from 'lucide-react';
+
+<Button variant="success" icon={<Plus />}>
+  Criar Novo
+</Button>
+
+<Button variant="primary" icon={<Save />} iconPosition="right">
   Salvar
+</Button>
+
+<Button variant="danger" icon={<Trash2 />} size="sm">
+  Deletar
+</Button>
+
+// Botão de largura total
+<Button variant="primary-gradient" fullWidth>
+  Assinar Premium
+</Button>
+
+// Botão desabilitado
+<Button variant="secondary" disabled>
+  Indisponível
+</Button>
+
+// Botão com loading
+<Button variant="primary" loading>
+  Salvando...
 </Button>
 ```
 
-#### **StatCard (Dashboard)**
-```tsx
-<StatCard
-  title="Usuários Ativos"
-  value="156"
-  change="+12 esta semana"
-  changeType="positive"
-  icon={<Users />}
-/>
+## 🏷️ Sistema de Badges
+
+### **Variantes Disponíveis**
+
+```typescript
+// Status
+<Badge variant="success">Ativo</Badge>
+<Badge variant="danger">Inativo</Badge>
+<Badge variant="warning">Pendente</Badge>
+<Badge variant="info">Em Análise</Badge>
+<Badge variant="purple">Premium</Badge>
 ```
 
-#### **SectionDivider**
+### **Usando com Hook**
 
-Componente para criar divisores de seção elegantes com ícone, título e badge opcional.
+```typescript
+const getBadgeClasses = useBadgeClasses();
 
-```tsx
-// Exemplo básico
-<SectionDivider
-  title="Métricas Gerais"
-  icon={<TrendingUp />}
-  badgeColor="blue"
-/>
-
-// Com badge textual
-<SectionDivider
-  title="Sistemas SAAS"
-  icon={<Server />}
-  badge="4 sistemas ativos"
-  badgeColor="green"
-  spacing="lg"
-/>
-
-// Com badge customizado (ReactNode)
-<SectionDivider
-  title="Estatísticas"
-  icon={<PieChart />}
-  badge={<div className="flex items-center gap-1">
-    <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-    Tempo real
-  </div>}
-  badgeColor="purple"
-/>
+<span className={getBadgeClasses('success')}>
+  Status Ativo
+</span>
 ```
 
-**Props:**
-- `title`: Título da seção (obrigatório)
-- `icon`: Ícone da seção (obrigatório) 
-- `badge?`: Badge textual ou ReactNode
-- `badgeColor?`: 'blue' | 'green' | 'purple' | 'orange' | 'red'
-- `spacing?`: 'sm' | 'md' | 'lg'
-- `className?`: Classes CSS customizadas
+## 🎨 UI Kit - Documentação Interativa
 
-**Características:**
-- ✅ **Modo claro/escuro** otimizado
-- ✅ **Linhas divisoras** visíveis (`bg-slate-300` claro, `bg-white/10` escuro)
-- ✅ **Badges bem contrastantes** (fundos `*-200` + texto `*-900` no modo claro)
-- ✅ **Ícones perfeitamente alinhados** com containers coloridos
-- ✅ **Layout responsivo** com flexbox
-- ✅ **Animações** suportadas nos badges
-- ✅ **Acessibilidade** com excelente contraste de cores
+Acesse `/admin/ui-kit` para ver todos os componentes em ação:
 
-## 🎨 Sistema de Temas
+- **📘 /admin/ui-kit/buttons** - Todos os botões com exemplos
+- **🏷️ /admin/ui-kit/badges** - Sistema de badges
+- **🃏 /admin/ui-kit/cards** - Cartões (em desenvolvimento)
+- **📝 /admin/ui-kit/inputs** - Campos de formulário (em desenvolvimento)
 
-### **Design Tokens**
-```tsx
-import { designTokens } from "@/design-system";
+## ⚡ Hooks Personalizados
 
-// Cores
-designTokens.colors.primary[500] // "#3b82f6"
-designTokens.colors.success[400] // "#4ade80"
+### **useThemeClasses()**
+```typescript
+const { get, cn } = useThemeClasses();
 
-// Espaçamentos
-designTokens.spacing.lg // "1.5rem"
-designTokens.spacing.xl // "2rem"
+// get() - Obter classes de tema
+const bgClass = get("bg.primary"); // "bg-white dark:bg-gray-900"
+
+// cn() - Combinar classes (clsx + twMerge)
+const classes = cn("p-4", get("text.primary"), someCondition && "font-bold");
 ```
 
-### **Classes Temáticas**
-```tsx
-// Layout
-get("layout")           // bg-gray-50 ou bg-gradient-to-br...
+### **useButtonClasses()**
+```typescript
+const getButtonClasses = useButtonClasses();
 
-// Cards
-get("card")             // bg-white border-gray-200... ou bg-white/5...
-
-// Texto
-get("text.primary")     // text-gray-900 ou text-white
-get("text.secondary")   // text-gray-600 ou text-blue-100
-get("text.muted")       // text-gray-500 ou text-blue-200/70
-
-// Botões
-get("button.primary")  // bg-blue-600... ou bg-gradient-to-r...
-get("button.secondary") // bg-gray-100... ou bg-white/10...
-
-// Ícones
-get("icon.primary")    // text-gray-600 ou text-blue-300
-get("icon.accent")     // text-blue-600 ou text-blue-400
+const buttonClass = getButtonClasses('primary'); // Classes completas do botão
 ```
 
-## 🔧 Hooks Especializados
+### **useBadgeClasses()**
+```typescript
+const getBadgeClasses = useBadgeClasses();
 
-### **useCardClasses**
-```tsx
-const cardClass = useCardClasses("shadow-lg");
+const badgeClass = getBadgeClasses('success'); // Classes completas do badge
 ```
 
-### **useButtonClasses**
-```tsx
-const buttonClass = useButtonClasses("primary", "lg", "w-full");
+## 🎯 Casos de Uso Recomendados
+
+### **Quando usar Botões Normais:**
+- ✅ Interfaces corporativas
+- ✅ Formulários profissionais
+- ✅ Ações secundárias
+- ✅ Botões de navegação
+
+### **Quando usar Botões Gradientes:**
+- ✨ Call-to-actions principais
+- ✨ Botões de conversão
+- ✨ Ações premium
+- ✨ Destaques visuais
+
+## 🔧 Personalização
+
+### **Adicionando Nova Cor**
+
+1. **theme-classes.ts** - Adicionar classes:
+```typescript
+button: {
+  normal: {
+    // ... cores existentes
+    'nova-cor': 'bg-blue-600 hover:bg-blue-700 text-white',
+  },
+  gradient: {
+    // ... gradientes existentes
+    'nova-cor-gradient': 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white',
+  }
+}
 ```
 
-### **useTextClasses**
-```tsx
-const textClass = useTextClasses("primary", "text-lg font-bold");
-```
-
-### **useIconClasses**
-```tsx
-const iconClass = useIconClasses("accent", "lg", "mr-2");
+2. **hooks.ts** - Atualizar tipos:
+```typescript
+type ButtonVariant = 
+  | 'primary' | 'secondary' | 'success' // ... existentes
+  | 'nova-cor' | 'nova-cor-gradient';   // Nova cor
 ```
 
 ## 📱 Responsividade
 
-### **Classes Responsivas**
-```tsx
-const { responsive } = useThemeClasses();
+Todos os componentes são **totalmente responsivos** e seguem os breakpoints do Tailwind:
 
-const responsiveClass = responsive(
-  "text-sm",           // base
-  "text-base",         // sm
-  "text-lg",           // md
-  "text-xl",           // lg
-  "text-2xl"           // xl
-);
+- **sm:** >= 640px
+- **md:** >= 768px  
+- **lg:** >= 1024px
+- **xl:** >= 1280px
+
+## 🌙 Modo Escuro
+
+O sistema de temas **automaticamente** adapta todos os componentes para modo escuro. Não é necessário configuração adicional.
+
+## 🚀 Quick Start para Agentes
+
+```typescript
+// 1. Importar componente
+import { Button } from '@/design-system/components/Button';
+import { Plus } from 'lucide-react';
+
+// 2. Usar diretamente
+<Button variant="primary" icon={<Plus />}>
+  Criar Novo
+</Button>
+
+// 3. Para call-to-action use gradient
+<Button variant="success-gradient" fullWidth>
+  Começar Agora
+</Button>
+
+// 4. Para ações perigosas
+<Button variant="danger" icon={<Trash2 />}>
+  Deletar
+</Button>
 ```
-
-## 🎭 Animações
-
-### **Classes de Animação**
-```tsx
-const { useAnimationClasses } = useThemeClasses();
-
-const animationClass = useAnimationClasses("fade", "normal");
-```
-
-## 🔄 Migração do Sistema Antigo
-
-### **Passo 1: Substituir imports**
-```tsx
-// ❌ Antigo
-import { useTheme, getThemeClasses } from "@/admin/contexts/ThemeContext";
-
-// ✅ Novo
-import { useThemeClasses } from "@/design-system";
-```
-
-### **Passo 2: Refatorar componentes**
-```tsx
-// ❌ Antigo
-const theme = useTheme();
-const cardClass = `${getThemeClasses(theme.theme, "card")} rounded-lg p-6`;
-
-// ✅ Novo
-const { get } = useThemeClasses();
-const cardClass = get("card");
-```
-
-### **Passo 3: Usar componentes base**
-```tsx
-// ❌ Antigo
-<div className={`${cardClass} hover:scale-105`}>
-  <p className={getThemeClasses(theme.theme, "text.primary")}>Título</p>
-</div>
-
-// ✅ Novo
-<Card hover>
-  <p className={get("text.primary")}>Título</p>
-</Card>
-```
-
-## 📊 Benefícios
-
-### **1. Redução de Código**
-- **-70%** menos código repetitivo
-- **-51 ocorrências** de `isDark` eliminadas
-- **Componentes reutilizáveis** em todo lugar
-
-### **2. Manutenibilidade**
-- **Design tokens** centralizados
-- **Mudanças de tema** em um local
-- **Consistência** visual garantida
-
-### **3. Performance**
-- **Classes pré-computadas**
-- **Menos re-renders**
-- **Bundle otimizado**
-
-### **4. Developer Experience**
-- **IntelliSense** completo
-- **TypeScript** tipado
-- **Documentação** integrada
-
-## 🎯 Próximos Passos
-
-1. **Migrar componentes** existentes
-2. **Criar mais componentes** base (Input, Modal, etc.)
-3. **Adicionar animações** avançadas
-4. **Implementar dark mode** automático
-5. **Criar storybook** para documentação
-
-## 📚 Exemplos Práticos
-
-Veja o arquivo `RefactoredDashboard.tsx` para um exemplo completo de como usar o novo sistema em um componente real.
 
 ---
 
-**🎉 Resultado: Código mais limpo, manutenível e eficiente!**
+## � Suporte
+
+Para dúvidas ou sugestões sobre o Design System, consulte a documentação interativa em `/admin/ui-kit` ou verifique os exemplos de código nos componentes.
+
+**Versão:** 1.0.0  
+**Última atualização:** Outubro 2025
