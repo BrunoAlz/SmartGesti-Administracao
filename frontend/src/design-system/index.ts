@@ -96,10 +96,16 @@ export {
 
 export {
   Alert,
-  AlertModal,
   AlertBanner,
 } from "./components/Alert";
-export type { AlertProps, AlertModalProps, AlertBannerProps, AlertVariant, AlertSize } from "./components/Alert";
+export type { AlertProps, AlertBannerProps, AlertVariant, AlertSize } from "./components/Alert";
+
+// Modal Components
+export {
+  useModal,
+  CustomModal,
+} from "./components/Modal";
+export type { ModalVariant, ConfirmModalOptions, AlertModalOptions, CustomModalProps } from "./components/Modal";
 
 export {
   useToast,
@@ -110,17 +116,6 @@ export {
   useNotification,
 } from "./hooks/useNotification";
 export type { NotificationOptions, ModalNotificationOptions, BannerNotificationOptions } from "./hooks/useNotification";
-
-export {
-  Modal,
-  ModalHeader,
-  ModalContent,
-  ModalFooter,
-  ConfirmModal,
-  SidebarModal,
-  DrawerModal,
-  useModal,
-} from "./components/Modal";
 
 export {
   Animation,

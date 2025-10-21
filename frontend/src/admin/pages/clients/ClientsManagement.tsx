@@ -8,7 +8,6 @@ import {
   Pagination,
   RowActions,
   useTable,
-  ConfirmModal,
   useModal,
   useThemeClasses,
   cn
@@ -205,7 +204,7 @@ export const ClientsManagement: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<string>("all");
   const [selectedClients, setSelectedClients] = useState<string[]>([]);
   
-  const deleteModal = useModal();
+  const modal = useModal();
   const [clientToDelete, setClientToDelete] = useState<Client | null>(null);
 
   // Filtros
@@ -223,18 +222,24 @@ export const ClientsManagement: React.FC = () => {
   const table = useTable(filteredClients, { initialPageSize: 10 });
 
   // Handlers
-  const handleDeleteClient = (client: Client) => {
+  const handleDeleteClient = async (client: Client) => {
     setClientToDelete(client);
-    deleteModal.open();
+    
+    const result = await modal.confirm({
+      title: "Confirmar Exclusão",
+      text: `Tem certeza que deseja excluir o cliente "${client.name}"? Esta ação não pode ser desfeita.`,
+      confirmButtonText: "Excluir",
+      cancelButtonText: "Cancelar",
+      dangerMode: true,
+      onConfirm: () => confirmDelete(client)
+    });
   };
 
-  const confirmDelete = () => {
-    if (clientToDelete) {
-      console.log("Deletando cliente:", clientToDelete.name);
-      // Aqui seria feita a chamada para a API
-      deleteModal.close();
-      setClientToDelete(null);
-    }
+  const confirmDelete = (client: Client) => {
+    console.log("Deletando cliente:", client.name);
+    // Aqui seria feita a chamada para a API
+    setClientToDelete(null);
+    modal.success("Cliente excluído", "O cliente foi excluído com sucesso!");
   };
 
   const handleExport = () => {
@@ -579,18 +584,6 @@ export const ClientsManagement: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-
-      {/* Delete Confirmation Modal */}
-      <ConfirmModal
-        isOpen={deleteModal.isOpen}
-        onClose={deleteModal.close}
-        onConfirm={confirmDelete}
-        title="Confirmar Exclusão"
-        message={`Tem certeza que deseja excluir o cliente "${clientToDelete?.name}"? Esta ação não pode ser desfeita.`}
-        confirmText="Excluir"
-        cancelText="Cancelar"
-        variant="danger"
-      />
     </div>
   );
 };

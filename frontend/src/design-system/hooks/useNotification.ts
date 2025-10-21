@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useToast } from '../components/Toast';
 import type { 
   AlertVariant, 
-  AlertModalProps, 
   AlertBannerProps 
 } from '../components/Alert';
 import type { CustomToastOptions } from '../components/Toast';

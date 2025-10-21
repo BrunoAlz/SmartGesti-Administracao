@@ -14,9 +14,9 @@ import {
 import { 
   useThemeClasses, 
   Alert,
-  AlertModal,
   AlertBanner,
   Button,
+  useModal,
   useNotification,
   cn 
 } from "../../../design-system";
@@ -29,6 +29,7 @@ import { ComponentShowcase, ComponentSection } from "./components/ComponentShowc
 export const AlertsUIKit: React.FC = () => {
   const { get } = useThemeClasses();
   const { notify, state, dismissModal, dismissBanner } = useNotification();
+  const modal = useModal();
   
   // Estados para exemplos interativos
   const [showExampleModal, setShowExampleModal] = useState(false);
@@ -316,10 +317,7 @@ notify.toast.warning("Sua sessão expirará em 5 minutos", {
                 <Button 
                   variant="success"
                   size="sm"
-                  onClick={() => notify.modal.success("Sua conta foi criada com sucesso! Você já pode fazer login.", {
-                    title: "Bem-vindo!",
-                    width: "md"
-                  })}
+                  onClick={() => modal.success("Bem-vindo!", "Sua conta foi criada com sucesso! Você já pode fazer login.")}
                 >
                   Success Modal
                 </Button>
@@ -327,10 +325,7 @@ notify.toast.warning("Sua sessão expirará em 5 minutos", {
                 <Button 
                   variant="danger"
                   size="sm"
-                  onClick={() => notify.modal.error("Falha na conexão com o servidor. Tente novamente em alguns instantes.", {
-                    title: "Erro de Conexão",
-                    width: "md"
-                  })}
+                  onClick={() => modal.error("Erro de Conexão", "Falha na conexão com o servidor. Tente novamente em alguns instantes.")}
                 >
                   Error Modal
                 </Button>
@@ -338,9 +333,10 @@ notify.toast.warning("Sua sessão expirará em 5 minutos", {
                 <Button 
                   variant="warning"
                   size="sm"
-                  onClick={() => notify.modal.warning("Esta ação irá remover permanentemente todos os dados. Tem certeza?", {
+                  onClick={() => modal.alert({
                     title: "Confirmar Exclusão",
-                    width: "lg"
+                    text: "Esta ação irá remover permanentemente todos os dados. Tem certeza?",
+                    variant: "warning"
                   })}
                 >
                   Warning Modal
@@ -349,9 +345,10 @@ notify.toast.warning("Sua sessão expirará em 5 minutos", {
                 <Button 
                   variant="info"
                   size="sm"
-                  onClick={() => notify.modal.info("Uma nova versão está disponível com melhorias de performance e novos recursos.", {
+                  onClick={() => modal.alert({
                     title: "Atualização Disponível",
-                    width: "lg"
+                    text: "Uma nova versão está disponível com melhorias de performance e novos recursos.",
+                    variant: "info"
                   })}
                 >
                   Info Modal
@@ -359,22 +356,26 @@ notify.toast.warning("Sua sessão expirará em 5 minutos", {
               </div>
             </div>
           }
-          code={`// Modal de sucesso
-notify.modal.success("Sua conta foi criada com sucesso!", {
-  title: "Bem-vindo!",
-  width: "md"
-});
+          code={`const modal = useModal();
+
+// Modal de sucesso
+modal.success("Bem-vindo!", "Sua conta foi criada com sucesso!");
 
 // Modal de erro
-notify.modal.error("Falha na conexão com o servidor.", {
-  title: "Erro de Conexão",
-  width: "md"
+modal.error("Erro de Conexão", "Falha na conexão com o servidor.");
+
+// Modal de aviso
+modal.alert({
+  title: "Confirmar Exclusão",
+  text: "Esta ação irá remover permanentemente todos os dados.",
+  variant: "warning"
 });
 
-// Modal de confirmação
-notify.modal.warning("Esta ação irá remover permanentemente todos os dados.", {
-  title: "Confirmar Exclusão",
-  width: "lg"
+// Modal de informação
+modal.alert({
+  title: "Atualização Disponível",
+  text: "Uma nova versão está disponível.",
+  variant: "info"
 });`}
         />
 
@@ -387,19 +388,18 @@ notify.modal.warning("Esta ação irá remover permanentemente todos os dados.",
                 <Button 
                   variant="danger"
                   onClick={async () => {
-                    const confirmed = await notify.confirm(
-                      "Esta ação não pode ser desfeita. Todos os dados serão perdidos permanentemente.",
-                      {
-                        title: "Excluir Conta",
-                        confirmText: "Sim, excluir",
-                        cancelText: "Cancelar",
-                        variant: "error"
+                    const result = await modal.confirm({
+                      title: "Excluir Conta",
+                      text: "Esta ação não pode ser desfeita. Todos os dados serão perdidos permanentemente.",
+                      confirmButtonText: "Sim, excluir",
+                      cancelButtonText: "Cancelar",
+                      dangerMode: true,
+                      onConfirm: () => {
+                        notify.toast.success("Conta excluída com sucesso");
                       }
-                    );
+                    });
                     
-                    if (confirmed) {
-                      notify.toast.success("Conta excluída com sucesso");
-                    } else {
+                    if (result.isDismissed) {
                       notify.toast.info("Ação cancelada");
                     }
                   }}
@@ -411,19 +411,18 @@ notify.modal.warning("Esta ação irá remover permanentemente todos os dados.",
                 <Button 
                   variant="primary"
                   onClick={async () => {
-                    const confirmed = await notify.confirm(
-                      "Deseja salvar as alterações antes de sair?",
-                      {
-                        title: "Salvar Alterações",
-                        confirmText: "Salvar e Sair",
-                        cancelText: "Sair sem Salvar",
-                        variant: "info"
+                    const result = await modal.confirm({
+                      title: "Salvar Alterações",
+                      text: "Deseja salvar as alterações antes de sair?",
+                      confirmButtonText: "Salvar e Sair",
+                      cancelButtonText: "Sair sem Salvar",
+                      variant: "info",
+                      onConfirm: () => {
+                        notify.toast.success("Alterações salvas!");
                       }
-                    );
+                    });
                     
-                    if (confirmed) {
-                      notify.toast.success("Alterações salvas!");
-                    } else {
+                    if (result.isDismissed) {
                       notify.toast.warning("Saindo sem salvar...");
                     }
                   }}
@@ -434,22 +433,28 @@ notify.modal.warning("Esta ação irá remover permanentemente todos os dados.",
               </div>
             </div>
           }
-          code={`// Confirmação com Promise
-const confirmed = await notify.confirm(
-  "Esta ação não pode ser desfeita. Todos os dados serão perdidos.",
-  {
-    title: "Excluir Conta",
-    confirmText: "Sim, excluir",
-    cancelText: "Cancelar",
-    variant: "error"
-  }
-);
+          code={`const modal = useModal();
 
-if (confirmed) {
-  notify.toast.success("Conta excluída com sucesso");
-} else {
+// Confirmação de exclusão
+const result = await modal.confirm({
+  title: "Excluir Conta",
+  text: "Esta ação não pode ser desfeita. Todos os dados serão perdidos.",
+  confirmButtonText: "Sim, excluir",
+  cancelButtonText: "Cancelar",
+  dangerMode: true,
+  onConfirm: () => {
+    // Ação ao confirmar
+    notify.toast.success("Conta excluída");
+  }
+});
+
+if (result.isDismissed) {
+  // Ação ao cancelar
   notify.toast.info("Ação cancelada");
-}`}
+}
+
+// Método simplificado para exclusão
+await modal.confirmDelete("Confirmar Exclusão", "Esta ação não pode ser desfeita!");`}
         />
       </ComponentSection>
 
@@ -562,21 +567,7 @@ notify.banner.success("Operação concluída!", {
         />
       </ComponentSection>
 
-      {/* Render dos modais e banners ativos */}
-      {state.modals.map((modal: any) => (
-        <AlertModal
-          key={modal.id}
-          isOpen={true}
-          variant={modal.variant}
-          title={modal.title}
-          onClose={() => dismissModal(modal.id)}
-          width={modal.options.width}
-          centered={modal.options.centered}
-        >
-          {modal.message}
-        </AlertModal>
-      ))}
-
+      {/* Render dos banners ativos */}
       {state.banners.map((banner: any) => (
         <AlertBanner
           key={banner.id}

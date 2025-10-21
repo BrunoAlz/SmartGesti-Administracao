@@ -9,7 +9,6 @@ import {
   Card,
   CardHeader,
   CardContent,
-  ConfirmModal,
   useModal
 } from "../../../design-system";
 import { useThemeClasses } from "../../../design-system/hooks";
@@ -119,7 +118,7 @@ export const TableExamples: React.FC = () => {
   const [pageSize, setPageSize] = useState(10);
   
   // Modal de confirmação
-  const deleteModal = useModal();
+  const modal = useModal();
   const [userToDelete, setUserToDelete] = useState<User | null>(null);
 
   // Hook da tabela
@@ -225,7 +224,14 @@ export const TableExamples: React.FC = () => {
           onEdit={() => console.log("Editar:", record.name)}
           onDelete={() => {
             setUserToDelete(record);
-            deleteModal.open();
+            modal.confirmDelete(
+              "Confirmar Exclusão",
+              `Tem certeza que deseja excluir o usuário "${record.name}"?`
+            ).then((result) => {
+              if (result.isConfirmed) {
+                handleDeleteUser(record);
+              }
+            });
           }}
         />
       ),
@@ -233,13 +239,11 @@ export const TableExamples: React.FC = () => {
   ];
 
   // Handlers
-  const handleDeleteUser = () => {
-    if (userToDelete) {
-      setUsers(prev => prev.filter(user => user.id !== userToDelete.id));
-      setSelectedUsers(prev => prev.filter(id => id !== userToDelete.id));
-      deleteModal.close();
-      setUserToDelete(null);
-    }
+  const handleDeleteUser = (user: User) => {
+    setUsers(prev => prev.filter(u => u.id !== user.id));
+    setSelectedUsers(prev => prev.filter(id => id !== user.id));
+    setUserToDelete(null);
+    modal.success("Usuário excluído!", "O usuário foi removido com sucesso!");
   };
 
   const handleBulkDelete = () => {
@@ -428,17 +432,6 @@ export const TableExamples: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Modal de Confirmação */}
-      <ConfirmModal
-        isOpen={deleteModal.isOpen}
-        onClose={deleteModal.close}
-        onConfirm={handleDeleteUser}
-        title="Confirmar Exclusão"
-        message={`Tem certeza que deseja excluir o usuário "${userToDelete?.name}"? Esta ação não pode ser desfeita.`}
-        confirmText="Excluir"
-        cancelText="Cancelar"
-        variant="danger"
-      />
     </div>
   );
 };

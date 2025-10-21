@@ -1,495 +1,222 @@
-import React, { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { useTextClasses, useIconClasses } from "../hooks";
+import React from "react";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+import { X } from "lucide-react";
+import { useThemeClasses } from "../hooks";
 import { cn } from "../theme-classes";
-import { X, AlertTriangle, CheckCircle, Info, AlertCircle } from "lucide-react";
 
-// ================================
-// TIPOS
-// ================================
+export type ModalVariant = "success" | "error" | "warning" | "info" | "question";
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  size?: "sm" | "md" | "lg" | "xl" | "full";
-  variant?: "default" | "centered" | "sidebar";
-  closeOnOverlayClick?: boolean;
-  closeOnEscape?: boolean;
-  showCloseButton?: boolean;
-  className?: string;
+interface BaseModalOptions {
+  title?: string;
+  text?: string;
+  variant?: ModalVariant;
+  showCancelButton?: boolean;
+  confirmButtonText?: string;
+  cancelButtonText?: string;
 }
 
-interface ModalHeaderProps {
-  children: React.ReactNode;
-  className?: string;
-  showCloseButton?: boolean;
+export interface ConfirmModalOptions extends BaseModalOptions {
+  onConfirm?: () => void | Promise<void>;
+  onCancel?: () => void;
+  dangerMode?: boolean;
+}
+
+export interface AlertModalOptions extends BaseModalOptions {
   onClose?: () => void;
 }
 
-interface ModalContentProps {
-  children: React.ReactNode;
-  className?: string;
-}
+const getThemeConfig = (isDark: boolean) => {
+  return {
+    background: isDark ? '#1f2937' : '#ffffff',
+    color: isDark ? '#f9fafb' : '#111827',
+    confirmButtonColor: '#3b82f6',
+    cancelButtonColor: '#6b7280',
+    customClass: {
+      popup: isDark ? 'dark-popup' : '',
+      confirmButton: 'swal2-confirm',
+      cancelButton: 'swal2-cancel'
+    },
+    buttonsStyling: true,
+    showClass: {
+      popup: 'swal2-show',
+      backdrop: 'swal2-backdrop-show',
+      icon: 'swal2-icon-show'
+    }
+  };
+};
 
-interface ModalFooterProps {
-  children: React.ReactNode;
-  className?: string;
-}
+const variantConfig = {
+  success: { icon: 'success' as const, confirmButtonColor: '#10b981' },
+  error: { icon: 'error' as const, confirmButtonColor: '#ef4444' },
+  warning: { icon: 'warning' as const, confirmButtonColor: '#f59e0b' },
+  info: { icon: 'info' as const, confirmButtonColor: '#3b82f6' },
+  question: { icon: 'question' as const, confirmButtonColor: '#8b5cf6' }
+};
 
-interface ConfirmModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  title: string;
-  message: string;
-  confirmText?: string;
-  cancelText?: string;
-  variant?: "default" | "danger" | "warning" | "success";
-  loading?: boolean;
-}
+export const useModal = () => {
+  const { isDark } = useThemeClasses();
+  
+  const getBaseConfig = (options: BaseModalOptions) => {
+    const themeConfig = getThemeConfig(isDark);
+    const variant = options.variant || 'info';
+    const variantStyle = variantConfig[variant];
+    
+    return {
+      ...themeConfig,
+      ...variantStyle,
+      title: options.title,
+      text: options.text,
+      showCancelButton: options.showCancelButton || false,
+      confirmButtonText: options.confirmButtonText || 'OK',
+      cancelButtonText: options.cancelButtonText || 'Cancelar'
+    };
+  };
 
-interface AlertModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  message: string;
-  type?: "info" | "success" | "warning" | "error";
-  confirmText?: string;
-}
+  const alert = async (options: AlertModalOptions) => {
+    const config = getBaseConfig(options);
+    const result = await Swal.fire(config);
+    
+    if (result.isConfirmed && options.onClose) {
+      options.onClose();
+    }
+    
+    return result;
+  };
 
-// ================================
-// HOOK PARA GERENCIAR MODAL
-// ================================
+  const confirm = async (options: ConfirmModalOptions) => {
+    const config = getBaseConfig({
+      ...options,
+      showCancelButton: true,
+      variant: options.dangerMode ? 'warning' : options.variant
+    });
+    
+    if (options.dangerMode) {
+      config.confirmButtonColor = '#ef4444';
+      config.confirmButtonText = options.confirmButtonText || 'Sim, deletar';
+    }
+    
+    const result = await Swal.fire(config);
+    
+    if (result.isConfirmed && options.onConfirm) {
+      await options.onConfirm();
+    } else if (result.isDismissed && options.onCancel) {
+      options.onCancel();
+    }
+    
+    return result;
+  };
 
-const useModal = (initialOpen = false) => {
-  const [isOpen, setIsOpen] = useState(initialOpen);
+  const confirmDelete = async (
+    title: string = "Confirmar exclusão",
+    text: string = "Esta ação não pode ser desfeita!"
+  ) => {
+    return confirm({
+      title,
+      text,
+      variant: "warning",
+      dangerMode: true,
+      confirmButtonText: "Sim, deletar",
+      cancelButtonText: "Cancelar"
+    });
+  };
 
-  const open = () => setIsOpen(true);
-  const close = () => setIsOpen(false);
-  const toggle = () => setIsOpen(prev => !prev);
+  const success = (title: string, text?: string) => {
+    return alert({
+      title,
+      text,
+      variant: "success"
+    });
+  };
+
+  const error = (title: string, text?: string) => {
+    return alert({
+      title,
+      text,
+      variant: "error"
+    });
+  };
 
   return {
-    isOpen,
-    open,
-    close,
-    toggle,
+    alert,
+    confirm,
+    confirmDelete,
+    success,
+    error
   };
 };
 
-// ================================
-// COMPONENTE MODAL PRINCIPAL
-// ================================
+export interface CustomModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+  actions?: React.ReactNode;
+  width?: "sm" | "md" | "lg" | "xl";
+  className?: string;
+}
 
-export const Modal: React.FC<ModalProps> = ({
+const modalWidths = {
+  sm: "max-w-sm",
+  md: "max-w-md",
+  lg: "max-w-lg", 
+  xl: "max-w-xl"
+};
+
+export const CustomModal: React.FC<CustomModalProps> = ({
   isOpen,
   onClose,
+  title,
   children,
-  size = "md",
-  variant = "default",
-  closeOnOverlayClick = true,
-  closeOnEscape = true,
-  showCloseButton = true,
-  className,
+  actions,
+  width = "md",
+  className
 }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  // Classes de tamanho
-  const sizeClasses = {
-    sm: "max-w-sm",
-    md: "max-w-md",
-    lg: "max-w-lg",
-    xl: "max-w-xl",
-    full: "max-w-full mx-4",
-  };
-
-  // Classes de variante
-  const variantClasses = {
-    default: "mx-auto my-8",
-    centered: "mx-auto my-auto",
-    sidebar: "ml-auto my-0 h-full",
-  };
-
-  // Handle escape key
-  useEffect(() => {
-    if (!isOpen || !closeOnEscape) return;
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isOpen, closeOnEscape, onClose]);
-
-  // Handle body scroll lock
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
-
-  // Handle overlay click
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget && closeOnOverlayClick) {
-      onClose();
-    }
-  };
-
+  const { get } = useThemeClasses();
+  
   if (!isOpen) return null;
-
-  return createPortal(
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-      onClick={handleOverlayClick}
-    >
-      <div
-        ref={modalRef}
-        className={cn(
-          "relative w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl",
-          sizeClasses[size],
-          variantClasses[variant],
-          className
-        )}
-        role="dialog"
-        aria-modal="true"
-      >
-        {children}
-      </div>
-    </div>,
-    document.body
-  );
-};
-
-// ================================
-// COMPONENTE MODAL HEADER
-// ================================
-
-const ModalHeader: React.FC<ModalHeaderProps> = ({
-  children,
-  className,
-  showCloseButton = true,
-  onClose,
-}) => {
-  const titleClasses = useTextClasses("primary", "text-lg font-semibold");
-  const iconClasses = useIconClasses("primary", "md");
-
+  
   return (
-    <div className={cn("flex items-center justify-between p-6 border-b border-gray-200 dark:border-white/10", className)}>
-      <div className={titleClasses}>
-        {children}
-      </div>
-      {showCloseButton && onClose && (
-        <button
-          onClick={onClose}
-          className={cn(
-            iconClasses,
-            "p-1 rounded-md hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+    <div className="fixed inset-0 z-50 overflow-y-auto">
+      <div 
+        className="fixed inset-0 bg-black/50"
+        onClick={onClose}
+      />
+      
+      <div className="flex items-center justify-center min-h-full p-4">
+        <div className={cn(
+          "relative w-full rounded-lg shadow-xl",
+          modalWidths[width],
+          get("card"),
+          className
+        )}>
+          {title && (
+            <div className="flex items-center justify-between p-6 pb-4">
+              <h3 className={cn("text-lg font-semibold", get("text.primary"))}>
+                {title}
+              </h3>
+              <button
+                onClick={onClose}
+                className={cn("p-1 rounded-md", get("text.secondary"))}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           )}
-          aria-label="Fechar modal"
-        >
-          <X className="w-5 h-5" />
-        </button>
-      )}
-    </div>
-  );
-};
-
-// ================================
-// COMPONENTE MODAL CONTENT
-// ================================
-
-const ModalContent: React.FC<ModalContentProps> = ({
-  children,
-  className,
-}) => {
-  return (
-    <div className={cn("p-6", className)}>
-      {children}
-    </div>
-  );
-};
-
-// ================================
-// COMPONENTE MODAL FOOTER
-// ================================
-
-const ModalFooter: React.FC<ModalFooterProps> = ({
-  children,
-  className,
-}) => {
-  return (
-    <div className={cn("flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-white/10", className)}>
-      {children}
-    </div>
-  );
-};
-
-// ================================
-// COMPONENTE MODAL DE CONFIRMAÇÃO
-// ================================
-
-const ConfirmModal: React.FC<ConfirmModalProps> = ({
-  isOpen,
-  onClose,
-  onConfirm,
-  title,
-  message,
-  confirmText = "Confirmar",
-  cancelText = "Cancelar",
-  variant = "default",
-  loading = false,
-}) => {
-  const variantConfig = {
-    default: {
-      icon: <Info className="w-6 h-6 text-blue-500" />,
-      confirmVariant: "primary" as const,
-    },
-    danger: {
-      icon: <AlertTriangle className="w-6 h-6 text-red-500" />,
-      confirmVariant: "danger" as const,
-    },
-    warning: {
-      icon: <AlertCircle className="w-6 h-6 text-yellow-500" />,
-      confirmVariant: "secondary" as const,
-    },
-    success: {
-      icon: <CheckCircle className="w-6 h-6 text-green-500" />,
-      confirmVariant: "primary" as const,
-    },
-  };
-
-  const config = variantConfig[variant];
-
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} size="sm">
-      <ModalContent>
-        <div className="text-center">
-          <div className="flex justify-center mb-4">
-            {config.icon}
+          
+          <div className="px-6 pb-4">
+            {children}
           </div>
-          <h3 className={cn("text-lg font-semibold mb-2", useTextClasses("primary"))}>
-            {title}
-          </h3>
-          <p className={cn("text-sm mb-6", useTextClasses("secondary"))}>
-            {message}
-          </p>
-          <div className="flex gap-3 justify-center">
-            <button
-              onClick={onClose}
-              disabled={loading}
-              className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 rounded-md transition-colors disabled:opacity-50"
-            >
-              {cancelText}
-            </button>
-            <button
-              onClick={onConfirm}
-              disabled={loading}
-              className={cn(
-                "px-4 py-2 text-sm font-medium text-white rounded-md transition-colors disabled:opacity-50",
-                variant === "danger" 
-                  ? "bg-red-600 hover:bg-red-700" 
-                  : "bg-blue-600 hover:bg-blue-700"
-              )}
-            >
-              {loading ? "Carregando..." : confirmText}
-            </button>
-          </div>
+          
+          {actions && (
+            <div className={cn("px-6 py-4 border-t", get("border"))}>
+              <div className="flex justify-end space-x-3">
+                {actions}
+              </div>
+            </div>
+          )}
         </div>
-      </ModalContent>
-    </Modal>
-  );
-};
-
-// ================================
-// COMPONENTE MODAL DE ALERTA
-// ================================
-
-const AlertModal: React.FC<AlertModalProps> = ({
-  isOpen,
-  onClose,
-  title,
-  message,
-  type = "info",
-  confirmText = "OK",
-}) => {
-  const typeConfig = {
-    info: {
-      icon: <Info className="w-6 h-6 text-blue-500" />,
-      bgColor: "bg-blue-50 dark:bg-blue-500/20",
-      borderColor: "border-blue-200 dark:border-blue-400/30",
-    },
-    success: {
-      icon: <CheckCircle className="w-6 h-6 text-green-500" />,
-      bgColor: "bg-green-50 dark:bg-green-500/20",
-      borderColor: "border-green-200 dark:border-green-400/30",
-    },
-    warning: {
-      icon: <AlertTriangle className="w-6 h-6 text-yellow-500" />,
-      bgColor: "bg-yellow-50 dark:bg-yellow-500/20",
-      borderColor: "border-yellow-200 dark:border-yellow-400/30",
-    },
-    error: {
-      icon: <AlertCircle className="w-6 h-6 text-red-500" />,
-      bgColor: "bg-red-50 dark:bg-red-500/20",
-      borderColor: "border-red-200 dark:border-red-400/30",
-    },
-  };
-
-  const config = typeConfig[type];
-
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} size="sm">
-      <ModalContent>
-        <div className="text-center">
-          <div className={cn("flex justify-center mb-4 p-3 rounded-full", config.bgColor)}>
-            {config.icon}
-          </div>
-          <h3 className={cn("text-lg font-semibold mb-2", useTextClasses("primary"))}>
-            {title}
-          </h3>
-          <p className={cn("text-sm mb-6", useTextClasses("secondary"))}>
-            {message}
-          </p>
-          <button
-            onClick={onClose}
-            className="px-6 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
-          >
-            {confirmText}
-          </button>
-        </div>
-      </ModalContent>
-    </Modal>
-  );
-};
-
-// ================================
-// COMPONENTE MODAL SIDEBAR
-// ================================
-
-interface SidebarModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  title?: string;
-  size?: "sm" | "md" | "lg";
-  className?: string;
-}
-
-const SidebarModal: React.FC<SidebarModalProps> = ({
-  isOpen,
-  onClose,
-  children,
-  title,
-  size = "md",
-  className,
-}) => {
-  const sizeClasses = {
-    sm: "w-80",
-    md: "w-96",
-    lg: "w-[28rem]",
-  };
-
-  return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      variant="sidebar"
-      size="full"
-      className={cn(sizeClasses[size], className)}
-    >
-      {title && (
-        <ModalHeader onClose={onClose}>
-          {title}
-        </ModalHeader>
-      )}
-      {children}
-    </Modal>
-  );
-};
-
-// ================================
-// COMPONENTE MODAL DRAWER
-// ================================
-
-interface DrawerModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  title?: string;
-  position?: "left" | "right" | "top" | "bottom";
-  size?: "sm" | "md" | "lg";
-  className?: string;
-}
-
-const DrawerModal: React.FC<DrawerModalProps> = ({
-  isOpen,
-  onClose,
-  children,
-  title,
-  position = "right",
-  size = "md",
-  className,
-}) => {
-  const sizeClasses = {
-    sm: position === "left" || position === "right" ? "w-80" : "h-80",
-    md: position === "left" || position === "right" ? "w-96" : "h-96",
-    lg: position === "left" || position === "right" ? "w-[28rem]" : "h-[28rem]",
-  };
-
-  const positionClasses = {
-    left: "left-0 top-0 h-full",
-    right: "right-0 top-0 h-full",
-    top: "top-0 left-0 w-full",
-    bottom: "bottom-0 left-0 w-full",
-  };
-
-  if (!isOpen) return null;
-
-  return createPortal(
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
-      <div
-        className={cn(
-          "absolute bg-white dark:bg-gray-800 shadow-xl",
-          sizeClasses[size],
-          positionClasses[position],
-          className
-        )}
-        role="dialog"
-        aria-modal="true"
-      >
-        {title && (
-          <ModalHeader onClose={onClose}>
-            {title}
-          </ModalHeader>
-        )}
-        {children}
       </div>
-    </div>,
-    document.body
+    </div>
   );
-};
-
-// ================================
-// EXPORTS
-// ================================
-
-export default Modal;
-export {
-  ModalHeader,
-  ModalContent,
-  ModalFooter,
-  ConfirmModal,
-  AlertModal,
-  SidebarModal,
-  DrawerModal,
-  useModal,
 };

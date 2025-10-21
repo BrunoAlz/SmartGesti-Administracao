@@ -24,14 +24,7 @@ import {
   FeatureCard,
   
   // Modal Components
-  Modal,
-  ModalHeader,
-  ModalContent,
-  ModalFooter,
-  ConfirmModal,
-  AlertModal,
-  SidebarModal,
-  DrawerModal,
+  CustomModal,
   useModal,
   
   // Table Components
@@ -128,10 +121,7 @@ export const DesignSystemShowcase: React.FC = () => {
   const [loading, setLoading] = useState(false);
   
   // Modais
-  const basicModal = useModal();
-  const confirmModal = useModal();
-  const sidebarModal = useModal();
-  const drawerModal = useModal();
+  const modal = useModal();
   
   // Notificações
   const { showSuccess, showError, showWarning, showInfo } = useNotificationActions();
@@ -191,7 +181,7 @@ export const DesignSystemShowcase: React.FC = () => {
         <RowActions
           onView={() => showInfo("Visualizar", "Usuário visualizado")}
           onEdit={() => showWarning("Editar", "Usuário em edição")}
-          onDelete={() => confirmModal.open()}
+          onDelete={() => modal.confirmDelete("Confirmar exclusão", "Tem certeza que deseja excluir este item?")}
         />
       ),
     },
@@ -209,8 +199,8 @@ export const DesignSystemShowcase: React.FC = () => {
   };
   
   const handleDelete = () => {
-    showError("Usuário excluído", "Operação realizada com sucesso");
-    confirmModal.close();
+    console.log("Item excluído!");
+    modal.success("Excluído!", "Item foi excluído com sucesso!");
   };
   
   const handleExport = () => {
@@ -528,17 +518,27 @@ export const DesignSystemShowcase: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-3">
-              <Button variant="primary" onClick={basicModal.open}>
+              <Button variant="primary" onClick={() => modal.alert({
+                title: "Modal Básico",
+                text: "Este é um exemplo de modal básico usando SweetAlert2!",
+                variant: "info"
+              })}>
                 Modal Básico
               </Button>
-              <Button variant="secondary" onClick={confirmModal.open}>
+              <Button variant="secondary" onClick={() => modal.confirm({
+                title: "Modal de Confirmação",
+                text: "Deseja prosseguir com esta ação?",
+                confirmButtonText: "Sim, prosseguir",
+                cancelButtonText: "Cancelar",
+                onConfirm: () => { modal.success("Sucesso!", "Ação realizada com sucesso!"); }
+              })}>
                 Modal de Confirmação
               </Button>
-              <Button variant="secondary" onClick={sidebarModal.open}>
-                Sidebar Modal
+              <Button variant="warning" onClick={() => modal.confirmDelete()}>
+                Modal de Exclusão
               </Button>
-              <Button variant="secondary" onClick={drawerModal.open}>
-                Drawer Modal
+              <Button variant="danger" onClick={() => modal.error("Erro!", "Exemplo de modal de erro.")}>
+                Modal de Erro
               </Button>
             </div>
           </CardContent>
@@ -574,87 +574,6 @@ export const DesignSystemShowcase: React.FC = () => {
           </CardContent>
         </Card>
       </ScaleIn>
-
-      {/* Modais */}
-      <Modal isOpen={basicModal.isOpen} onClose={basicModal.close} size="md">
-        <ModalHeader onClose={basicModal.close}>
-          Modal Básico
-        </ModalHeader>
-        <ModalContent>
-          <p className={cn("text-sm mb-4", get("text.secondary"))}>
-            Este é um exemplo de modal básico usando o Design System.
-          </p>
-          <div className="space-y-3">
-            <div className="p-3 bg-blue-50 dark:bg-blue-500/20 rounded-md">
-              <p className="text-sm text-blue-800 dark:text-blue-200">
-                💡 Dica: Clique fora do modal ou pressione ESC para fechar.
-              </p>
-            </div>
-          </div>
-        </ModalContent>
-        <ModalFooter>
-          <Button variant="secondary" onClick={basicModal.close}>
-            Cancelar
-          </Button>
-          <Button variant="primary" onClick={basicModal.close}>
-            Confirmar
-          </Button>
-        </ModalFooter>
-      </Modal>
-
-      <ConfirmModal
-        isOpen={confirmModal.isOpen}
-        onClose={confirmModal.close}
-        onConfirm={handleDelete}
-        title="Confirmar Exclusão"
-        message="Tem certeza que deseja excluir este item? Esta ação não pode ser desfeita."
-        confirmText="Excluir"
-        cancelText="Cancelar"
-        variant="danger"
-      />
-
-      <SidebarModal
-        isOpen={sidebarModal.isOpen}
-        onClose={sidebarModal.close}
-        title="Configurações"
-        size="md"
-      >
-        <div className="p-6 space-y-6">
-          <div>
-            <h3 className="text-sm font-medium mb-3">Configurações Gerais</h3>
-            <div className="space-y-3">
-              <label className="flex items-center justify-between">
-                <span className="text-sm">Notificações por email</span>
-                <input type="checkbox" className="rounded" />
-              </label>
-              <label className="flex items-center justify-between">
-                <span className="text-sm">Notificações push</span>
-                <input type="checkbox" className="rounded" />
-              </label>
-            </div>
-          </div>
-        </div>
-      </SidebarModal>
-
-      <DrawerModal
-        isOpen={drawerModal.isOpen}
-        onClose={drawerModal.close}
-        title="Detalhes do Item"
-        position="right"
-        size="md"
-      >
-        <div className="p-6 space-y-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-500/20 rounded-lg flex items-center justify-center">
-              <User className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            </div>
-            <div>
-              <h3 className="font-medium">João Silva</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Desenvolvedor Frontend</p>
-            </div>
-          </div>
-        </div>
-      </DrawerModal>
 
       {/* Floating Action Button */}
       <FloatingActionButton
