@@ -5,6 +5,9 @@
 /* Admin theme styles */
 @import './admin/styles/admin-theme.css';
 
+/* Design system input overrides */
+@import './design-system/input-overrides.css';
+
 /* Custom CSS */
 @layer base {
   html {

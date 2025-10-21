@@ -208,8 +208,8 @@ export const themeClasses = {
 
   // Inputs
   input: {
-    light: "bg-white border-slate-300 text-slate-800 placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500",
-    dark: "bg-white/10 border-white/20 text-white placeholder-slate-300/70 backdrop-blur-sm focus:border-blue-400 focus:ring-blue-400",
+    light: "bg-white border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500",
+    dark: "bg-slate-800/50 border-slate-600/50 text-white placeholder-slate-400 backdrop-blur-sm focus:border-blue-400",
   },
 
   // Icons

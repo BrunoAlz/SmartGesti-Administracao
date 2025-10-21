@@ -81,10 +81,15 @@ export {
 } from "./components/Button";
 
 export {
-  Input,
+  default as Input,
   Textarea,
   PasswordInput,
   SearchInput,
+  Select,
+  Checkbox,
+  Radio,
+  Switch,
+  RadioGroup,
   InputGroup,
   InputAddon,
 } from "./components/Input";

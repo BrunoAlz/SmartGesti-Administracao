@@ -38,32 +38,8 @@
   color: var(--admin-text-muted);
 }
 
-/* Padronização de selects e inputs */
-.admin-area select,
-.admin-area input[type="text"],
-.admin-area input[type="email"],
-.admin-area input[type="search"],
-.admin-area textarea {
-  background-color: var(--admin-bg-primary);
-  color: var(--admin-text-primary);
-  border-color: var(--admin-border-primary);
-  min-height: 40px;
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 6px;
-  border-width: 1px;
-  transition: all 0.2s ease-in-out;
-}
-
-.admin-area select:focus,
-.admin-area input[type="text"]:focus,
-.admin-area input[type="email"]:focus,
-.admin-area input[type="search"]:focus,
-.admin-area textarea:focus {
-  border-color: theme('colors.blue.500');
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
+/* Padronização de selects e inputs - removido para evitar conflitos com design system */
+/* Classes controladas pelo design system centralizado */
 
 /* Padronização de texto em tabelas */
 .admin-area table td,
@@ -203,25 +179,25 @@
 .admin-area .text-green-500,
 .admin-area .text-green-600,
 .admin-area .text-green-800 {
-  /* Mantém as cores de sucesso */
+  /* Mantém as cores de sucesso - controlado pelo design system */
 }
 
 .admin-area .text-red-500,
 .admin-area .text-red-600,
 .admin-area .text-red-800 {
-  /* Mantém as cores de erro */
+  /* Mantém as cores de erro - controlado pelo design system */
 }
 
 .admin-area .text-blue-500,
 .admin-area .text-blue-600,
 .admin-area .text-blue-800 {
-  /* Mantém as cores de informação */
+  /* Mantém as cores de informação - controlado pelo design system */
 }
 
 .admin-area .text-yellow-500,
 .admin-area .text-yellow-600,
 .admin-area .text-yellow-800 {
-  /* Mantém as cores de aviso */
+  /* Mantém as cores de aviso - controlado pelo design system */
 }
 
 /* Melhorias para tabelas */

@@ -1,0 +1,67 @@
+/* ================================
+   DESIGN SYSTEM INPUT OVERRIDES
+   ================================ */
+
+/* Garante que inputs do design system tenham prioridade sobre outros estilos */
+.design-system-input {
+  /* Remove qualquer ring-offset que pode causar flick */
+  --tw-ring-offset-width: 0px !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  
+  /* Transição suave sem flicks */
+  transition: border-color 300ms ease-in-out, box-shadow 300ms ease-in-out !important;
+}
+
+/* Estados de foco específicos para evitar conflitos */
+.design-system-input:focus {
+  /* Força ring sem offset */
+  --tw-ring-offset-width: 0px !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  
+  /* Remove qualquer box-shadow conflitante e aplica apenas o nosso */
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow) !important;
+}
+
+/* Styling melhorado para opções do select */
+select.design-system-input option {
+  padding: 8px 12px !important;
+  background-color: white !important;
+  color: #1f2937 !important;
+  border: none !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+/* Dark mode para opções do select */
+.dark select.design-system-input option {
+  background-color: #374151 !important;
+  color: #f9fafb !important;
+}
+
+/* Hover states para opções */
+select.design-system-input option:hover,
+select.design-system-input option:focus {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+}
+
+.dark select.design-system-input option:hover,
+.dark select.design-system-input option:focus {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+/* Override para admin area */
+.admin-area .design-system-input {
+  /* Remove qualquer estilo conflitante da admin area */
+  background-color: unset !important;
+  border-color: unset !important;
+  color: unset !important;
+}
+
+.admin-area .design-system-input:focus {
+  /* Remove qualquer estilo de foco conflitante da admin area */
+  border-color: unset !important;
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow) !important;
+  outline: none !important;
+}
