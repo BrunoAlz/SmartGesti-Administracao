@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Bell, Settings, LogOut, Moon, Sun, User, Menu as MenuIcon, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Bell, LogOut, Moon, Sun, User, Menu as MenuIcon, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import { getThemeClasses } from "../../design-system";
 import { TopNavigation } from "./components/navigation/TopNavigation";
 import { useAdminLayout } from "../hooks/useAdminLayout";
 import { adminSidebarConfig } from "./components/sidebar/menuConfig";
 import { MenuItem, MenuSection, SubMenuItem } from "./components/sidebar/types";
+import { LayoutSettings } from "./components/layout/LayoutSettings";
 
 // ================================
 // TIPOS
@@ -28,9 +29,7 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
   const theme = useTheme();
   const { 
     layoutMode, 
-    changeLayoutMode, 
     toggleSidebar, 
-    isSidebarVisible, 
     isTopNavigation,
     toggleFloatingSidebar,
     isFloatingMode,
@@ -264,16 +263,9 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
 
       {/* Right Side */}
       <div className="flex items-center space-x-4">
-        {/* Botão de configurações - sem controles de layout */}
-        <div className="relative group">
-          <button
-            className={`p-2 rounded-lg transition-all duration-200 ${getThemeClasses(
-              theme.theme,
-              "button.secondary"
-            )}`}
-          >
-            <Settings className="w-5 h-5" />
-          </button>
+        {/* Botão de configurações - abre o dropdown de layout */}
+        <div className="relative">
+          <LayoutSettings />
         </div>
 
         {/* Theme Toggle */}
