@@ -13,7 +13,7 @@ import { ClientsList } from "./saas/ClientsList";
 import { ClientProfile } from "./saas/ClientProfile";
 
 // UI Kit Pages
-import { ButtonsUIKit, BadgesUIKit, InputsUIKit, TypographyUIKit, LayoutsUIKit, AccordionUIKit } from "./ui-kit";
+import { ButtonsUIKit, BadgesUIKit, InputsUIKit, TypographyUIKit, LayoutsUIKit, AccordionUIKit, TooltipUIKit } from "./ui-kit";
 import CardsUIKit from "./ui-kit/CardsUIKit";
 import AlertsUIKit from "./ui-kit/AlertsUIKit";
 import LoadingUIKit from "./ui-kit/LoadingUIKit";
@@ -99,6 +99,10 @@ export const AdminApp: React.FC = () => {
               path="ui-kit/accordion" 
               element={<AccordionUIKit />} 
             />
+              <Route 
+                path="ui-kit/tooltips" 
+                element={<TooltipUIKit />} 
+              />
             <Route 
               path="ui-kit/tables" 
               element={

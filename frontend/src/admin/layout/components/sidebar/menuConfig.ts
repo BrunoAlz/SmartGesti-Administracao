@@ -3,7 +3,6 @@ import { SidebarConfig } from "./types";
 // ================================
 // CONFIGURAÇÃO PRINCIPAL DO MENU ADMIN
 // ================================
-
 import {
   Home,
   Building2,
@@ -30,6 +29,7 @@ import {
   BarChart,
   Loader2,
   ChevronDown,
+  HelpCircle
 } from "lucide-react";
 
 // ================================
@@ -225,6 +225,12 @@ export const adminSidebarConfig: SidebarConfig = {
               path: "/admin/ui-kit/accordion",
               icon: ChevronDown,
             },
+              {
+                id: "ui-tooltips",
+                label: "Tooltips",
+                path: "/admin/ui-kit/tooltips",
+                icon: HelpCircle,
+              },
             {
               id: "ui-layout",
               label: "Layout",
