@@ -49,6 +49,80 @@
   width: 4px;
 }
 
+/* ================================
+   ESTILOS PARA CONTROLE DE TRANSIÇÃO DA SIDEBAR
+   ================================ */
+
+.sidebar-collapsed,
+.sidebar-expanded {
+  transition: all 0.3s ease-in-out;
+  will-change: width, min-width, max-width;
+}
+
+.sidebar-collapsed {
+  width: 4rem !important;
+  min-width: 4rem !important;
+  max-width: 4rem !important;
+}
+
+.sidebar-expanded {
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+}
+
+/* Para evitar problema de seleção de texto durante a transição */
+.sidebar-collapsed *,
+.sidebar-expanded * {
+  user-select: none;
+}
+
+/* Otimizações para dispositivos móveis */
+@media (max-width: 768px) {
+  .sidebar-collapsed {
+    width: 3.5rem !important;
+    min-width: 3.5rem !important;
+    max-width: 3.5rem !important;
+  }
+}
+
+/* Estilização do botão de toggle na sidebar */
+.sidebar-toggle-btn {
+  position: absolute;
+  z-index: 100;
+  transition: all 0.2s ease-in-out;
+  /* garantir tamanho mínimo para ficar quadrado */
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Permitir que o botão ultrapasse a borda da sidebar */
+  overflow: visible;
+}
+
+/* Ajustes específicos para o botão quando a sidebar está colapsada */
+.sidebar-collapsed .sidebar-toggle-btn {
+  /* Sem transform/scale para evitar problemas de posicionamento */
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
+
+/* Sem margem adicional no nav para manter layout consistente */
+.sidebar-collapsed nav {
+  margin-top: 0;
+}
+
+/* Hover: sombra leve, sem transform */
+.sidebar-toggle-btn:hover {
+  box-shadow: 0 4px 8px rgba(2,6,23,0.06);
+}
+
+/* Active: leve feedback sem escala */
+.sidebar-toggle-btn:active {
+  box-shadow: 0 2px 4px rgba(2,6,23,0.08);
+}
+
 /* Estilos para garantir que os dropdowns da sidebar funcionem corretamente */
 #dropdown-portal-container {
   position: fixed;

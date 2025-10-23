@@ -18,7 +18,10 @@ import {
   BellOff,
   UserCog,
   Lock,
-  Key
+  Key,
+  PanelLeft,
+  PanelRight,
+  PanelTop
 } from "lucide-react";
 import { useTheme } from "../../../contexts/ThemeContext";
 import { LayoutMode, useAdminLayout } from "../../../hooks/useAdminLayout";
@@ -54,19 +57,19 @@ export const LayoutSettings: React.FC = () => {
       mode: "default" as LayoutMode,
       label: "Padrão",
       description: "Menu lateral expandido",
-      icon: SidebarOpen
+      icon: PanelLeft
     },
     {
       mode: "right" as LayoutMode,
-      label: "Direita",
+      label: "Menu Direita",
       description: "Menu lateral à direita",
-      icon: ArrowRightToLine
+      icon: PanelRight
     },
     {
       mode: "top" as LayoutMode,
       label: "Superior",
       description: "Menu na barra superior",
-      icon: MenuSquare
+      icon: PanelTop
     }
   ];
   

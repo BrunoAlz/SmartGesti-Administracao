@@ -78,6 +78,7 @@ export interface SidebarProps {
   onToggle: () => void;
   config: SidebarConfig;
   className?: string;
+  mode?: 'default' | 'right' | 'top';
 }
 
 export interface MenuItemProps {

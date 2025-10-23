@@ -49,24 +49,6 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
         >
           SmartGesTI Admin
         </h1>
-        
-        {/* Botão de toggle - visível nos modos padrão e direita */}
-        {(layoutMode === "default" || layoutMode === "right") && (
-          <button
-            onClick={toggleSidebar}
-            className={`p-2 rounded-lg transition-all ${getThemeClasses(
-              theme.theme,
-              "button.secondary"
-            )}`}
-            title={!sidebarCollapsed ? "Recolher sidebar" : "Expandir sidebar"}
-          >
-            {!sidebarCollapsed ? (
-              <ChevronLeft className="w-5 h-5" />
-            ) : (
-              <ChevronRight className="w-5 h-5" />
-            )}
-          </button>
-        )}
       </div>
       
       {/* Menu de navegação horizontal quando no modo top - Centro da navbar */}

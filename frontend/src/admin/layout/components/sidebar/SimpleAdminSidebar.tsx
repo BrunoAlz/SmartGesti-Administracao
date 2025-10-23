@@ -10,6 +10,7 @@ interface SimpleAdminSidebarProps {
   isCollapsed: boolean;
   onToggle: () => void;
   isRightSidebar?: boolean;
+  mode?: 'default' | 'right' | 'top';
 }
 
 // ================================
@@ -19,15 +20,32 @@ interface SimpleAdminSidebarProps {
 export const SimpleAdminSidebar: React.FC<SimpleAdminSidebarProps> = ({
   isCollapsed,
   onToggle,
-  isRightSidebar = false
+  isRightSidebar = false,
+  mode = 'default'
 }) => {
-  console.log("SimpleAdminSidebar recebeu isCollapsed:", isCollapsed);
+  const [internalState, setInternalState] = React.useState(isCollapsed);
+  
+  // Sincronizar estado interno quando a prop muda
+  React.useEffect(() => {
+    if (internalState !== isCollapsed) {
+      console.log(`SimpleAdminSidebar atualizando estado interno: ${internalState} → ${isCollapsed}`);
+      setInternalState(isCollapsed);
+    }
+  }, [isCollapsed, internalState]);
+  
+  // Handler para toggle de sidebar com logging
+  const handleToggle = React.useCallback(() => {
+    console.log("SimpleAdminSidebar - Toggle acionado. Estado atual:", internalState);
+    onToggle();
+  }, [onToggle, internalState]);
+  
   return (
     <AdminSidebar
-      isCollapsed={isCollapsed}
-      onToggle={onToggle}
+      isCollapsed={internalState}
+      onToggle={handleToggle}
       config={adminSidebarConfig}
       className={isRightSidebar ? 'sidebar-right' : ''}
+      mode={mode}
     />
   );
 };

@@ -104,6 +104,11 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
     const newBreadcrumbs = getBreadcrumbsForRoute(location.pathname);
     updateBreadcrumbs(newBreadcrumbs);
   }, [location.pathname, updateBreadcrumbs]);
+  
+  // Efeito para monitorar mudanças no estado de colapso da sidebar
+  useEffect(() => {
+    console.log("FlexibleAdminLayout detectou mudança de estado da sidebar:", sidebarCollapsed);
+  }, [sidebarCollapsed]);
 
   // Determinar título da página atual
   const getPageTitle = () => {
@@ -146,12 +151,18 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar Left - visível apenas no modo padrão */}
         {layoutMode === "default" && (
-          <div className="transition-all duration-300 ease-in-out" style={{ 
-            width: sidebarCollapsed ? '4rem' : '16rem',
-          }}>
+          <div 
+            className={`transition-all duration-300 ease-in-out ${sidebarCollapsed ? 'w-16' : 'w-64'}`}
+            style={{ 
+              width: sidebarCollapsed ? '4rem' : '16rem',
+              maxWidth: sidebarCollapsed ? '4rem' : '16rem',
+              minWidth: sidebarCollapsed ? '4rem' : '16rem',
+            }}
+          >
             <SimpleAdminSidebar
               isCollapsed={sidebarCollapsed}
               onToggle={toggleSidebar}
+              mode="default"
             />
           </div>
         )}
@@ -186,13 +197,19 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
 
         {/* Sidebar Right - visível apenas no modo right */}
         {layoutMode === "right" && (
-          <div className="transition-all duration-300 ease-in-out" style={{ 
-            width: sidebarCollapsed ? '4rem' : '16rem',
-          }}>
+          <div 
+            className={`transition-all duration-300 ease-in-out ${sidebarCollapsed ? 'w-16' : 'w-64'}`}
+            style={{ 
+              width: sidebarCollapsed ? '4rem' : '16rem',
+              maxWidth: sidebarCollapsed ? '4rem' : '16rem',
+              minWidth: sidebarCollapsed ? '4rem' : '16rem',
+            }}
+          >
             <SimpleAdminSidebar
               isCollapsed={sidebarCollapsed}
               onToggle={toggleSidebar}
               isRightSidebar={true}
+              mode="right"
             />
           </div>
         )}

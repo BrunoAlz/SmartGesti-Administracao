@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Badge } from '@/design-system';
 import { useTheme } from '@/admin/contexts/ThemeContext';
 import { useAdminLayout } from '@/admin/hooks/useAdminLayout';
-import { Layout, Sidebar, AlignJustify, Sliders, CheckCircle } from 'lucide-react';
+import { Layout, Sidebar, AlignJustify, Sliders, CheckCircle, PanelLeft, PanelRight, PanelTop } from 'lucide-react';
 
 const LayoutsUIKit: React.FC = () => {
   const theme = useTheme();
@@ -13,19 +13,19 @@ const LayoutsUIKit: React.FC = () => {
       id: 'default',
       name: 'Layout Padrão',
       description: 'Layout clássico com sidebar à esquerda e navbar no topo',
-      icon: Layout
+      icon: PanelLeft
     },
     {
       id: 'top',
       name: 'Menu Superior',
       description: 'Navegação principal na barra superior, sem sidebar',
-      icon: AlignJustify
+      icon: PanelTop
     },
     {
       id: 'right',
-      name: 'Sidebar Direita',
+      name: 'Menu Direita',
       description: 'Sidebar posicionada no lado direito da tela',
-      icon: Sidebar
+      icon: PanelRight
     }
   ];
 
@@ -126,7 +126,7 @@ const LayoutsUIKit: React.FC = () => {
           </li>
           <li className={`flex items-start ${theme.isDark ? 'text-slate-300' : 'text-slate-700'}`}>
             <span className="inline-block text-green-500 mr-2">•</span>
-            O <strong>Sidebar Direita</strong> é útil para interfaces que focam em conteúdo à esquerda
+            O <strong>Menu Direita</strong> é útil para interfaces que focam em conteúdo à esquerda
           </li>
           <li className={`flex items-start ${theme.isDark ? 'text-slate-300' : 'text-slate-700'}`}>
             <span className="inline-block text-green-500 mr-2">•</span>

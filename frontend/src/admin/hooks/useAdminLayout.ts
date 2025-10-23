@@ -39,13 +39,16 @@ export const useAdminLayout = () => {
 
   // Função para alternar o estado de colapso da sidebar
   const toggleSidebar = useCallback(() => {
-    setSidebarCollapsed((prev) => {
-      const newValue = !prev;
+    setSidebarCollapsed(prevState => {
+      const newValue = !prevState;
+      console.log(`Alternando sidebar via botão interno. Estado anterior: ${prevState}, Novo estado: ${newValue}, Modo: ${layoutMode}`);
+      
+      // Atualizar localStorage com o novo valor
       localStorage.setItem("admin-sidebar-collapsed", String(newValue));
-      console.log("Sidebar toggle - novo estado:", newValue);
+      
       return newValue;
     });
-  }, []);
+  }, [layoutMode]);
 
   // Função para mudar o modo de layout
   const changeLayoutMode = useCallback((mode: LayoutMode) => {
@@ -81,6 +84,27 @@ export const useAdminLayout = () => {
       localStorage.setItem("admin-sidebar-collapsed", "false");
     }
   }, [layoutMode]);
+  
+  // Detector de mudanças no localStorage para sincronização entre abas/janelas
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'admin-sidebar-collapsed') {
+        const newValue = e.newValue === 'true';
+        if (newValue !== sidebarCollapsed) {
+          console.log(`Detectada mudança no localStorage: ${sidebarCollapsed} → ${newValue}`);
+          setSidebarCollapsed(newValue);
+        }
+      } else if (e.key === 'admin-layout-mode') {
+        const newMode = e.newValue as LayoutMode;
+        if (newMode && newMode !== layoutMode) {
+          setLayoutMode(newMode);
+        }
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [layoutMode, sidebarCollapsed]);
 
   return {
     layoutMode,
