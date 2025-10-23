@@ -56,21 +56,102 @@ const TooltipUIKit: React.FC = () => {
 
       {/* Card 2: Todas as cores sólidas e gradientes */}
       <ComponentShowcase
-        title="Cores"
-        description="Mostra cores sólidas e gradientes disponíveis"
-        code={`// Use variant="info|success|danger|warning" ou estilos com gradientes`}
+        title="Cores Sólidas"
+        description="Todas as variantes de cores sólidas do design system"
+        code={`// Cores sólidas disponíveis
+<Tooltip content="..." variant="primary">Primary</Tooltip>
+<Tooltip content="..." variant="secondary">Secondary</Tooltip>
+<Tooltip content="..." variant="ghost">Ghost</Tooltip>`}
         component={
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Tooltip content="Info" variant="info"><Button variant="info">Info</Button></Tooltip>
-            <Tooltip content="Success" variant="success"><Button variant="success">Success</Button></Tooltip>
-            <Tooltip content="Warning" variant="warning"><Button variant="warning">Warning</Button></Tooltip>
-            <Tooltip content="Danger" variant="danger"><Button variant="danger">Danger</Button></Tooltip>
+            {/* Variantes principais */}
+            <Tooltip content="Primary" variant="primary">
+              <Button variant="primary">Primary</Button>
+            </Tooltip>
+            <Tooltip content="Secondary" variant="secondary">
+              <Button variant="secondary">Secondary</Button>
+            </Tooltip>
+            <Tooltip content="Ghost" variant="ghost">
+              <Button variant="ghost">Ghost</Button>
+            </Tooltip>
+            
+            {/* Status colors */}
+            <Tooltip content="Success" variant="success">
+              <Button variant="success">Success</Button>
+            </Tooltip>
+            <Tooltip content="Warning" variant="warning">
+              <Button variant="warning">Warning</Button>
+            </Tooltip>
+            <Tooltip content="Danger" variant="danger">
+              <Button variant="danger">Danger</Button>
+            </Tooltip>
+            <Tooltip content="Info" variant="info">
+              <Button variant="info">Info</Button>
+            </Tooltip>
 
-            {/* Gradientes - usando classes utilitárias do design system */}
-            <Tooltip content="Primary Gradient"><Button className="bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white">Primary Gradient</Button></Tooltip>
-            <Tooltip content="Purple Gradient"><Button className="bg-gradient-to-r from-purple-500 to-indigo-700 text-white">Purple Gradient</Button></Tooltip>
-            <Tooltip content="Teal Gradient"><Button className="bg-gradient-to-r from-teal-400 to-green-500 text-white">Teal Gradient</Button></Tooltip>
-            <Tooltip content="Orange Gradient"><Button className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white">Orange Gradient</Button></Tooltip>
+            {/* Cores temáticas */}
+            <Tooltip content="Purple" variant="purple">
+              <Button variant="purple">Purple</Button>
+            </Tooltip>
+            <Tooltip content="Pink" variant="pink">
+              <Button variant="pink">Pink</Button>
+            </Tooltip>
+            <Tooltip content="Indigo" variant="indigo">
+              <Button variant="indigo">Indigo</Button>
+            </Tooltip>
+            <Tooltip content="Orange" variant="orange">
+              <Button variant="orange">Orange</Button>
+            </Tooltip>
+            <Tooltip content="Teal" variant="teal">
+              <Button variant="teal">Teal</Button>
+            </Tooltip>
+          </div>
+        }
+      />
+
+      {/* Card 3: Gradientes */}
+      <ComponentShowcase
+        title="Gradientes"
+        description="Todas as variantes de gradientes disponíveis"
+        code={`// Gradientes disponíveis
+<Tooltip content="..." variant="primary-gradient">Primary</Tooltip>
+<Tooltip content="..." variant="success-gradient">Success</Tooltip>
+<Tooltip content="..." variant="warning-gradient">Warning</Tooltip>`}
+        component={
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {/* Gradientes de Status */}
+            <Tooltip content="Primary Gradient" variant="primary-gradient">
+              <Button variant="primary-gradient">Primary</Button>
+            </Tooltip>
+            <Tooltip content="Success Gradient" variant="success-gradient">
+              <Button variant="success-gradient">Success</Button>
+            </Tooltip>
+            <Tooltip content="Warning Gradient" variant="warning-gradient">
+              <Button variant="warning-gradient">Warning</Button>
+            </Tooltip>
+            <Tooltip content="Danger Gradient" variant="danger-gradient">
+              <Button variant="danger-gradient">Danger</Button>
+            </Tooltip>
+            <Tooltip content="Info Gradient" variant="info-gradient">
+              <Button variant="info-gradient">Info</Button>
+            </Tooltip>
+
+            {/* Gradientes Temáticos */}
+            <Tooltip content="Purple Gradient" variant="purple-gradient">
+              <Button variant="purple-gradient">Purple</Button>
+            </Tooltip>
+            <Tooltip content="Pink Gradient" variant="pink-gradient">
+              <Button variant="pink-gradient">Pink</Button>
+            </Tooltip>
+            <Tooltip content="Indigo Gradient" variant="indigo-gradient">
+              <Button variant="indigo-gradient">Indigo</Button>
+            </Tooltip>
+            <Tooltip content="Orange Gradient" variant="orange-gradient">
+              <Button variant="orange-gradient">Orange</Button>
+            </Tooltip>
+            <Tooltip content="Teal Gradient" variant="teal-gradient">
+              <Button variant="teal-gradient">Teal</Button>
+            </Tooltip>
           </div>
         }
       />
@@ -103,8 +184,8 @@ const TooltipUIKit: React.FC = () => {
       {/* Card 4: Tooltips com ações e fixos (trigger click) */}
       <ComponentShowcase
         title="Ações e Tooltips Fixos"
-        description="Tooltips que contêm ações (botões) e tooltips persistentes via trigger=\"click\""
-        code={`// Use prop trigger=\"click\" para tooltips fixos`}
+        description={`Tooltips que contêm ações (botões) e tooltips persistentes via trigger="click"`}
+        code={`// Use prop trigger="click" para tooltips fixos`}
         component={
           <div className="space-y-4 max-w-md">
             <Tooltip
