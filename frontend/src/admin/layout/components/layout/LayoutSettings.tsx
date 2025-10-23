@@ -57,12 +57,6 @@ export const LayoutSettings: React.FC = () => {
       icon: SidebarOpen
     },
     {
-      mode: "compact" as LayoutMode,
-      label: "Compacto",
-      description: "Menu com ícones pequenos",
-      icon: SidebarClose
-    },
-    {
       mode: "right" as LayoutMode,
       label: "Direita",
       description: "Menu lateral à direita",
@@ -73,18 +67,6 @@ export const LayoutSettings: React.FC = () => {
       label: "Superior",
       description: "Menu na barra superior",
       icon: MenuSquare
-    },
-    {
-      mode: "floating" as LayoutMode,
-      label: "Flutuante",
-      description: "Menu oculto e flutuante",
-      icon: Maximize
-    },
-    {
-      mode: "hidden" as LayoutMode,
-      label: "Oculto",
-      description: "Sem menu lateral",
-      icon: EyeOff
     }
   ];
   

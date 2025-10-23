@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Badge } from '@/design-system';
 import { useTheme } from '@/admin/contexts/ThemeContext';
 import { useAdminLayout } from '@/admin/hooks/useAdminLayout';
-import { Layout, Sidebar, Monitor, AlignJustify, Grid, Layers, Sliders, CheckCircle } from 'lucide-react';
+import { Layout, Sidebar, AlignJustify, Sliders, CheckCircle } from 'lucide-react';
 
 const LayoutsUIKit: React.FC = () => {
   const theme = useTheme();
@@ -26,24 +26,6 @@ const LayoutsUIKit: React.FC = () => {
       name: 'Sidebar Direita',
       description: 'Sidebar posicionada no lado direito da tela',
       icon: Sidebar
-    },
-    {
-      id: 'compact',
-      name: 'Menu Compacto',
-      description: 'Sidebar sempre em modo compacto mostrando apenas ícones',
-      icon: Grid
-    },
-    {
-      id: 'floating',
-      name: 'Menu Flutuante',
-      description: 'Sidebar flutuante que aparece apenas quando necessário',
-      icon: Layers
-    },
-    {
-      id: 'hidden',
-      name: 'Sem Sidebar',
-      description: 'Layout sem sidebar, apenas com navegação superior',
-      icon: Monitor
     }
   ];
 
@@ -144,11 +126,11 @@ const LayoutsUIKit: React.FC = () => {
           </li>
           <li className={`flex items-start ${theme.isDark ? 'text-slate-300' : 'text-slate-700'}`}>
             <span className="inline-block text-green-500 mr-2">•</span>
-            O <strong>Menu Compacto</strong> é ideal para usuários experientes que preferem mais espaço útil
+            O <strong>Sidebar Direita</strong> é útil para interfaces que focam em conteúdo à esquerda
           </li>
           <li className={`flex items-start ${theme.isDark ? 'text-slate-300' : 'text-slate-700'}`}>
             <span className="inline-block text-green-500 mr-2">•</span>
-            O <strong>Menu Flutuante</strong> combina espaço útil com fácil acesso aos menus quando necessário
+            Utilize o botão de toggle na barra superior para retrair ou expandir o menu lateral
           </li>
         </ul>
       </div>

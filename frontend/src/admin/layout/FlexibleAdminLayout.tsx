@@ -7,7 +7,6 @@ import { getThemeClasses } from "../../design-system";
 import SimpleAdminSidebar from "./components/sidebar/SimpleAdminSidebar";
 import EnhancedAdminNavbar from "./EnhancedAdminNavbar";
 import SimpleAdminBreadcrumb from "./SimpleAdminBreadcrumb";
-import FloatingSidebar from "./components/sidebar/FloatingSidebar";
 import type { AdminLayoutProps } from "../types/admin";
 
 // ================================
@@ -94,10 +93,7 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
     isSidebarVisible,
     isSidebarRight,
     isCompactMode,
-    isTopNavigation,
-    isFloatingMode,
-    isFloatingSidebarVisible,
-    toggleFloatingSidebar
+    isTopNavigation
   } = useAdminLayout();
   
   const theme = useTheme();
@@ -148,13 +144,13 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
 
       {/* Container Principal */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar Left - visível apenas no modo padrão ou compact */}
-        {(layoutMode === "default" || layoutMode === "compact") && (
+        {/* Sidebar Left - visível apenas no modo padrão */}
+        {layoutMode === "default" && (
           <div className="transition-all duration-300 ease-in-out" style={{ 
-            width: layoutMode === "compact" || sidebarCollapsed ? '4rem' : '16rem',
+            width: sidebarCollapsed ? '4rem' : '16rem',
           }}>
             <SimpleAdminSidebar
-              isCollapsed={layoutMode === "compact" ? true : sidebarCollapsed}
+              isCollapsed={sidebarCollapsed}
               onToggle={toggleSidebar}
             />
           </div>
@@ -162,7 +158,7 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
 
         {/* Conteúdo Principal - sempre presente, adapta à largura total quando não tem sidebar */}
         <div className={`flex-1 flex flex-col overflow-hidden ${
-          layoutMode === "top" || layoutMode === "hidden" ? "w-full" : ""
+          layoutMode === "top" ? "w-full" : ""
         }`}>
           {/* Content Area */}
           <div className="flex-1 overflow-hidden">
@@ -201,15 +197,7 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
           </div>
         )}
         
-        {/* Floating Sidebar - visível condicionalmente quando ativada */}
-        {layoutMode === "floating" && (
-          <FloatingSidebar 
-            isVisible={isFloatingSidebarVisible}
-            onClose={toggleFloatingSidebar}
-            isCollapsed={sidebarCollapsed}
-            onToggleCollapse={toggleSidebar}
-          />
-        )}
+        {/* Removido o código da Floating Sidebar */}
       </div>
 
       {/* Toast Notifications */}

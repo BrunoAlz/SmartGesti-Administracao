@@ -7,10 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 export type LayoutMode = 
   | "default"       // Layout padrão com sidebar esquerda e navbar topo
   | "top"           // Menu no navbar superior, sem sidebar
-  | "right"         // Sidebar na direita
-  | "floating"      // Sidebar flutuante que aparece apenas quando necessário
-  | "compact"       // Sidebar sempre em modo compacto (apenas ícones)
-  | "hidden";       // Sidebar completamente escondida
+  | "right";        // Sidebar na direita
 
 // ================================
 // HOOK APRIMORADO PARA GERENCIAR LAYOUTS
@@ -40,25 +37,15 @@ export const useAdminLayout = () => {
   // Estado para breadcrumbs
   const [breadcrumbs, setBreadcrumbs] = useState<any[]>([]);
 
-  // Estado para o menu flutuante
-  const [isFloatingSidebarVisible, setFloatingSidebarVisible] = useState(false);
-
   // Função para alternar o estado de colapso da sidebar
   const toggleSidebar = useCallback(() => {
     setSidebarCollapsed((prev) => {
       const newValue = !prev;
       localStorage.setItem("admin-sidebar-collapsed", String(newValue));
       console.log("Sidebar toggle - novo estado:", newValue);
-      
-      // Se estiver no modo compacto e tentar expandir, mude para o modo default
-      if (layoutMode === "compact" && !prev) {
-        setLayoutMode("default");
-        localStorage.setItem("admin-layout-mode", "default");
-      }
-      
       return newValue;
     });
-  }, [layoutMode]);
+  }, []);
 
   // Função para mudar o modo de layout
   const changeLayoutMode = useCallback((mode: LayoutMode) => {
@@ -66,10 +53,7 @@ export const useAdminLayout = () => {
     localStorage.setItem("admin-layout-mode", mode);
     
     // Ajustes específicos dependendo do modo
-    if (mode === "compact") {
-      setSidebarCollapsed(true);
-      localStorage.setItem("admin-sidebar-collapsed", "true");
-    } else if (mode === "default") {
+    if (mode === "default") {
       // Quando o layout padrão for escolhido, o menu sempre vem expandido
       setSidebarCollapsed(false);
       localStorage.setItem("admin-sidebar-collapsed", "false");
@@ -80,10 +64,7 @@ export const useAdminLayout = () => {
     window.location.reload();
   }, []);
 
-  // Função para mostrar/esconder a sidebar flutuante
-  const toggleFloatingSidebar = useCallback(() => {
-    setFloatingSidebarVisible(prev => !prev);
-  }, []);
+  // Removido função para sidebar flutuante
 
   // Função para atualizar breadcrumbs
   const updateBreadcrumbs = useCallback((items: any[]) => {
@@ -108,15 +89,12 @@ export const useAdminLayout = () => {
     breadcrumbs,
     toggleSidebar,
     updateBreadcrumbs,
-    isFloatingSidebarVisible,
-    toggleFloatingSidebar,
     
     // Utilidades para verificar o modo atual
-    isSidebarVisible: ["default", "right", "compact", "floating"].includes(layoutMode),
+    isSidebarVisible: ["default", "right"].includes(layoutMode),
     isSidebarRight: layoutMode === "right",
-    isCompactMode: layoutMode === "compact" || sidebarCollapsed,
+    isCompactMode: sidebarCollapsed,
     isTopNavigation: layoutMode === "top",
-    isFloatingMode: layoutMode === "floating",
   };
 };
 
