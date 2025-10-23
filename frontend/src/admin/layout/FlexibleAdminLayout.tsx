@@ -190,10 +190,15 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
 
         {/* Sidebar Right - visível apenas no modo right */}
         {layoutMode === "right" && (
-          <SimpleAdminSidebar
-            isCollapsed={sidebarCollapsed}
-            onToggle={toggleSidebar}
-          />
+          <div className="transition-all duration-300 ease-in-out" style={{ 
+            width: sidebarCollapsed ? '4rem' : '16rem',
+          }}>
+            <SimpleAdminSidebar
+              isCollapsed={sidebarCollapsed}
+              onToggle={toggleSidebar}
+              isRightSidebar={true}
+            />
+          </div>
         )}
         
         {/* Floating Sidebar - visível condicionalmente quando ativada */}

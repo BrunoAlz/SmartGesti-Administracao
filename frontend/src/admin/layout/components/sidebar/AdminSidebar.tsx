@@ -70,9 +70,12 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
   // Forçar a largura com base no estado isCollapsed
   const sidebarWidth = isCollapsed ? '4rem' : '16rem'; // Equivalente a w-16 e w-64
   
+  // Determinar se o sidebar está à direita baseado na classe
+  const isRightSidebar = className?.includes('sidebar-right');
+
   return (
     <div
-      className={`h-full border-r transition-all duration-300 ease-in-out flex flex-col w-full
+      className={`h-full ${isRightSidebar ? 'border-l' : 'border-r'} transition-all duration-300 ease-in-out flex flex-col w-full
         ${isCollapsed ? "sidebar-collapsed" : ""} 
         ${getThemeClasses(theme.theme, "sidebar")} ${className}`}
       style={{ 

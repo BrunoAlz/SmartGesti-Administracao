@@ -9,6 +9,7 @@ import { adminSidebarConfig } from "./menuConfig";
 interface SimpleAdminSidebarProps {
   isCollapsed: boolean;
   onToggle: () => void;
+  isRightSidebar?: boolean;
 }
 
 // ================================
@@ -18,6 +19,7 @@ interface SimpleAdminSidebarProps {
 export const SimpleAdminSidebar: React.FC<SimpleAdminSidebarProps> = ({
   isCollapsed,
   onToggle,
+  isRightSidebar = false
 }) => {
   console.log("SimpleAdminSidebar recebeu isCollapsed:", isCollapsed);
   return (
@@ -25,6 +27,7 @@ export const SimpleAdminSidebar: React.FC<SimpleAdminSidebarProps> = ({
       isCollapsed={isCollapsed}
       onToggle={onToggle}
       config={adminSidebarConfig}
+      className={isRightSidebar ? 'sidebar-right' : ''}
     />
   );
 };
