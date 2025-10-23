@@ -210,3 +210,12 @@ export {
   useTable,
 } from "./components/Table";
 
+// Accordion Components
+export {
+  Accordion,
+  AccordionItem,
+  type AccordionProps,
+  type AccordionItemProps,
+  type AccordionVariant,
+} from "./components/Accordion";
+

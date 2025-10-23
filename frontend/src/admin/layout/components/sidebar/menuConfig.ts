@@ -29,6 +29,7 @@ import {
   Calendar,
   BarChart,
   Loader2,
+  ChevronDown,
 } from "lucide-react";
 
 // ================================
@@ -217,6 +218,12 @@ export const adminSidebarConfig: SidebarConfig = {
               label: "Loading",
               path: "/admin/ui-kit/loading",
               icon: Loader2,
+            },
+            {
+              id: "ui-accordion",
+              label: "Accordion",
+              path: "/admin/ui-kit/accordion",
+              icon: ChevronDown,
             },
             {
               id: "ui-layout",

@@ -11,6 +11,7 @@ export { default as LoadingUIKit } from "./LoadingUIKit";
 export { default as DividersUIKit } from "./DividersUIKit";
 export { default as TypographyUIKit } from "./TypographyUIKit";
 export { default as LayoutsUIKit } from "./LayoutsUIKit";
+export { default as AccordionUIKit } from "./AccordionUIKit";
 
 // Componentes auxiliares
 export { ComponentShowcase, ComponentSection } from "./components/ComponentShowcase";

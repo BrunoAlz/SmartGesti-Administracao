@@ -13,7 +13,7 @@ import { ClientsList } from "./saas/ClientsList";
 import { ClientProfile } from "./saas/ClientProfile";
 
 // UI Kit Pages
-import { ButtonsUIKit, BadgesUIKit, InputsUIKit, TypographyUIKit, LayoutsUIKit } from "./ui-kit";
+import { ButtonsUIKit, BadgesUIKit, InputsUIKit, TypographyUIKit, LayoutsUIKit, AccordionUIKit } from "./ui-kit";
 import CardsUIKit from "./ui-kit/CardsUIKit";
 import AlertsUIKit from "./ui-kit/AlertsUIKit";
 import LoadingUIKit from "./ui-kit/LoadingUIKit";
@@ -94,6 +94,10 @@ export const AdminApp: React.FC = () => {
             <Route 
               path="ui-kit/notifications" 
               element={<AlertsUIKit />} 
+            />
+            <Route 
+              path="ui-kit/accordion" 
+              element={<AccordionUIKit />} 
             />
             <Route 
               path="ui-kit/tables" 
