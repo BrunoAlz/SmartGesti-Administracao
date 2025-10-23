@@ -13,6 +13,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   isCollapsed,
   currentPath,
   onItemClick,
+  isRightSidebar = false,
 }) => {
   const theme = useTheme();
   const itemRef = useRef<HTMLDivElement>(null);
@@ -167,10 +168,14 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           <DropdownOverlay
             isOpen={showDropdown}
             onClose={() => setShowDropdown(false)}
-            position={{
+            position={isRightSidebar ? {
+              top: itemRef.current?.getBoundingClientRect().top || 0,
+              left: (itemRef.current?.getBoundingClientRect().left || 0) - 228
+            } : {
               top: itemRef.current?.getBoundingClientRect().top || 0,
               left: (itemRef.current?.getBoundingClientRect().right || 0) + 8
             }}
+            width={220}
           >
             <div className="p-3">
               {/* Título no menu */}

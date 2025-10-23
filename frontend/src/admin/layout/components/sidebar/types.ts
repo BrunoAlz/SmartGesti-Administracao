@@ -85,6 +85,7 @@ export interface MenuItemProps {
   isCollapsed: boolean;
   currentPath: string;
   onItemClick?: (item: MenuItem) => void;
+  isRightSidebar?: boolean;
 }
 
 export interface SubMenuProps {
@@ -94,6 +95,7 @@ export interface SubMenuProps {
   isExpanded: boolean;
   onToggleExpanded: () => void;
   onItemClick?: (item: SubMenuItem) => void;
+  isRightSidebar?: boolean;
 }
 
 export interface SidebarFooterProps {

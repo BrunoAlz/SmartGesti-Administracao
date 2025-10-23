@@ -49,6 +49,7 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
           isExpanded={isExpanded(item.id)}
           onToggleExpanded={() => toggleExpanded(item.id)}
           onItemClick={handleSubMenuItemClick}
+          isRightSidebar={isRightSidebar}
         />
       );
     }
@@ -60,6 +61,7 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
         isCollapsed={isCollapsed}
         currentPath={location.pathname}
         onItemClick={handleMenuItemClick}
+        isRightSidebar={isRightSidebar}
       />
     );
   };

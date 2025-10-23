@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
 import { useTheme } from "../../../contexts/ThemeContext";
 import { getThemeClasses } from "../../../../design-system";
 import { SubMenuProps, SubMenuItem } from "./types";
@@ -17,6 +17,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({
   isExpanded,
   onToggleExpanded,
   onItemClick,
+  isRightSidebar = false,
 }) => {
   const theme = useTheme();
   const Icon = item.icon;
@@ -91,7 +92,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({
 
         {/* Tooltip expandido ao passar o mouse - apenas quando collapsed */}
         {isCollapsed && (
-          <div className="absolute left-full ml-2 top-0 hidden group-hover:flex z-[9999]" style={{ pointerEvents: 'auto' }}>
+          <div className={`absolute ${isRightSidebar ? 'right-full mr-2' : 'left-full ml-2'} top-0 hidden group-hover:flex z-[9999]`} style={{ pointerEvents: 'auto' }}>
             <div className={`rounded-lg py-2 px-3 shadow-xl ${theme.isDark 
               ? 'bg-slate-800 border border-slate-700' 
               : 'bg-white border border-slate-200'} min-w-[180px]`}>
@@ -157,6 +158,8 @@ export const SubMenu: React.FC<SubMenuProps> = ({
             >
               {isExpanded ? (
                 <ChevronDown className="w-4 h-4" />
+              ) : isRightSidebar ? (
+                <ChevronLeft className="w-4 h-4" />
               ) : (
                 <ChevronRight className="w-4 h-4" />
               )}
@@ -310,7 +313,10 @@ export const SubMenu: React.FC<SubMenuProps> = ({
       <DropdownOverlay
         isOpen={showDropdown}
         onClose={() => setShowDropdown(false)}
-        position={{
+        position={isRightSidebar ? {
+          top: itemRef.current?.getBoundingClientRect().top || 0,
+          left: (itemRef.current?.getBoundingClientRect().left || 0) - 228
+        } : {
           top: itemRef.current?.getBoundingClientRect().top || 0,
           left: (itemRef.current?.getBoundingClientRect().right || 0) + 8
         }}
