@@ -57,18 +57,21 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
       "border-b",
       get("border.primary"),
       "last:border-b-0",
+      "shadow-sm shadow-slate-200/50 dark:shadow-md",
     ),
     bordered: cn(
       "border rounded-lg my-2",
       get("border.primary"),
+      "shadow-sm shadow-slate-200/40 dark:shadow-md",
     ),
     ghost: cn(
       "bg-transparent hover:bg-opacity-5",
       get("hover.background"),
     ),
     elevated: cn(
-      "rounded-lg my-2 shadow-sm",
+      "rounded-lg my-2",
       get("background.card"),
+      "shadow-md shadow-slate-300/50 dark:shadow-lg hover:shadow-lg hover:shadow-slate-400/50 dark:hover:shadow-xl",
     ),
   };
 
@@ -76,10 +79,11 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
     <div className={cn("overflow-hidden", variantClasses[variant], className)}>
       <button
         className={cn(
-          "flex items-center justify-between w-full p-4 text-left transition-colors",
+          "flex items-center justify-between w-full p-4 text-left transition-all duration-200",
           get("text.primary"),
           isOpen ? get("background.active") : get("background.hover-light"),
           "hover:bg-opacity-5",
+          variant === "elevated" && isOpen ? "shadow-inner" : "",
           titleClassName
         )}
         onClick={onToggle}
