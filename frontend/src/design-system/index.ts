@@ -219,3 +219,21 @@ export {
   type AccordionVariant,
 } from "./components/Accordion";
 
+// Tooltip Components
+export {
+  Tooltip,
+  type TooltipProps,
+  type TooltipVariant,
+  type TooltipPosition,
+} from "./components/Tooltip";
+
+// Tabs Components
+export {
+  Tab,
+  Tabs,
+  type TabProps,
+  type TabsProps,
+  type TabVariant,
+  type TabColor,
+} from "./components/Tabs";
+
