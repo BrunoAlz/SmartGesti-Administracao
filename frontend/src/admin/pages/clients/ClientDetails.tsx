@@ -8,6 +8,7 @@ import {
   IconButton,
   StatCard,
   useThemeClasses,
+  useThemeContext,
   cn,
   Textarea
 } from "../../../design-system";
@@ -211,6 +212,8 @@ const paymentHistory: PaymentHistory[] = [
 export const ClientDetails: React.FC = () => {
   const navigate = useNavigate();
   const { get } = useThemeClasses();
+  const { theme } = useThemeContext();
+  const isDark = theme === 'dark';
   
   const [activeTab, setActiveTab] = useState<"overview" | "activity" | "billing" | "settings">("overview");
 
@@ -570,8 +573,8 @@ export const ClientDetails: React.FC = () => {
                   </div>
 
                   <div className="flex gap-3">
-                    <Button variant="primary">Salvar Alterações</Button>
-                    <Button variant="secondary">Cancelar</Button>
+                    <Button variant={isDark ? "success-gradient" : "success"}>Salvar Alterações</Button>
+                    <Button variant={isDark ? "danger-gradient" : "danger"}>Cancelar</Button>
                   </div>
                 </div>
               </CardContent>
@@ -585,16 +588,16 @@ export const ClientDetails: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <Button variant="secondary" fullWidth icon={<Mail className="w-4 h-4" />}>
+                  <Button variant={isDark ? "secondary-gradient" : "secondary"} fullWidth icon={<Mail className="w-4 h-4" />}>
                     Enviar Email
                   </Button>
-                  <Button variant="secondary" fullWidth icon={<Download className="w-4 h-4" />}>
+                  <Button variant={isDark ? "secondary-gradient" : "secondary"} fullWidth icon={<Download className="w-4 h-4" />}>
                     Exportar Dados
                   </Button>
-                  <Button variant="secondary" fullWidth icon={<RefreshCw className="w-4 h-4" />}>
+                  <Button variant={isDark ? "secondary-gradient" : "secondary"} fullWidth icon={<RefreshCw className="w-4 h-4" />}>
                     Resetar Senha
                   </Button>
-                  <Button variant="danger" fullWidth icon={<Trash2 className="w-4 h-4" />}>
+                  <Button variant={isDark ? "danger-gradient" : "danger"} fullWidth icon={<Trash2 className="w-4 h-4" />}>
                     Excluir Cliente
                   </Button>
                 </div>

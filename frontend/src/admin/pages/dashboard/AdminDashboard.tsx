@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { 
   Card, CardHeader, CardContent, StatCard, SectionDivider, Button,
-  useThemeClasses, useBadgeClasses, cn 
+  useThemeClasses, useBadgeClasses, useThemeContext, cn 
 } from "../../../design-system";
 
 // ================================
@@ -166,6 +166,8 @@ const RevenueChart: React.FC = () => {
 
 export const AdminDashboard: React.FC = () => {
   const { get } = useThemeClasses();
+  const { theme } = useThemeContext();
+  const isDark = theme === 'dark';
   const navigate = useNavigate();
   
   // Hook para badges com tipos diferentes
@@ -233,10 +235,10 @@ export const AdminDashboard: React.FC = () => {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="secondary" size="sm" icon={<BarChart3 className="w-4 h-4" />}>
+          <Button variant={isDark ? "primary-gradient" : "primary"} size="sm" icon={<BarChart3 className="w-4 h-4" />}>
             Relatórios
           </Button>
-          <Button variant="primary" size="sm" icon={<Plus className="w-4 h-4" />}>
+          <Button variant={isDark ? "success-gradient" : "success"} size="sm" icon={<Plus className="w-4 h-4" />}>
             Novo SAAS
           </Button>
         </div>
@@ -361,7 +363,7 @@ export const AdminDashboard: React.FC = () => {
                 </div>
 
                 <Button
-                  variant="primary"
+                  variant={isDark ? "primary-gradient" : "primary"}
                   size="sm"
                   fullWidth
                   icon={<ArrowRight className="w-4 h-4" />}

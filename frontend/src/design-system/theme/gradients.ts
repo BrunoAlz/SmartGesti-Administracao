@@ -7,15 +7,30 @@
  * Com efeitos avançados de hover e interatividade
  */
 export const gradients = {
-  // Gradientes para botões
+  // Gradientes para botões - Sistema Semântico
   button: {
-    // Gradientes vibrantes com múltiplas cores e efeitos interativos
-    'primary-gradient': 'bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:from-cyan-600 hover:via-blue-700 hover:to-purple-700 text-white shadow-md hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-300',
-    'success-gradient': 'bg-gradient-to-r from-green-400 via-emerald-500 to-teal-600 hover:from-green-500 hover:via-emerald-600 hover:to-teal-700 text-white shadow-md hover:shadow-lg hover:shadow-emerald-500/30 hover:scale-[1.02] transition-all duration-300',
-    'warning-gradient': 'bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 hover:from-amber-500 hover:via-yellow-600 hover:to-orange-600 text-white shadow-md hover:shadow-lg hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-300',
-    'danger-gradient': 'bg-gradient-to-r from-red-500 via-rose-500 to-pink-600 hover:from-red-600 hover:via-rose-600 hover:to-pink-700 text-white shadow-md hover:shadow-lg hover:shadow-red-500/30 hover:scale-[1.02] transition-all duration-300',
-    'info-gradient': 'bg-gradient-to-r from-blue-400 via-sky-500 to-cyan-600 hover:from-blue-500 hover:via-sky-600 hover:to-cyan-700 text-white shadow-md hover:shadow-lg hover:shadow-sky-500/30 hover:scale-[1.02] transition-all duration-300',
-    'purple-gradient': 'bg-gradient-to-r from-purple-500 via-violet-600 to-indigo-700 hover:from-purple-600 hover:via-violet-700 hover:to-indigo-800 text-white shadow-md hover:shadow-lg hover:shadow-violet-500/30 hover:scale-[1.02] transition-all duration-300',
+    // 🟢 AÇÕES DE CRIAÇÃO/CONFIRMAÇÃO (Verde)
+    'success-gradient': 'bg-gradient-to-r from-green-500 via-emerald-600 to-teal-700 hover:from-green-600 hover:via-emerald-700 hover:to-teal-800 text-white shadow-md hover:shadow-lg hover:shadow-green-500/30 hover:scale-[1.02] transition-all duration-300',
+    
+    // 🔵 AÇÕES DE VISUALIZAÇÃO/INFORMAÇÃO (Azul)
+    'primary-gradient': 'bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 hover:from-blue-600 hover:via-indigo-700 hover:to-purple-800 text-white shadow-md hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-300',
+    
+    // 🟡 AÇÕES DE EDIÇÃO/MODIFICAÇÃO (Amarelo/Laranja)
+    'warning-gradient': 'bg-gradient-to-r from-amber-500 via-orange-600 to-red-600 hover:from-amber-600 hover:via-orange-700 hover:to-red-700 text-white shadow-md hover:shadow-lg hover:shadow-amber-500/30 hover:scale-[1.02] transition-all duration-300',
+    
+    // 🔴 AÇÕES DE EXCLUSÃO/CANCELAMENTO (Vermelho)
+    'danger-gradient': 'bg-gradient-to-r from-red-500 via-rose-600 to-pink-700 hover:from-red-600 hover:via-rose-700 hover:to-pink-800 text-white shadow-md hover:shadow-lg hover:shadow-red-500/30 hover:scale-[1.02] transition-all duration-300',
+    
+    // ⚫ AÇÕES SECUNDÁRIAS/NEUTRAS (Cinza)
+    'secondary-gradient': 'bg-gradient-to-r from-slate-500 via-gray-600 to-zinc-700 hover:from-slate-600 hover:via-gray-700 hover:to-zinc-800 text-white shadow-md hover:shadow-lg hover:shadow-slate-500/20 hover:scale-[1.02] transition-all duration-300',
+    
+    // 🟣 AÇÕES PREMIUM/ESPECIAIS (Roxo)
+    'purple-gradient': 'bg-gradient-to-r from-purple-500 via-violet-600 to-indigo-700 hover:from-purple-600 hover:via-violet-700 hover:to-indigo-800 text-white shadow-md hover:shadow-lg hover:shadow-purple-500/30 hover:scale-[1.02] transition-all duration-300',
+    
+    // 🔵 AÇÕES DE INFORMAÇÃO/HELP (Ciano)
+    'info-gradient': 'bg-gradient-to-r from-cyan-500 via-sky-600 to-blue-700 hover:from-cyan-600 hover:via-sky-700 hover:to-blue-800 text-white shadow-md hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-[1.02] transition-all duration-300',
+    
+    // Gradientes adicionais para compatibilidade
     'pink-gradient': 'bg-gradient-to-r from-pink-500 via-rose-500 to-red-500 hover:from-pink-600 hover:via-rose-600 hover:to-red-600 text-white shadow-md hover:shadow-lg hover:shadow-pink-500/30 hover:scale-[1.02] transition-all duration-300',
     'indigo-gradient': 'bg-gradient-to-r from-indigo-500 via-blue-600 to-violet-700 hover:from-indigo-600 hover:via-blue-700 hover:to-violet-800 text-white shadow-md hover:shadow-lg hover:shadow-indigo-500/30 hover:scale-[1.02] transition-all duration-300',
     'orange-gradient': 'bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 hover:from-orange-600 hover:via-amber-600 hover:to-yellow-600 text-white shadow-md hover:shadow-lg hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-300',

@@ -29,7 +29,8 @@ export type ButtonVariant =
   | "pink-gradient"
   | "indigo-gradient"
   | "orange-gradient"
-  | "teal-gradient";
+  | "teal-gradient"
+  | "secondary-gradient";
 
 // Variantes de badge
 export type BadgeVariant = 

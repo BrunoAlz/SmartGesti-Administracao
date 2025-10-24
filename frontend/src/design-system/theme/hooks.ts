@@ -43,6 +43,7 @@ export function useThemeClasses() {
       'indigo-gradient': 'focus:ring-indigo-500',
       'orange-gradient': 'focus:ring-orange-500',
       'teal-gradient': 'focus:ring-teal-500',
+      'secondary-gradient': 'focus:ring-gray-400',
     };
     
     // Retorna a classe de foco para a variante específica ou padrão para primary
