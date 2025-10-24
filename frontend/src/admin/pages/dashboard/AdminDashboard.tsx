@@ -24,59 +24,33 @@ import {
 // ================================
 
 
-// SAAS data from SaasList page
+// SAAS data - SmartGesTI Plataformas
 const saasData = [
   {
     id: "smartsaude",
-    name: "SmartSaúde",
-    description: "Sistema de gestão para clínicas e hospitais",
+    name: "SmartGesTI - Saúde",
+    description: "Sistema completo de gestão para clínicas, hospitais e consultórios médicos",
     icon: Building2,
     color: "from-blue-500 to-cyan-500",
-    totalClients: 45,
-    activeClients: 42,
-    monthlyRevenue: 12500,
-    growthRate: 8.5,
-    lastActivity: "2 min atrás",
+    totalClients: 127,
+    activeClients: 118,
+    monthlyRevenue: 45600,
+    growthRate: 15.2,
+    lastActivity: "5 min atrás",
     status: "active"
   },
   {
     id: "smarteduca",
-    name: "SmartEduca",
-    description: "Plataforma educacional para escolas e universidades",
+    name: "SmartGesTI - Educação",
+    description: "Plataforma educacional completa para escolas, universidades e cursos",
     icon: Users,
     color: "from-green-500 to-emerald-500",
-    totalClients: 32,
-    activeClients: 28,
-    monthlyRevenue: 8900,
-    growthRate: 12.3,
-    lastActivity: "15 min atrás",
+    totalClients: 89,
+    activeClients: 82,
+    monthlyRevenue: 32100,
+    growthRate: 22.8,
+    lastActivity: "12 min atrás",
     status: "active"
-  },
-  {
-    id: "smartimoveis",
-    name: "SmartImóveis",
-    description: "Gestão completa para imobiliárias",
-    icon: Building2,
-    color: "from-purple-500 to-pink-500",
-    totalClients: 28,
-    activeClients: 25,
-    monthlyRevenue: 6700,
-    growthRate: 5.2,
-    lastActivity: "1 hora atrás",
-    status: "active"
-  },
-  {
-    id: "smartbusiness",
-    name: "SmartBusiness",
-    description: "Solução empresarial completa",
-    icon: Building2,
-    color: "from-orange-500 to-red-500",
-    totalClients: 18,
-    activeClients: 15,
-    monthlyRevenue: 4500,
-    growthRate: -2.1,
-    lastActivity: "2 horas atrás",
-    status: "maintenance"
   }
 ];
 
@@ -256,7 +230,7 @@ export const AdminDashboard: React.FC = () => {
         <StatCard
           title="Total de SAAS"
           value={saasData.length}
-          change="+1 este mês"
+          change="+2 plataformas ativas"
           changeType="positive"
           icon={<Building2 />}
           iconColor="primary"
@@ -264,7 +238,7 @@ export const AdminDashboard: React.FC = () => {
         <StatCard
           title="Total de Clientes"
           value={saasData.reduce((sum, saas) => sum + saas.totalClients, 0)}
-          change="+12 esta semana"
+          change="+18 esta semana"
           changeType="positive"
           icon={<Users />}
           iconColor="success"
@@ -272,7 +246,7 @@ export const AdminDashboard: React.FC = () => {
         <StatCard
           title="Receita Mensal"
           value={formatCurrency(saasData.reduce((sum, saas) => sum + saas.monthlyRevenue, 0))}
-          change="+8.5% vs. mês anterior"
+          change="+19.0% vs. mês anterior"
           changeType="positive"
           icon={<DollarSign />}
           iconColor="success"
@@ -295,7 +269,7 @@ export const AdminDashboard: React.FC = () => {
         badgeColor="green"
         spacing="lg"
       />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {saasData.map((saas) => {
           const Icon = saas.icon;
           return (

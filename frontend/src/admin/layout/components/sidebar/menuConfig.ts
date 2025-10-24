@@ -5,7 +5,6 @@ import { SidebarConfig } from "./types";
 // ================================
 import {
   Home,
-  Building2,
   CreditCard,
   Settings,
   FileText,
@@ -25,7 +24,6 @@ import {
   Layout,
   Bell,
   Table,
-  Calendar,
   BarChart,
   Loader2,
   ChevronDown,
@@ -76,20 +74,7 @@ export const adminSidebarConfig: SidebarConfig = {
       id: "management",
       label: "Gestão",
       items: [
-        {
-          type: "submenu",
-          id: "clients",
-          label: "Clientes",
-          icon: Building2,
-          children: [
-            {
-              id: "saas-list",
-              label: "Ver SAAS",
-              path: "/admin/saas",
-              icon: List,
-            },
-          ],
-        },
+        // Menu Clientes removido - funcionalidade movida para o Dashboard
       ],
     },
 
