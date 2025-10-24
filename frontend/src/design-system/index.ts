@@ -2,9 +2,13 @@
 // DESIGN SYSTEM - SmartGesTI
 // ================================
 
+// Importações de tipos de componentes
+export type { ButtonVariant } from './components/types';
+export type { ButtonSize, IconPosition } from './components/Button';
+
 // Sistema de Tema - Importando de './theme' que aponta para './theme/index.ts'
 export {
-  // Tipos
+  // Tipos de Tema
   type Theme,
   
   // Context
@@ -126,6 +130,11 @@ export {
   Alert,
   AlertBanner,
 } from "./components/Alert";
+
+export {
+  ActionMenu,
+} from "./components/ActionMenu";
+export type { ActionMenuProps } from "./components/ActionMenu";
 export type { AlertProps, AlertBannerProps, AlertVariant, AlertSize } from "./components/Alert";
 
 // Modal Components

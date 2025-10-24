@@ -13,7 +13,7 @@ export { default as TypographyUIKit } from "./TypographyUIKit";
 export { default as LayoutsUIKit } from "./LayoutsUIKit";
 export { default as AccordionUIKit } from "./AccordionUIKit";
 
-export { default as TooltipUIKit } from "./TooltipUIKit";
+export { TooltipUIKit } from "./TooltipUIKit";
 export { TabsUIKit } from "./TabsUIKit";
 
 // Componentes auxiliares

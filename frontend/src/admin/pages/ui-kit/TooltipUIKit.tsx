@@ -1,25 +1,40 @@
 import React from "react";
-import { Info, CheckCircle, AlertTriangle, HelpCircle } from "lucide-react";
-import { Tooltip, Button, useThemeClasses, cn } from "../../../design-system";
+import { 
+  Tooltip, 
+  Button, 
+  useThemeClasses,
+  Badge 
+} from "../../../design-system";
 import { ComponentShowcase, ComponentSection } from "./components/ComponentShowcase";
+import { 
+  Settings, 
+  User, 
+  Bell, 
+  ChevronRight, 
+  Star,
+  Heart,
+  Clock,
+  CheckCircle2,
+  AlertCircle,
+  AlertTriangle
+} from "lucide-react";
 
-const TooltipUIKit: React.FC = () => {
-  const { get } = useThemeClasses();
+// ================================
+// PÁGINA TOOLTIPS UI KIT
+// ================================
 
-  const tooltipCode = `import { Tooltip, Button } from '@/design-system';
-
-<Tooltip content="Texto do tooltip">
-  <Button variant="primary">Passe o mouse</Button>
-</Tooltip>`;
+export const TooltipUIKit: React.FC = () => {
+  const { get, cn } = useThemeClasses();
 
   return (
     <div className="p-6 space-y-8">
-      <div className="mb-8">
-        <h1 className={cn("text-3xl font-bold mb-2", get("text.primary"))}>
-          Tooltips
+      {/* Header */}
+      <div className="max-w-3xl mx-auto text-center">
+        <h1 className={cn("text-3xl font-bold mb-4", get("text.primary"))}>
+          Sistema de Tooltips
         </h1>
         <p className={cn("text-lg", get("text.secondary"))}>
-          Exemplos avançados de tooltips: posições, cores, conteúdos ricos e tooltips com ações/fixos.
+          Exemplos de tooltips: posições, variantes de cor e conteúdo elaborado.
         </p>
       </div>
 
@@ -27,7 +42,7 @@ const TooltipUIKit: React.FC = () => {
       <ComponentShowcase
         title="Posições"
         description="Demonstra todas as posições suportadas pelo Tooltip"
-        code={`// Exemplos: position=\"top|right|left|bottom\"`}
+        code={`// Exemplos: position="top|right|left|bottom"`}
         component={
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-4">
@@ -54,7 +69,30 @@ const TooltipUIKit: React.FC = () => {
         }
       />
 
-      {/* Card 2: Todas as cores sólidas e gradientes */}
+      {/* Card 2: Tooltips Básicos */}
+      <ComponentShowcase
+        title="Tooltips Básicos" 
+        description="Exemplos de tooltips simples com diferentes variantes"
+        code={`// Tooltips básicos
+<Tooltip content="Padrão" variant="default">Default</Tooltip>
+<Tooltip content="Primário" variant="primary">Primary</Tooltip>
+<Tooltip content="Secundário" variant="secondary">Secondary</Tooltip>`}
+        component={
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Tooltip content="Tooltip padrão com tema" variant="secondary">
+              <Button variant="secondary">Default</Button>
+            </Tooltip>
+            <Tooltip content="Tooltip primário" variant="primary">
+              <Button variant="primary">Primary</Button>
+            </Tooltip>
+            <Tooltip content="Tooltip secundário" variant="secondary">
+              <Button variant="secondary">Secondary</Button>
+            </Tooltip>
+          </div>
+        }
+      />
+
+      {/* Card 3: Todas as cores sólidas */}
       <ComponentShowcase
         title="Cores Sólidas"
         description="Todas as variantes de cores sólidas do design system"
@@ -109,7 +147,7 @@ const TooltipUIKit: React.FC = () => {
         }
       />
 
-      {/* Card 3: Gradientes */}
+      {/* Card 4: Gradientes */}
       <ComponentShowcase
         title="Gradientes"
         description="Todas as variantes de gradientes disponíveis"
@@ -156,66 +194,138 @@ const TooltipUIKit: React.FC = () => {
         }
       />
 
-      {/* Card 3: Tooltip elaborado com header, ícones e texto */}
+      {/* Card 5: Tooltips Elaborados */}
       <ComponentShowcase
-        title="Conteúdo Rico"
-        description="Tooltips com header, ícones e múltiplas linhas de texto"
-        code={`// Exemplo de conteúdo JSX no prop content`}
+        title="Tooltips Elaborados"
+        description="Exemplos de tooltips com conteúdo rico e formatado incluindo ícones, headers, botões e indicadores"
+        code={`// Tooltips com conteúdo rico
+<Tooltip 
+  content={
+    <div className="p-3 space-y-2">
+      <div className="flex items-center space-x-2">
+        <Settings size={18} />
+        <span className="font-semibold">Configurações</span>
+      </div>
+      <div className="space-y-1">
+        <p className="text-sm">Detalhes e controles</p>
+        <div className="flex space-x-2">
+          <Button size="sm">Editar</Button>
+          <Button size="sm" variant="secondary">Cancelar</Button>
+        </div>
+      </div>
+    </div>
+  } 
+  variant="primary"
+>
+  <Button>Hover me</Button>
+</Tooltip>`}
         component={
-          <div className="max-w-md">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Tooltip com Header e Botões */}
             <Tooltip
-              position="top"
               content={
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <Info className="w-4 h-4 text-blue-400" />
-                    <div className="font-semibold">Informação importante</div>
+                <div className="p-3 min-w-[240px]">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-2">
+                      <User size={18} className={get("text.primary")} />
+                      <span className={cn("font-semibold", get("text.primary"))}>
+                        Perfil do Usuário
+                      </span>
+                    </div>
+                    <Badge variant="success" size="sm">Online</Badge>
                   </div>
-                  <div className="text-sm text-gray-100">Este tooltip contém um cabeçalho, ícone e texto detalhado para explicar funcionalidades.</div>
+                  <div className={cn("text-sm mb-3", get("text.secondary"))}>
+                    <p>Gerenciar suas preferências e configurações de conta.</p>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button size="sm">Editar Perfil</Button>
+                    <Button size="sm" variant="secondary">Configurações</Button>
+                  </div>
                 </div>
               }
+              variant="primary"
             >
-              <Button variant="ghost">Mostrar Tooltip Elaborado</Button>
+              <Button variant="primary">Com Header e Botões</Button>
             </Tooltip>
-          </div>
-        }
-      />
 
-      {/* Card 4: Tooltips com ações e fixos (trigger click) */}
-      <ComponentShowcase
-        title="Ações e Tooltips Fixos"
-        description={`Tooltips que contêm ações (botões) e tooltips persistentes via trigger="click"`}
-        code={`// Use prop trigger="click" para tooltips fixos`}
-        component={
-          <div className="space-y-4 max-w-md">
+            {/* Tooltip com Notificação e Progress */}
             <Tooltip
-              trigger="click"
-              position="bottom"
               content={
-                <div className="space-y-2 p-2">
-                  <div className="font-semibold">Ação disponível</div>
-                  <div className="flex gap-2">
-                    <Button variant="primary" size="sm">Confirmar</Button>
-                    <Button variant="ghost" size="sm">Cancelar</Button>
+                <div className="p-3 min-w-[280px]">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Bell size={18} className={cn("text-yellow-500")} />
+                    <span className={cn("font-semibold", get("text.primary"))}>Nova Atualização</span>
+                  </div>
+                  <p className={cn("text-sm mb-3", get("text.secondary"))}>
+                    Atualizando sistema para versão 2.0.0
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className={get("text.secondary")}>Progresso</span>
+                      <span className={get("text.primary")}>75%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+                      <div 
+                        className="bg-yellow-500 h-full rounded-full" 
+                        style={{ width: '75%' }}
+                      ></div>
+                    </div>
+                    <div className="flex items-center space-x-1 text-xs text-yellow-500">
+                      <Clock size={14} />
+                      <span>Estimativa: 5 minutos restantes</span>
+                    </div>
                   </div>
                 </div>
               }
+              variant="warning"
             >
-              <Button variant="primary">Abrir Tooltip de Ação</Button>
+              <Button variant="warning">Com Progress</Button>
             </Tooltip>
 
+            {/* Tooltip com Status e Ações */}
             <Tooltip
-              trigger="click"
-              position="right"
-              content={<div className="p-2">Tooltip fixo: clique fora para fechar</div>}
+              content={
+                <div className="p-3 min-w-[260px]">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-2">
+                      <Star size={18} className="text-yellow-500" />
+                      <span className={cn("font-semibold", get("text.primary"))}>
+                        Status do Projeto
+                      </span>
+                    </div>
+                  </div>
+                  <div className="space-y-2 mb-3">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle2 size={16} className="text-green-500" />
+                      <span className={cn("text-sm", get("text.secondary"))}>Frontend: Completo</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <AlertCircle size={16} className="text-yellow-500" />
+                      <span className={cn("text-sm", get("text.secondary"))}>Backend: Em progresso</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <AlertTriangle size={16} className="text-red-500" />
+                      <span className={cn("text-sm", get("text.secondary"))}>Testes: Pendente</span>
+                    </div>
+                  </div>
+                  <div className="border-t border-gray-200 dark:border-gray-700 pt-2 flex items-center justify-between">
+                    <div className="flex items-center space-x-1">
+                      <Heart size={14} className="text-red-500" />
+                      <span className={cn("text-xs", get("text.secondary"))}>8 contribuidores</span>
+                    </div>
+                    <Button size="sm" variant="ghost" className="text-xs">
+                      Ver Detalhes <ChevronRight size={14} />
+                    </Button>
+                  </div>
+                </div>
+              }
+              variant="secondary"
             >
-              <Button variant="secondary">Tooltip Fixo</Button>
+              <Button variant="secondary">Status Detalhado</Button>
             </Tooltip>
           </div>
         }
       />
     </div>
   );
-};
-
-export default TooltipUIKit;
+}
