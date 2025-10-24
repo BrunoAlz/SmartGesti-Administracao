@@ -243,11 +243,6 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
 
       {/* Right Side */}
       <div className="flex items-center space-x-4">
-        {/* Botão de configurações - abre o dropdown de layout */}
-        <div className="relative">
-          <LayoutSettings />
-        </div>
-
         {/* Theme Toggle */}
         <button
           onClick={theme.toggleTheme}
@@ -273,6 +268,11 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
         >
           <Bell className="w-5 h-5" />
         </button>
+
+        {/* Botão de configurações - abre o dropdown de layout */}
+        <div className="relative">
+          <LayoutSettings />
+        </div>
 
         {/* User Menu */}
         <div className="flex items-center space-x-3">
