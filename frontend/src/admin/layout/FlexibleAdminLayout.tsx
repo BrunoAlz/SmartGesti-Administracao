@@ -8,6 +8,7 @@ import SimpleAdminSidebar from "./components/sidebar/SimpleAdminSidebar";
 import EnhancedAdminNavbar from "./EnhancedAdminNavbar";
 import SimpleAdminBreadcrumb from "./SimpleAdminBreadcrumb";
 import type { AdminLayoutProps } from "../types/admin";
+import { NotificationsProvider } from "./components/notifications/NotificationsContext";
 
 // ================================
 // MAPEAMENTO DE BREADCRUMBS
@@ -141,7 +142,8 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
   }
 
   return (
-    <div className={`h-screen flex flex-col ${getThemeClasses(theme.theme, "layout")}`}>
+    <NotificationsProvider>
+      <div className={`h-screen flex flex-col ${getThemeClasses(theme.theme, "layout")}`}>
       {/* Navbar sempre visível em cima - com z-index mais alto */}
       <div className="relative z-10">
         <EnhancedAdminNavbar user={user} onLogout={logout} />
@@ -251,7 +253,8 @@ export const FlexibleAdminLayout: React.FC<AdminLayoutProps> = ({ children }) =>
           },
         }}
       />
-    </div>
+      </div>
+    </NotificationsProvider>
   );
 };
 

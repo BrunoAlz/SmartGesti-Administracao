@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Bell, LogOut, Moon, Sun, User, Menu as MenuIcon, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { LogOut, Moon, Sun, User, Menu as MenuIcon, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { NotificationsContainer } from "./components/notifications/NotificationsContainer";
 import { useTheme } from "../contexts/ThemeContext";
 import { getThemeClasses } from "../../design-system";
 import { TopNavigation } from "./components/navigation/TopNavigation";
@@ -260,14 +261,7 @@ export const EnhancedAdminNavbar: React.FC<EnhancedAdminNavbarProps> = ({
         </button>
 
         {/* Notifications */}
-        <button
-          className={`p-2 rounded-lg transition-all duration-200 ${getThemeClasses(
-            theme.theme,
-            "button.secondary"
-          )}`}
-        >
-          <Bell className="w-5 h-5" />
-        </button>
+        <NotificationsContainer />
 
         {/* Botão de configurações - abre o dropdown de layout */}
         <div className="relative">

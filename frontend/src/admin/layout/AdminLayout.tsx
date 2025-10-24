@@ -5,9 +5,10 @@ import { useAdminAuth, useAdminLayout } from "../hooks/useAdminSimple";
 import { useTheme } from "../contexts/ThemeContext";
 import { getThemeClasses } from "../../design-system";
 import SimpleAdminSidebar from "./components/sidebar/SimpleAdminSidebar";
-import SimpleAdminNavbar from "./SimpleAdminNavbar";
+import { NotificationsNavbar } from "./NotificationsNavbar";
 import SimpleAdminBreadcrumb from "./SimpleAdminBreadcrumb";
 import type { AdminLayoutProps } from "../types/admin";
+import { NotificationsProvider } from "./components/notifications/NotificationsContext";
 
 // ================================
 // MAPEAMENTO DE BREADCRUMBS
@@ -48,17 +49,6 @@ const getBreadcrumbsForRoute = (pathname: string) => {
         ];
       }
 
-      if (pathname.includes("/edit/")) {
-        return [
-          ...baseBreadcrumbs.slice(0, -1),
-          {
-            label: baseBreadcrumbs[baseBreadcrumbs.length - 1].label,
-            path: route,
-          },
-          { label: "Editar", isActive: true },
-        ];
-      }
-
       // Para rotas com ID (detalhes)
       if (pathname.match(/\/\d+$/)) {
         return [
@@ -86,7 +76,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const { user, isLoading, logout } = useAdminAuth();
   const { sidebarCollapsed, breadcrumbs, toggleSidebar, updateBreadcrumbs } =
     useAdminLayout();
-  const theme = useTheme(); // Usar diretamente aqui
+  const theme = useTheme();
   const location = useLocation();
 
   // Atualizar breadcrumbs baseado na rota atual
@@ -97,56 +87,40 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
 
   // Determinar título da página atual
   const getPageTitle = () => {
-    const pathname = location.pathname;
-    if (pathname.includes("/clients")) return "Gerenciamento de Clientes";
-    if (pathname.includes("/users")) return "Gerenciamento de Usuários";
-    if (pathname.includes("/analytics")) return "Analytics e Relatórios";
-    if (pathname.includes("/settings")) return "Configurações do Sistema";
-    return "Dashboard Administrativo";
+    if (breadcrumbs.length === 0) return "SmartGesTI";
+    const currentPage = breadcrumbs[breadcrumbs.length - 1];
+    return `${currentPage.label} - SmartGesTI`;
   };
 
-  // Loading state
-  if (isLoading) {
-    return (
-      <div
-        className={`min-h-screen flex items-center justify-center ${getThemeClasses(theme.theme, "layout")}`}
-      >
-        <div className="text-center">
-          <div
-            className={`animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4 ${
-              theme.isDark ? "border-blue-400" : "border-blue-600"
-            }`}
-          ></div>
-          <p className={getThemeClasses(theme.theme, "text.secondary")}>
-            Carregando painel administrativo...
-          </p>
-        </div>
-      </div>
-    );
-  }
+  // Atualizar título da página
+  useEffect(() => {
+    document.title = getPageTitle();
+  }, [breadcrumbs]);
 
   return (
-    <div className={`h-screen flex ${getThemeClasses(theme.theme, "layout")}`}>
-      {/* Sidebar */}
-      <SimpleAdminSidebar
-        isCollapsed={sidebarCollapsed}
-        onToggle={toggleSidebar}
-      />
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Navbar */}
-        <SimpleAdminNavbar user={user} onLogout={logout} />
-
-        {/* Content Area */}
-        <div className="flex-1 overflow-hidden">
-          <div className="h-full overflow-y-auto">
-            <div className="p-6">
-              {/* Breadcrumbs */}
-              <SimpleAdminBreadcrumb
-                items={breadcrumbs}
-                rightTitle={getPageTitle() || undefined}
+    <NotificationsProvider>
+      <div>
+        <div className="h-screen flex flex-col">
+          {/* Layout Principal */}
+          <div className="flex-1 flex">
+            {/* Sidebar */}
+            {!isLoading && (
+              <SimpleAdminSidebar
+                isCollapsed={sidebarCollapsed}
+                onToggle={toggleSidebar}
               />
+            )}
+
+            {/* Conteúdo Principal */}
+            <div className="flex-1 overflow-y-auto">
+              {/* Navbar & Breadcrumbs */}
+              <NotificationsNavbar
+                user={user}
+                onLogout={logout}
+              />
+
+              {/* Breadcrumbs */}
+              <SimpleAdminBreadcrumb items={breadcrumbs} />
 
               {/* Page Content */}
               <div
@@ -160,44 +134,42 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Toast Notifications */}
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 4000,
-          style: theme.isDark
-            ? {
-                background: "rgba(0, 0, 0, 0.8)",
-                color: "#fff",
-                backdropFilter: "blur(16px)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-              }
-            : {
-                background: "#fff",
-                color: "#374151",
-                boxShadow:
-                  "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-                border: "1px solid #e5e7eb",
+        {/* Toast Notifications */}
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: theme.isDark
+              ? {
+                  background: "rgba(0, 0, 0, 0.8)",
+                  color: "#fff",
+                  backdropFilter: "blur(16px)",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+                }
+              : {
+                  background: "#fff",
+                  color: "#374151",
+                  boxShadow:
+                    "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+                  border: "1px solid #e5e7eb",
+                },
+            success: {
+              iconTheme: {
+                primary: theme.isDark ? "#10b981" : "#10b981",
+                secondary: "#fff",
               },
-          success: {
-            iconTheme: {
-              primary: theme.isDark ? "#10b981" : "#10b981",
-              secondary: "#fff",
             },
-          },
-          error: {
-            iconTheme: {
-              primary: "#ef4444",
-              secondary: "#fff",
+            error: {
+              iconTheme: {
+                primary: "#ef4444",
+                secondary: "#fff",
+              },
             },
-          },
-        }}
-      />
-    </div>
+          }}
+        />
+      </div>
+    </NotificationsProvider>
   );
 };
-
-export default AdminLayout;

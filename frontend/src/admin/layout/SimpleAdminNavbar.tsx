@@ -1,7 +1,8 @@
 import React from "react";
-import { Bell, Settings, LogOut, Moon, Sun, User } from "lucide-react";
+import { Settings, LogOut, Moon, Sun, User } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import { getThemeClasses } from "../../design-system";
+import { NotificationsContainer } from "./components/notifications/NotificationsContainer";
 
 // ================================
 // TIPOS
@@ -57,14 +58,7 @@ export const SimpleAdminNavbar: React.FC<SimpleAdminNavbarProps> = ({
         </button>
 
         {/* Notifications */}
-        <button
-          className={`p-2 rounded-lg transition-all duration-200 ${getThemeClasses(
-            theme.theme,
-            "button.secondary"
-          )}`}
-        >
-          <Bell className="w-5 h-5" />
-        </button>
+        <NotificationsContainer />
 
         {/* Settings */}
         <button

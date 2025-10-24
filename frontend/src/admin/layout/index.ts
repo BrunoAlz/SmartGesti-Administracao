@@ -1,4 +1,4 @@
-import AdminLayout from "./AdminLayout";
+import { AdminLayout } from "./AdminLayout";
 import FlexibleAdminLayout from "./FlexibleAdminLayout";
 import SimpleAdminBreadcrumb from "./SimpleAdminBreadcrumb";
 import SimpleAdminNavbar from "./SimpleAdminNavbar";
